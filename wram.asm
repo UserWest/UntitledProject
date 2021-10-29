@@ -1945,7 +1945,7 @@ wOptions:: db
 
 wObtainedBadges:: flag_array NUM_BADGES
 
-	ds 1
+wCurVersion:: db
 
 ; bit 0: If 0, limit the delay to 1 frame. Note that this has no effect if
 ;        the delay has been disabled entirely through bit 1 of this variable
@@ -2093,7 +2093,9 @@ wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
 wd49c:: db
 
-	ds 19
+	ds 18
+	
+wUniversalVariable:: db ; Made for my own sanity
 
 ; number of signs in the current map (up to 16)
 wNumSigns:: db
