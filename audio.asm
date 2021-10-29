@@ -446,7 +446,7 @@ INCLUDE "audio/low_health_alarm.asm"
 SECTION "Audio Engine 2", ROMX
 
 INCLUDE "audio/engine_2.asm"
-
+INCLUDE "audio/fade_audio.asm"
 
 SECTION "Audio Engine 3", ROMX
 
