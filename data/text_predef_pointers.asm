@@ -32,8 +32,8 @@ TextPredefs::
 	add_tx_pre SaffronCityPokecenterBenchGuyText    ; 1A
 	add_tx_pre MtMoonPokecenterBenchGuyText         ; 1B
 	add_tx_pre RockTunnelPokecenterBenchGuyText     ; 1C
-	add_tx_pre UnusedBenchGuyText1                  ; 1D XXX unused
-	add_tx_pre UnusedBenchGuyText2                  ; 1E XXX unused
+	add_tx_pre LetsListenPolitelyText               ; 1D 
+	add_tx_pre BragRightBackText                    ; 1E
 	add_tx_pre UnusedBenchGuyText3                  ; 1F XXX unused
 	add_tx_pre UnusedPredefText                     ; 20 XXX unused
 	add_tx_pre PokemonCenterPCText                  ; 21
