@@ -2,7 +2,10 @@ SECTION "Tilesets 1", ROMX
 
 Overworld_GFX::     INCBIN "gfx/tilesets/overworld.2bpp"
 	ds 32
+OverworldRB_Block::
 Overworld_Block::   INCBIN "gfx/blocksets/overworld.bst"
+
+OverworldRB_GFX:: INCBIN "gfx/tilesets/overworldRB.2bpp"
 
 RedsHouse1_GFX::
 RedsHouse2_GFX::    INCBIN "gfx/tilesets/reds_house.2bpp"
@@ -17,8 +20,7 @@ ShipPort_GFX::      INCBIN "gfx/tilesets/ship_port.2bpp"
 ShipPort_Block::    INCBIN "gfx/blocksets/ship_port.bst"
 Interior_GFX::      INCBIN "gfx/tilesets/interior.2bpp"
 Interior_Block::    INCBIN "gfx/blocksets/interior.bst"
-Plateau_GFX::       INCBIN "gfx/tilesets/plateau.2bpp"
-Plateau_Block::     INCBIN "gfx/blocksets/plateau.bst"
+
 
 
 SECTION "Tilesets 2", ROMX
@@ -65,6 +67,14 @@ Underground_Block:: INCBIN "gfx/blocksets/underground.bst"
 
 
 SECTION "Tilesets 4", ROMX
+
+MartRB_GFX::
+PokecenterRB_GFX::    INCBIN "gfx/tilesets/pokecenter.2bpp"
+MartRB_Block::
+PokecenterRB_Block::  INCBIN "gfx/blocksets/pokecenterRB.bst"
+
+Plateau_GFX::       INCBIN "gfx/tilesets/plateau.2bpp"
+Plateau_Block::     INCBIN "gfx/blocksets/plateau.bst"
 
 BeachHouse_GFX::    INCBIN "gfx/tilesets/beach_house.2bpp"
 	ds 384
