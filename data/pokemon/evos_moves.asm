@@ -2161,3 +2161,5 @@ VictreebelEvosMoves:
 	db 15, POISONPOWDER
 	db 18, SLEEP_POWDER
 	db 0
+
+INCLUDE "data/pokemon/evos_moves_rb.asm"
