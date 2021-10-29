@@ -70,7 +70,15 @@ GetPrizeMenuId:
 	add a
 	ld d, 0
 	ld e, a
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	ld hl, RedPrizeDifferentMenuPtrs
+	jr z, .gotPointers
+	cp BLUE_VERSION
+	ld hl, BluePrizeDifferentMenuPtrs
+	jr z, .gotPointers
 	ld hl, PrizeDifferentMenuPtrs
+.gotPointers
 	add hl, de
 	ld a, [hli]
 	ld d, [hl]
@@ -290,6 +298,13 @@ OhFineThenTextPtr:
 GetPrizeMonLevel:
 	ld a, [wcf91]
 	ld b, a
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	ld hl, RedPrizeMonLevelDictionary
+	jr z, .loop
+	cp BLUE_VERSION
+	ld hl, BluePrizeMonLevelDictionary
+	jr z, .loop
 	ld hl, PrizeMonLevelDictionary
 .loop
 	ld a, [hli]
