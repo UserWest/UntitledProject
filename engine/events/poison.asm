@@ -61,7 +61,7 @@ ApplyOutOfBattlePoisonDamage:
 	ld a, TEXT_MON_FAINTED
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .curMonNotPlayerPikachu
 	ld e, $3
 	callfar PlayPikachuSoundClip
