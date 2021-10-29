@@ -32,7 +32,7 @@ RedrawPartyMenu_::
 	call PlaceString ; print the pokemon's name
 	ldh a, [hPartyMonIndex]
 	ld [wWhichPokemon], a
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .regularMon
 	call CheckPikachuFollowingPlayer
 	jr z, .regularMon
@@ -121,7 +121,11 @@ RedrawPartyMenu_::
 	db "NOT ABLE@"
 .evolutionStoneMenu
 	push hl
+	call CheckForYellowVersion
 	ld hl, EvosMovesPointerTable
+	jr z, .gotPointerTable
+	ld hl, EvosMovesPointerTableRB
+.gotPointerTable
 	ld b, 0
 	ld a, [wLoadedMonSpecies]
 	dec a
@@ -130,7 +134,13 @@ RedrawPartyMenu_::
 	ld c, a
 	add hl, bc
 	ld de, wEvosMoves
+	call CheckForYellowVersion
+	jr nz, .rbBank
 	ld a, BANK(EvosMovesPointerTable)
+	jr .yellowBank
+.rbBank
+	ld a, BANK(EvosMovesPointerTableRB)
+.yellowBank
 	ld bc, 2
 	call FarCopyData
 	ld hl, wEvosMoves
@@ -138,7 +148,13 @@ RedrawPartyMenu_::
 	ld h, [hl]
 	ld l, a
 	ld de, wEvosMoves
+	cp YELLOW_VERSION
+	jr nz, .rbBank2
 	ld a, BANK(EvosMovesPointerTable)
+	jr .yellowBank2
+.rbBank2
+	ld a, BANK(EvosMovesPointerTableRB)
+.yellowBank2
 	ld bc, wEvosMovesEnd - wEvosMoves
 	call FarCopyData
 	ld hl, wEvosMoves
@@ -171,7 +187,7 @@ RedrawPartyMenu_::
 	add hl, bc
 	call PlaceString
 	pop hl
-	jr .printLevel
+	jp .printLevel
 .ableToEvolveText
 	db "ABLE@"
 .notAbleToEvolveText
