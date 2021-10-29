@@ -42,10 +42,14 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld a, c
 	and a ; is the mon's bit set?
 	jp z, Evolution_PartyMonLoop ; if not, go to the next mon
+	ld b, 0
+	call CheckForYellowVersion
+	ld hl, EvosMovesPointerTable
+	jr z, .gotPointerTable
+	ld hl, EvosMovesPointerTableRB
+.gotPointerTable
 	ld a, [wEvoOldSpecies]
 	dec a
-	ld b, 0
-	ld hl, EvosMovesPointerTable
 	add a
 	rl b
 	ld c, a
@@ -364,7 +368,7 @@ LearnMoveFromLevelUp:
 	ld a, b
 	and a
 	jr z, .done
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .done
 	ld a, [wMoveNum]
 	cp THUNDERBOLT
@@ -381,83 +385,14 @@ LearnMoveFromLevelUp:
 	ld [wd11e], a
 	ret
 
-Func_3b079:
-	ld a, [wcf91]
-	push af
-	call Func_3b0a2
-	jr c, .asm_3b09c
-
-	call Func_3b10f
-	jr nc, .asm_3b096
-
-	call Func_3b0a2
-	jr c, .asm_3b09c
-
-	call Func_3b10f
-	jr nc, .asm_3b096
-
-	call Func_3b0a2
-	jr c, .asm_3b09c
-.asm_3b096
-	pop af
-	ld [wcf91], a
-	and a
-	ret
-.asm_3b09c
-	pop af
-	ld [wcf91], a
-	scf
-	ret
-
-Func_3b0a2:
-; XXX what is wcf91 entering this function?
-	ld a, [wd11e]
-	ld [wMoveNum], a
-	predef CanLearnTM
-	ld a, c
-	and a
-	jr nz, .asm_3b0ec
-	ld hl, Pointer_3b0ee
-	ld a, [wcf91]
-	ld de, $1
-	call IsInArray
-	jr c, .asm_3b0d2
-	ld a, $ff
-	ld [wMonHGrowthRate], a
-	ld a, [wd11e]
-	ld hl, wMonHMoves
-	ld de, $1
-	call IsInArray
-	jr c, .asm_3b0ec
-.asm_3b0d2
-	ld a, [wd11e]
-	ld d, a
-	call GetMonLearnset
-.loop
-	ld a, [hli]
-	and a
-	jr z, .asm_3b0ea
-	ld b, a
-	ld a, [wCurEnemyLVL]
-	cp b
-	jr c, .asm_3b0ea
-	ld a, [hli]
-	cp d
-	jr z, .asm_3b0ec
-	jr .loop
-.asm_3b0ea
-	and a
-	ret
-.asm_3b0ec
-	scf
-	ret
-
-INCLUDE "data/pokemon/unknown_list.asm"
-
 Func_3b10f:
 	ld c, $0
 .asm_3b111
+	call CheckForYellowVersion
 	ld hl, EvosMovesPointerTable
+	jr z, .gotPointerTable
+	ld hl, EvosMovesPointerTableRB
+.gotPointerTable
 	ld b, $0
 	add hl, bc
 	add hl, bc
@@ -616,7 +551,11 @@ Evolution_FlagAction:
 	predef_jump FlagActionPredef
 
 GetMonLearnset:
+	call CheckForYellowVersion
 	ld hl, EvosMovesPointerTable
+	jr z, .gotPointerTable
+	ld hl, EvosMovesPointerTableRB
+.gotPointerTable
 	ld b, 0
 	ld a, [wcf91]
 	dec a
