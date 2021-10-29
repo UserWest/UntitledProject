@@ -83,7 +83,11 @@ OakSpeech:
 	call PrintText
 	call GBFadeOutToWhite
 	call ClearScreen
+	call CheckForYellowVersion
+	ld de, RedRBPicFront
+	jr nz, .gotRedPic
 	ld de, RedPicFront
+.gotRedPic
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call MovePicLeft
@@ -92,7 +96,11 @@ OakSpeech:
 	call ChoosePlayerName
 	call GBFadeOutToWhite
 	call ClearScreen
+	call CheckForYellowVersion
+	ld de, Rival1RBPic
+	jr nz, .gotRivalPic
 	ld de, Rival1Pic
+.gotRivalPic
 	lb bc, BANK(Rival1Pic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
@@ -102,7 +110,11 @@ OakSpeech:
 .skipChoosingNames
 	call GBFadeOutToWhite
 	call ClearScreen
+	call CheckForYellowVersion
+	ld de, RedRBPicFront
+	jr nz, .gotRedPic2
 	ld de, RedPicFront
+.gotRedPic2
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call GBFadeInFromWhite
