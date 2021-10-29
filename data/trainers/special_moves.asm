@@ -156,5 +156,20 @@ SpecialTrainerMoves:
 	db 6, 1, AURORA_BEAM
 	db 6, 3, QUICK_ATTACK
 	db 0
-
+	
+	db RIVAL3, 4 ; BLASTOISE
+	db 1, 3, SKY_ATTACK
+	db 1, 3, BLIZZARD
+	db 0
+	
+	db RIVAL3, 5 ; VENUSAUR
+	db 1, 3, SKY_ATTACK
+	db 1, 3, MEGA_DRAIN
+	db 0
+	
+	db RIVAL3, 6 ; CHARIZARD
+	db 1, 3, SKY_ATTACK
+	db 1, 3, FIRE_BLAST
+	db 0
+	
 	db -1 ; end
