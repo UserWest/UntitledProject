@@ -141,7 +141,6 @@ INCLUDE "data/text/text_5.asm"
 INCLUDE "text/RedsHouse1F.asm"
 INCLUDE "text/BluesHouse.asm"
 INCLUDE "text/OaksLab.asm"
-INCLUDE "text/pokedex_ratings.asm"
 INCLUDE "text/ViridianPokecenter.asm"
 INCLUDE "text/ViridianMart.asm"
 INCLUDE "text/ViridianSchoolHouse.asm"
@@ -157,10 +156,6 @@ INCLUDE "text/PewterPokecenter.asm"
 INCLUDE "text/CeruleanTrashedHouse.asm"
 INCLUDE "text/CeruleanMelaniesHouse.asm"
 INCLUDE "text/CeruleanPokecenter.asm"
-INCLUDE "text/CeruleanGym.asm"
-INCLUDE "text/BikeShop.asm"
-INCLUDE "text/CeruleanMart.asm"
-INCLUDE "text/CeruleanBadgeHouse.asm"
 
 
 SECTION "Text 6", ROMX
@@ -256,12 +251,18 @@ INCLUDE "text/FuchsiaCity.asm"
 INCLUDE "text/CinnabarIsland.asm"
 INCLUDE "text/SaffronCity.asm"
 
+INCLUDE "text/CeruleanBadgeHouse.asm"
+INCLUDE "text/CeruleanGym.asm"
+INCLUDE "text/BikeShop.asm"
+INCLUDE "text/CeruleanMart.asm"
+
 INCLUDE "data/text/text_9.asm"
 
 
 SECTION "Pokédex Text", ROMX
 
 INCLUDE "data/pokemon/dex_text.asm"
+INCLUDE "text/pokedex_ratings.asm"
 
 
 SECTION "Move Names", ROMX
