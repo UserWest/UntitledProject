@@ -199,6 +199,9 @@ PlaySound::
 	pop hl
 	ret
 
+FadeOutAudio::
+	homejp FadeOutAudio_
+
 GetNextMusicByte::
 	ldh a, [hLoadedROMBank]
 	push af
