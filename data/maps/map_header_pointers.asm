@@ -251,3 +251,86 @@ MapHeaderPointers::
 	dw AgathasRoom_h
 	dw SummerBeachHouse_h
 	assert_table_length NUM_MAPS
+
+ChangedMapHeaderPointers::
+	table_width 2, ChangedMapHeaderPointers
+	dw OaksLabRB_h
+	dw CeladonGymRB_h
+	dw GameCornerRB_h
+	dw Route4RB_h
+	dw Route19RB_h
+	dw SummerBeachHouseRB_h
+	dw CeruleanCave1FRB_h
+	dw CeruleanCave2FRB_h
+	dw CeruleanCaveB1FRB_h
+	assert_table_length 9
+	
+CheckForVersionMapDifferences::
+	cp VERMILION_DOCK
+	jr z, .VermilionDock
+	call CheckForYellowVersion
+	jp z, .CheckForCeruleanCaveYellow
+	ld a, [wCurMap]
+	cp OAKS_LAB
+	jr nz, .notOaksLab
+	ld e, 0
+	jr .foundMap
+.notOaksLab
+	cp CELADON_GYM
+	jr nz, .notCeladonGym
+	ld e, 1
+	jr .foundMap
+.notCeladonGym
+	cp GAME_CORNER
+	jr nz, .notGameCorner
+	ld e, 2
+	jr .foundMap
+.notGameCorner
+	cp ROUTE_4
+	jr nz, .notRoute4
+	ld e, 3
+	jr .foundMap
+.notRoute4
+	cp ROUTE_19
+	jr nz, .notRoute19
+	ld e, 4
+	jr .foundMap
+.notRoute19
+	cp SUMMER_BEACH_HOUSE
+	jr nz, .notSummerBeachHouse
+	ld e, 5
+	jr .foundMap
+.notSummerBeachHouse
+	cp CERULEAN_CAVE_1F
+	jr nz, .notCeruleanCave1F
+	ld e, 6
+	jr .foundCeruleanCave
+.notCeruleanCave1F
+	cp CERULEAN_CAVE_2F
+	jr nz, .notCeruleanCave2F
+	ld e, 7
+	jr .foundCeruleanCave
+.notCeruleanCave2F
+	cp CERULEAN_CAVE_B1F
+	ret nz
+	ld e, 8
+.foundCeruleanCave
+	call ClearVariable ; wipes wUniversalVariable to allow player to spawn at last warp
+.foundMap
+	ld hl, ChangedMapHeaderPointers
+	ld d, 0
+	ret
+.VermilionDock
+	; haven't done yet
+	ret
+.CheckForCeruleanCaveYellow
+	cp CERULEAN_CAVE_1F
+	jr z, .foundCeruleanCaveYellow
+	cp CERULEAN_CAVE_2F
+	jr z, .foundCeruleanCaveYellow
+	cp CERULEAN_CAVE_B1F
+	jr z, .foundCeruleanCaveYellow
+	ret
+.foundCeruleanCaveYellow
+	call ClearVariable ; wipes wUniversalVariable to allow player to spawn at last warp
+	ret
