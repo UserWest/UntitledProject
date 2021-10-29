@@ -11,6 +11,20 @@ _OakWalksUpText::
 	line "in tall grass!"
 	done
 
+_OakWalksUpRBText::
+	text "OAK: It's unsafe!"
+	line "Wild #MON live"
+	cont "in tall grass!"
+
+	para "You need your own"
+	line "#MON for your"
+	cont "protection."
+	cont "I know!"
+
+	para "Here, come with"
+	line "me!"
+	done
+
 _OakWhewText::
 	text "OAK: Whew..."
 	done
