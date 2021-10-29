@@ -64,13 +64,12 @@ IsStarterPikachuInOurParty::
 	and a
 	ret
 
-IsThisPartymonStarterPikachu_Box::
+IsThisBoxmonStarterPikachu::
 	ld hl, wBoxMon1
 	ld bc, wBoxMon2 - wBoxMon1
 	ld de, wBoxMonOT
 	jr asm_fce21
 
-IsThisPartymonStarterPikachu_Party::
 IsThisPartymonStarterPikachu::
 	ld hl, wPartyMon1
 	ld bc, wPartyMon2 - wPartyMon1

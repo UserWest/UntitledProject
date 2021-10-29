@@ -175,11 +175,11 @@ StatusScreen:
 	jr z, .playRegularCry
 	cp BOX_DATA
 	jr z, .checkBoxData
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .playRegularCry
 	jr .playPikachuSoundClip
 .checkBoxData
-	callfar IsThisPartymonStarterPikachu_Box
+	callfar IsThisBoxmonStarterPikachu
 	jr nc, .playRegularCry
 .playPikachuSoundClip
 	ld e, 16
