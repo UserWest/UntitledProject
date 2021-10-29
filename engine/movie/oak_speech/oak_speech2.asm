@@ -20,7 +20,11 @@ ChoosePlayerName:
 	jr z, .customName
 	call ClearScreen
 	call Delay3
+	call CheckForYellowVersion
+	ld de, RedRBPicFront
+	jr nz, .gotRedPic
 	ld de, RedPicFront
+.gotRedPic
 	ld b, BANK(RedPicFront)
 	call IntroDisplayPicCenteredOrUpperRight
 .done

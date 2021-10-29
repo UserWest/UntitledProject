@@ -156,7 +156,7 @@ HoFDisplayAndRecordMonInfo:
 	call HoFDisplayMonInfo
 	ld a, [wHoFPartyMonIndex]
 	ld [wWhichPokemon], a
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .asm_70336
 	ld e, $22
 	callfar PlayPikachuSoundClip
@@ -197,7 +197,11 @@ HoFMonInfoText:
 	next "TYPE2/@"
 
 HoFLoadPlayerPics:
+	call CheckForYellowVersion
+	ld de, RedRBPicFront
+	jr nz, .gotRedPic
 	ld de, RedPicFront
+.gotRedPic
 	ld a, BANK(RedPicFront)
 	call UncompressSpriteFromDE
 	ld a, $0
