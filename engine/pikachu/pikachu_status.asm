@@ -146,7 +146,7 @@ CheckPikachuFaintedOrStatused::
 	cp $ff
 	jr z, .dead_or_not_in_party
 	push hl
-	call IsThisPartymonStarterPikachu_Party
+	call IsThisPartymonStarterPikachu
 	pop hl
 	jr nc, .next
 	ld a, [wWhichPokemon]
