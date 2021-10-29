@@ -1,4 +1,10 @@
 _RunPaletteCommand:
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	ret z
+	cp BLUE_VERSION
+	ret z
+DontSkipRunPaletteCommand:
 	call GetPredefRegisters
 	ld a, b
 	cp SET_PAL_DEFAULT
@@ -141,10 +147,23 @@ SetPal_GameFreakIntro:
 
 ; uses PalPacket_Empty to build a packet based on the current map
 SetPal_Overworld:
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	ld hl, PalPacket_Red
+	jr z, .gotPalPacket
+	cp BLUE_VERSION
+	ld hl, PalPacket_Blue
+	jr z, .gotPalPacket
 	ld hl, PalPacket_Empty
+.gotPalPacket
 	ld de, wPalPacket
 	ld bc, $10
 	call CopyData
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	jr z, .redOverworld
+	cp BLUE_VERSION
+	jr z, .blueOverworld
 	ld a, [wCurMapTileset]
 	cp CEMETERY
 	jr z, .PokemonTowerOrAgatha
@@ -191,7 +210,13 @@ SetPal_Overworld:
 .trade_center_colosseum
 	ld a, PAL_GREYMON - 1
 	jr .town
-
+.redOverworld
+	ld a, PAL_RED_VERSION - 1
+	jr .town
+.blueOverworld
+	ld a, PAL_BLUE_VERSION - 1
+	jr .town
+	
 ; used when a Pokemon is the only thing on the screen
 ; such as evolution, trading and the Hall of Fame
 SetPal_PokemonWholeScreen:
@@ -777,7 +802,9 @@ index = 0
 
 index = index + 1
 	ENDR
-
+	
+	call ColorOverworldSprites
+	
 	ret
 
 GetGBCBasePalAddress::
@@ -1025,7 +1052,9 @@ index = 0
 
 index = index + 1
 	ENDR
-
+	
+	call ColorOverworldSprites
+	
 	ret
 
 TranslatePalPacketToBGMapAttributes::
@@ -1104,6 +1133,27 @@ CopySGBBorderTiles:
 
 	dec b
 	jr nz, .tileLoop
+	ret
+
+ColorOverworldSprites:
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	jr nz, .blueCheck
+	ld a, PAL_GREEN_VERSION
+	call GetGBCBasePalAddress
+	ld a, CONVERT_OBP0
+	jr .gotColor
+.blueCheck	
+	ld a, [wCurVersion]
+	cp BLUE_VERSION
+	ret nz
+	ld a, PAL_RED_VERSION
+	call GetGBCBasePalAddress
+	ld a, CONVERT_OBP0
+.gotColor
+	call DMGPalToGBCPal
+	ld a, index + 4
+	call TransferCurOBPData
 	ret
 
 INCLUDE "data/sgb/sgb_packets.asm"
