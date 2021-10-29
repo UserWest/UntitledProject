@@ -1,5 +1,13 @@
 LoadWildData::
+	ld a, [wCurVersion]
+	cp RED_VERSION
+	ld hl, RedWildDataPointers
+	jr z, .loaded
+	cp BLUE_VERSION
+	ld hl, BlueWildDataPointers
+	jr z, .loaded
 	ld hl, WildDataPointers
+.loaded
 	ld a, [wCurMap]
 
 	; get wild data for current map
@@ -31,3 +39,5 @@ LoadWildData::
 	jp CopyData
 
 INCLUDE "data/wild/grass_water.asm"
+INCLUDE "data/wild/red_grass_water.asm"
+INCLUDE "data/wild/blue_grass_water.asm"
