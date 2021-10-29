@@ -25,9 +25,15 @@ SLOTS_SOMEONESKEYS EQU $ff
 ; in game trades
 ; TradeMons indexes (see data/events/trades.asm)
 	const_def
+	const TRADE_FOR_GURIO
+	const TRADE_FOR_MILES
+	const TRADE_FOR_STICKY
+	const TRADE_FOR_SPIKE
+	const TRADE_FOR_BUFFY
+	const TRADE_FOR_CEZANNE
+	const TRADE_FOR_RICKY
 	const TRADE_FOR_TERRY
 	const TRADE_FOR_MARCEL
-	const TRADE_FOR_CHIKUCHIKU
 	const TRADE_FOR_SAILOR
 	const TRADE_FOR_DUX
 	const TRADE_FOR_MARC
