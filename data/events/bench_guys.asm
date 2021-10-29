@@ -17,7 +17,4 @@ BenchGuyTextPointers:
 	bench_guy_text SAFFRON_POKECENTER,           SPRITE_FACING_LEFT, SaffronCityPokecenterBenchGuyText
 	bench_guy_text MT_MOON_POKECENTER,           SPRITE_FACING_LEFT, MtMoonPokecenterBenchGuyText
 	bench_guy_text ROCK_TUNNEL_POKECENTER,       SPRITE_FACING_LEFT, RockTunnelPokecenterBenchGuyText
-	bench_guy_text SAFARI_ZONE_WEST_REST_HOUSE,  SPRITE_FACING_LEFT, UnusedBenchGuyText1
-	bench_guy_text SAFARI_ZONE_EAST_REST_HOUSE,  SPRITE_FACING_LEFT, UnusedBenchGuyText2
-	bench_guy_text SAFARI_ZONE_NORTH_REST_HOUSE, SPRITE_FACING_LEFT, UnusedBenchGuyText3
 	db -1 ; end
