@@ -1053,7 +1053,7 @@ RemoveFaintedPlayerMon:
 
 	ld a, [wPlayerMonNumber]
 	ld [wWhichPokemon], a
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .notPlayerPikachu
 	ld e, $3
 	callfar PlayPikachuSoundClip
