@@ -158,9 +158,15 @@ _LoadTrainerPic:
 	ld d, a ; de contains pointer to trainer pic
 	ld a, [wLinkState]
 	and a
-	ld a, BANK("Pics 6") ; this is where all the trainer pics are (not counting Red's)
-	jr z, .loadSprite
+	jr z, .notLinkBattle
 	ld a, BANK(RedPicFront)
+	jr .loadSprite
+.notLinkBattle	
+	ld a, [wUniversalVariable] ; this contains 42 if CheckForVersionPicSwap got a positive match
+	cp 42
+	ld a, BANK("Other Pics") ; this is where all the red trainer pics are (not counting Red's)
+	jr z, .loadSprite
+	ld a, BANK("Trainer Pics") ; this is where all the yellow trainer pics are (not counting Red's)
 .loadSprite
 	call UncompressSpriteFromDE
 	ld de, vFrontPic
@@ -281,3 +287,44 @@ CopyUncompressedPicToHL::
 	dec b
 	jr nz, .flippedLoop
 	ret
+
+CheckForVersionPicSwap::
+	call CheckForYellowVersion
+	jr z, .done
+	ld a, [wTrainerClass]
+	cp RIVAL1
+	jr z, .rival1
+	cp RIVAL2
+	jr z, .rival2
+	cp RIVAL3
+	jr z, .rival3
+	cp MISTY
+	jr z, .misty
+	cp BROCK
+	jr z, .brock
+	jr .done
+.rival1
+	ld de, Rival1RBPic
+	jr .alreadyInCorrectBank
+.rival2
+	ld de, Rival2RBPic
+	jr .wrapUp
+.rival3
+	ld de, Rival3RBPic
+	jr .wrapUp
+.misty
+	ld de, MistyRBPic
+	jr .wrapUp
+.brock
+	ld de, BrockRBPic
+.wrapUp
+	ld a, 42 ; load a special value into wUniversalVariable so later in _LoadTrainerPic we can switch to
+	ld [wUniversalVariable], a ; the appropriate bank, variable is wiped in _ScrollTrainerPicAfterBattle
+.alreadyInCorrectBank
+	ld hl, wTrainerPicPointer  ; and HandleBlackOut
+	ld [hl], e
+	inc hl
+	ld [hl], d
+.done
+	ret
+	
