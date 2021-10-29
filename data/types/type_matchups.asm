@@ -23,7 +23,7 @@ TypeEffects:
 	db FIRE,         BUG,          SUPER_EFFECTIVE
 	db FIRE,         ROCK,         NOT_VERY_EFFECTIVE
 	db WATER,        GROUND,       SUPER_EFFECTIVE
-	db ELECTRIC,     GROUND,       NO_EFFECT
+	db ELECTRIC,     GROUND,       SUPER_EFFECTIVE;NO_EFFECT
 	db ELECTRIC,     FLYING,       SUPER_EFFECTIVE
 	db GRASS,        GROUND,       SUPER_EFFECTIVE
 	db GRASS,        BUG,          NOT_VERY_EFFECTIVE
