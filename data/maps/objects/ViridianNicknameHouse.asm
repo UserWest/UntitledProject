@@ -8,9 +8,9 @@ ViridianNicknameHouse_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_BALDING_GUY, STAY, NONE, 1 ; person
-	object_event  1,  4, SPRITE_LITTLE_GIRL, WALK, UP_DOWN, 2 ; person
-	object_event  5,  5, SPRITE_BIRD, WALK, LEFT_RIGHT, 3 ; person
-	object_event  4,  0, SPRITE_CLIPBOARD, STAY, NONE, 4 ; person
+	object_event  5,  3, SPRITE_BALDING_GUY, ANY_VERSION, STAY, NONE, 1 ; person
+	object_event  1,  4, SPRITE_LITTLE_GIRL, ANY_VERSION, WALK, UP_DOWN, 2 ; person
+	object_event  5,  5, SPRITE_BIRD, ANY_VERSION, WALK, LEFT_RIGHT, 3 ; person
+	object_event  4,  0, SPRITE_CLIPBOARD, ANY_VERSION, STAY, NONE, 4 ; person
 
 	def_warps_to VIRIDIAN_NICKNAME_HOUSE

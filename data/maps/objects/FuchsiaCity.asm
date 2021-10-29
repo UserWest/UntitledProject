@@ -29,15 +29,16 @@ FuchsiaCity_Object:
 	bg_event  7,  7, 24 ; FuchsiaCityText24
 
 	def_object_events
-	object_event 10, 12, SPRITE_YOUNGSTER, WALK, LEFT_RIGHT, 1 ; person
-	object_event 28, 17, SPRITE_GAMBLER, WALK, LEFT_RIGHT, 2 ; person
-	object_event 30, 14, SPRITE_FISHER, STAY, DOWN, 3 ; person
-	object_event 24,  8, SPRITE_YOUNGSTER, STAY, UP, 4 ; person
-	object_event 31,  5, SPRITE_CHANSEY, STAY, DOWN, 5 ; person
-	object_event 25,  6, SPRITE_POKE_BALL, STAY, NONE, 6 ; person
-	object_event 12,  6, SPRITE_MONSTER, WALK, LEFT_RIGHT, 7 ; person
-	object_event 30, 12, SPRITE_MONSTER, WALK, LEFT_RIGHT, 8 ; person
-	object_event  8, 17, SPRITE_SEEL, WALK, ANY_DIR, 9 ; person
-	object_event  6,  5, SPRITE_FOSSIL, STAY, NONE, 10 ; person
+	object_event 10, 12, SPRITE_YOUNGSTER, ANY_VERSION, WALK, LEFT_RIGHT, 1 ; person
+	object_event 28, 17, SPRITE_GAMBLER, ANY_VERSION, WALK, LEFT_RIGHT, 2 ; person
+	object_event 30, 14, SPRITE_FISHER, ANY_VERSION, STAY, DOWN, 3 ; person
+	object_event 24,  8, SPRITE_YOUNGSTER, ANY_VERSION, STAY, UP, 4 ; person
+	object_event 31,  5, SPRITE_CHANSEY, YELLOW_VERSION, STAY, DOWN, 5 ; person
+	object_event 31,  5, SPRITE_FAIRY, RED_OR_BLUE, STAY, DOWN, 5 ; SPRITE NOT IN SET
+	object_event 25,  6, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 6 ; person
+	object_event 12,  6, SPRITE_MONSTER, ANY_VERSION, WALK, LEFT_RIGHT, 7 ; person
+	object_event 30, 12, SPRITE_MONSTER, ANY_VERSION, WALK, LEFT_RIGHT, 8 ; person
+	object_event  8, 17, SPRITE_SEEL, ANY_VERSION, WALK, ANY_DIR, 9 ; person
+	object_event  6,  5, SPRITE_FOSSIL, ANY_VERSION, STAY, NONE, 10 ; person
 
 	def_warps_to FUCHSIA_CITY

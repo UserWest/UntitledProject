@@ -9,10 +9,10 @@ PokemonTower1F_Object:
 	def_bg_events
 
 	def_object_events
-	object_event 15, 13, SPRITE_LINK_RECEPTIONIST, STAY, UP, 1 ; person
-	object_event  6,  8, SPRITE_MIDDLE_AGED_WOMAN, STAY, NONE, 2 ; person
-	object_event  8, 12, SPRITE_BALDING_GUY, STAY, NONE, 3 ; person
-	object_event 13,  7, SPRITE_GIRL, STAY, NONE, 4 ; person
-	object_event 17,  7, SPRITE_CHANNELER, STAY, LEFT, 5 ; person
+	object_event 15, 13, SPRITE_LINK_RECEPTIONIST, ANY_VERSION, STAY, UP, 1 ; person
+	object_event  6,  8, SPRITE_MIDDLE_AGED_WOMAN, ANY_VERSION, STAY, NONE, 2 ; person
+	object_event  8, 12, SPRITE_BALDING_GUY, ANY_VERSION, STAY, NONE, 3 ; person
+	object_event 13,  7, SPRITE_GIRL, ANY_VERSION, STAY, NONE, 4 ; person
+	object_event 17,  7, SPRITE_CHANNELER, ANY_VERSION, STAY, LEFT, 5 ; person
 
 	def_warps_to POKEMON_TOWER_1F

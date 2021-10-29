@@ -1,3 +1,4 @@
+SummerBeachHouseRB_Object:
 SummerBeachHouse_Object:
 	db $a ; border block
 
@@ -12,7 +13,7 @@ SummerBeachHouse_Object:
 	bg_event 13,  1, 6 ; SummerBeachHouseSign4Text
 
 	def_object_events
-	object_event  2,  3, SPRITE_FISHING_GURU, STAY, DOWN, 1 ; person
-	object_event  5,  3, SPRITE_PIKACHU, WALK, 1, 2 ; person
+	object_event  2,  3, SPRITE_FISHING_GURU, YELLOW_VERSION, STAY, DOWN, 1 ; person
+	object_event  5,  3, SPRITE_PIKACHU, YELLOW_VERSION, WALK, 1, 2 ; person
 
 	def_warps_to SUMMER_BEACH_HOUSE

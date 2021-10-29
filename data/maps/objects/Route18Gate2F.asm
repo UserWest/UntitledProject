@@ -9,6 +9,7 @@ Route18Gate2F_Object:
 	bg_event  6,  2, 3 ; Route18GateUpstairsText3
 
 	def_object_events
-	object_event  4,  2, SPRITE_COOK, WALK, LEFT_RIGHT, 1 ; person
+	object_event  4,  2, SPRITE_COOK, YELLOW_VERSION, WALK, LEFT_RIGHT, 1 ; person
+	object_event  4,  2, SPRITE_YOUNGSTER, RED_OR_BLUE, WALK, LEFT_RIGHT, 1 ; person
 
 	def_warps_to ROUTE_18_GATE_2F
