@@ -177,3 +177,14 @@ _FanClubText6::
 	line "very vocal about"
 	cont "#MON."
 	done
+
+_LetsListenPolitelyText::
+	text "Let's all listen"
+	line "politely to other"
+	cont "trainers!"
+	done
+
+_BragRightBackText::
+	text "If someone brags,"
+	line "brag right back!"
+	done

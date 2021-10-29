@@ -65,3 +65,35 @@ _RocketHideout4Text_455ec::
 	text "Oh no! I dropped"
 	line "the LIFT KEY!"
 	done
+
+_RocketHideout4BattleText2::
+	text "I know you! You"
+	line "ruined our plans"
+	cont "at MT.MOON!"
+	done
+
+_RocketHideout4EndBattleText2::
+	text "Burned"
+	line "again!"
+	prompt
+
+_RocketHide4AfterBattleText2::
+	text "Do you have"
+	line "something against"
+	cont "TEAM ROCKET?"
+	done
+
+_RocketHideout4BattleText3::
+	text "How can you not"
+	line "see the beauty of"
+	cont "our evil?"
+	done
+
+_RocketHideout4EndBattleText3::
+	text "Ayaya!"
+	prompt
+
+_RocketHide4AfterBattleText3::
+	text "BOSS! I'm sorry I"
+	line "failed you!"
+	done

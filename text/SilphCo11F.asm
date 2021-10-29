@@ -113,3 +113,18 @@ _SilphCo11AfterBattleText2::
 	line "my BOSS likes his"
 	cont "#MON tough!"
 	done
+
+_SilphCo11BattleText1::
+	text "Stop right there!"
+	line "Don't you move!"
+	done
+
+_SilphCo11EndBattleText1::
+	text "Don't..."
+	line "Please!"
+	prompt
+
+_SilphCo11AfterBattleText1::
+	text "So, you want to"
+	line "see my BOSS?"
+	done
