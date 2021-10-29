@@ -51,7 +51,10 @@ SHOW EQU $15
 	const HS_TOWN_MAP                      ; 2A
 	const HS_OAKS_LAB_RIVAL                ; 2B
 	const HS_STARTER_BALL_1                ; 2C
-	const HS_OAKS_LAB_OAK_1                ; 2D
+	const HS_STARTER_BALL_2                ; 
+	const HS_STARTER_BALL_3                ; 
+	const HS_EEVEE_BALL
+	const HS_OAKS_LAB_OAK_1                ; 2D EVERYTHING BELOW IS NOT ACCURATE TO ADDRESS
 	const HS_POKEDEX_1                     ; 2E
 	const HS_POKEDEX_2                     ; 2F
 	const HS_OAKS_LAB_OAK_2                ; 30
@@ -71,9 +74,12 @@ SHOW EQU $15
 	const HS_POKEMON_TOWER_5F_ITEM         ; 3E
 	const HS_POKEMON_TOWER_6F_ITEM_1       ; 3F
 	const HS_POKEMON_TOWER_6F_ITEM_2       ; 40
+	const HS_POKEMON_TOWER_7F_ROCKET_1
+	const HS_POKEMON_TOWER_7F_ROCKET_2
+	const HS_POKEMON_TOWER_7F_ROCKET_3
+	const HS_POKEMON_TOWER_7F_MR_FUJI      ; 43
 	const HS_POKEMON_TOWER_7F_JESSIE       ; 41
 	const HS_POKEMON_TOWER_7F_JAMES        ; 42
-	const HS_POKEMON_TOWER_7F_MR_FUJI      ; 43
 	const HS_MR_FUJIS_HOUSE_MR_FUJI        ; 44
 	const HS_CELADON_MANSION_EEVEE_GIFT    ; 45
 	const HS_GAME_CORNER_ROCKET            ; 46
@@ -196,6 +202,7 @@ SHOW EQU $15
 	const HS_SILPH_CO_11F_1                ; BB
 	const HS_SILPH_CO_11F_JAMES            ; BC
 	const HS_SILPH_CO_11F_2                ; BD
+	const HS_SILPH_CO_11F_3
 	const HS_SILPH_CO_11F_JESSIE           ; BE
 	const HS_UNUSED_MAP_F4_1               ; BF XXX sprite doesn't exist
 	const HS_POKEMON_MANSION_2F_ITEM       ; C0
