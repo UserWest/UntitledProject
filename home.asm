@@ -36,13 +36,9 @@ INCLUDE "home/serial.asm"
 INCLUDE "home/timer.asm"
 INCLUDE "home/audio.asm"
 INCLUDE "home/update_sprites.asm"
-
-INCLUDE "data/items/marts.asm"
-
 INCLUDE "home/overworld_text.asm"
 INCLUDE "home/uncompress.asm"
 INCLUDE "home/reset_player_sprite.asm"
-INCLUDE "home/fade_audio.asm"
 INCLUDE "home/text_script.asm"
 INCLUDE "home/start_menu.asm"
 INCLUDE "home/count_set_bits.asm"
