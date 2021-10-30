@@ -30,6 +30,8 @@ ViridianCityScript2:
 	ret
 
 ViridianCityScript_1905b:
+	call CheckForYellowVersion
+	call nz, ViridianCityScript_19162.notYellow
 	CheckEvent EVENT_VIRIDIAN_GYM_OPEN
 	ret nz
 	ld a, [wObtainedBadges]
@@ -165,6 +167,8 @@ ViridianCityScript_1914d:
 	ret
 
 ViridianCityScript_19162:
+	call CheckForYellowVersion
+	jr nz, .notYellow
 	CheckEvent EVENT_02D
 	ret nz
 	ld a, [wYCoord]
@@ -185,6 +189,17 @@ ViridianCityScript_19162:
 	call DisplayTextID
 	ld a, D_UP | D_DOWN | D_LEFT | D_RIGHT | START | SELECT
 	ld [wJoyIgnore], a
+	ret
+	.notYellow
+	SetEvent EVENT_02D
+	ld a, HS_OLD_MAN
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_OLD_MAN_1
+	ld [wMissableObjectIndex], a
+	predef ShowObject
+	ld a, $2
+	ld [wViridianCityCurScript], a
 	ret
 
 ViridianCityScript7:
