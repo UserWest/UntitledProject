@@ -6,7 +6,11 @@ LoadTilesetHeader:
 	add a
 	add a
 	ld e, a
+	call CheckForYellowVersion
+	ld hl, RedTilesets
+	jr nz, .gotPointers
 	ld hl, Tilesets
+.gotPointers
 	add hl, de
 	add hl, de
 	add hl, de
@@ -33,6 +37,9 @@ LoadTilesetHeader:
 	cp b
 	jr z, .done
 .notDungeonTileset
+	ld a, [wUniversalVariable] ; contains 69 if we came from LoadMapAfterVersionChange
+	cp 69
+	jr z, .done
 	ld a, [wDestinationWarpID]
 	cp $ff
 	jr z, .done
@@ -45,6 +52,7 @@ LoadTilesetHeader:
 	ld [wXBlockCoord], a
 .done
 	ret
+
 
 INCLUDE "data/tilesets/dungeon_tilesets.asm"
 
