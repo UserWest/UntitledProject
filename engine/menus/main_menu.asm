@@ -156,6 +156,8 @@ StartNewGameDebug:
 
 ; enter map after using a special warp or loading the game from the main menu
 SpecialEnterMap::
+	ld b, SET_PAL_DEFAULT
+	predef DontSkipRunPaletteCommand
 	xor a
 	ldh [hJoyPressed], a
 	ldh [hJoyHeld], a
