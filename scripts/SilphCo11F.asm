@@ -97,12 +97,11 @@ SilphCo11F_ScriptPointers:
 	dw SilphCo11Script14
 
 SilphCo11Script0:
-IF DEF(_DEBUG)
-	call DebugPressedOrHeldB
-	ret nz
-ENDC
-	CheckEvent EVENT_BEAT_SILPH_CO_11F_TRAINER_0
+	call CheckForYellowVersion
+	jr nz, .notYellow
+	CheckEvent EVENT_BEAT_SILPH_CO_11F_JESSIE_AND_JAMES
 	call z, SilphCo11Script_6229c
+.notYellow
 	CheckEvent EVENT_782
 	ret nz
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
@@ -175,6 +174,10 @@ SilphCo11Script3:
 	call UpdateSprites
 	call Delay3
 	call GBFadeInFromBlack
+	SetEvent EVENT_BEAT_MT_MOON_3_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_POKEMONTOWER_7_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_SILPH_CO_11F_JESSIE_AND_JAMES
 	SetEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	xor a
 	ld [wJoyIgnore], a
@@ -311,7 +314,7 @@ SilphCo11Script5:
 	jr z, .asm_6232d
 	ld de, SilphCo11MovementData_6230b
 .asm_6232d
-	ld a, $4
+	ld a, $6
 	ldh [hSpriteIndexOrTextID], a
 	call MoveSprite
 	ld a, $ff
@@ -328,8 +331,8 @@ SilphCo11Script6:
 	ret nz
 SilphCo11Script7:
 	ld a, $2
-	ld [wSprite04StateData1MovementStatus], a
-	ld hl, wSprite04StateData1FacingDirection
+	ld [wSprite06StateData1MovementStatus], a
+	ld hl, wSprite06StateData1FacingDirection
 	ld [hl], SPRITE_FACING_RIGHT
 	CheckEitherEventSet EVENT_780, EVENT_781
 	and a
@@ -349,7 +352,7 @@ SilphCo11Script8:
 	jr z, .asm_6237b
 	ld de, SilphCo11MovementData_62311
 .asm_6237b
-	ld a, $6
+	ld a, $7
 	ldh [hSpriteIndexOrTextID], a
 	call MoveSprite
 	ld a, $ff
@@ -368,8 +371,8 @@ SilphCo11Script9:
 	ld [wJoyIgnore], a
 SilphCo11Script10:
 	ld a, $2
-	ld [wSprite06StateData1MovementStatus], a
-	ld hl, wSprite06StateData1FacingDirection
+	ld [wSprite07StateData1MovementStatus], a
+	ld hl, wSprite07StateData1FacingDirection
 	ld [hl], SPRITE_FACING_UP
 	CheckEitherEventSet EVENT_780, EVENT_781
 	and a
@@ -405,11 +408,11 @@ SilphCo11Script12:
 	cp $ff
 	jp z, SilphCo11Script_62185
 	ld a, $2
-	ld [wSprite04StateData1MovementStatus], a
 	ld [wSprite06StateData1MovementStatus], a
+	ld [wSprite07StateData1MovementStatus], a
 	xor a
-	ld [wSprite04StateData1FacingDirection], a
 	ld [wSprite06StateData1FacingDirection], a
+	ld [wSprite07StateData1FacingDirection], a
 	ld a, $fc
 	ld [wJoyIgnore], a
 	ld a, $1
@@ -450,7 +453,10 @@ SilphCo11Script14:
 	ldh [hJoyHeld], a
 	ld [wJoyIgnore], a
 	ResetEvent EVENT_782
-	SetEventReuseHL EVENT_BEAT_SILPH_CO_11F_TRAINER_0
+	SetEvent EVENT_BEAT_MT_MOON_3_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_POKEMONTOWER_7_JESSIE_AND_JAMES
+	SetEventReuseHL EVENT_BEAT_SILPH_CO_11F_JESSIE_AND_JAMES
 	ld a, $0
 	call SilphCo11Script_62189
 	ret
@@ -480,12 +486,37 @@ SilphCo11F_TextPointers:
 	dw SilphCo11Text10
 
 SilphCo11TrainerHeaders:
-	def_trainers 5
+	def_trainers 4
 SilphCo11TrainerHeader0:
-	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_1, 3, SilphCo11Trainer1BattleText, SilphCo11Trainer1EndBattleText, SilphCo11Trainer1AfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_0, 3, SilphCo11Trainer1BattleText, SilphCo11Trainer1EndBattleText, SilphCo11Trainer1AfterBattleText
+SilphCo11TrainerHeader1:
+	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_1, 4, SilphCo11Trainer2BattleText, SilphCo11Trainer2EndBattleText, SilphCo11Trainer2AfterBattleText
 	db -1 ; end
 
+SilphCo11Trainer2BattleText:
+	text_far _SilphCo11BattleText1
+	text_end
+
+SilphCo11Trainer2EndBattleText:
+	text_far _SilphCo11EndBattleText1
+	text_end
+	
+SilphCo11Trainer2AfterBattleText:
+	text_far _SilphCo11AfterBattleText1
+	text_end
+
 SilphCo11Text4:
+	text_asm
+	ld hl, SilphCo11TrainerHeader0
+	call TalkToTrainer
+	jp TextScriptEnd
+	
+SilphCo11Text5:
+	text_asm
+	ld hl, SilphCo11TrainerHeader1
+	call TalkToTrainer
+	jp TextScriptEnd
+
 SilphCo11Text6:
 SilphCo11Text8:
 	text_far _SilphCoJessieJamesText1
@@ -573,12 +604,6 @@ SilphCo10Text_62528:
 SilphCo11Text7:
 	text_far _SilphCo10Text_62335
 	text_end
-
-SilphCo11Text5:
-	text_asm
-	ld hl, SilphCo11TrainerHeader0
-	call TalkToTrainer
-	jp TextScriptEnd
 
 SilphCo11Trainer1BattleText:
 	text_far _SilphCo11BattleText2

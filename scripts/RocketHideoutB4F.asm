@@ -7,6 +7,29 @@ RocketHideoutB4F_Script:
 	ld [wRocketHideoutB4FCurScript], a
 	ret
 
+RocketHideout4Script_ClosedDoor:
+	ld hl, wCurrentMapScriptFlags
+	bit 5, [hl]
+	res 5, [hl]
+	ret z
+	CheckEvent EVENT_ROCKET_HIDEOUT_4_DOOR_UNLOCKED
+	jr nz, .asm_45496
+	CheckBothEventsSet EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0, EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1, 1
+	jr z, .asm_4548c
+	ld a, $2d
+	jr .asm_45498
+.asm_4548c
+	ld a, SFX_GO_INSIDE
+	call PlaySound
+	SetEvent EVENT_ROCKET_HIDEOUT_4_DOOR_UNLOCKED
+.asm_45496
+	ld a, $e
+.asm_45498
+	ld [wNewTileBlockID], a
+	lb bc, 5, 12
+	predef_jump ReplaceTileBlock
+	ret
+
 RocketHideout4Script_45510:
 	CheckAndResetEvent EVENT_6A0
 	call nz, RocketHideout4Script_45525
@@ -69,28 +92,27 @@ RocketHideout4Script3:
 	ret
 
 RocketHideout4Script0:
-IF DEF(_DEBUG)
-	call DebugPressedOrHeldB
-	ret nz
-ENDC
-	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0
+	call CheckFightingMapTrainers
+	call CheckForYellowVersion
+	jp nz, RocketHideout4Script_ClosedDoor
+	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_JESSIE_AND_JAMES
 	call z, RocketHideout4Script_455a5
 	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_2
-	call z, CheckFightingMapTrainers
+	jp z, CheckFightingMapTrainers
 	ret
 
 RocketHideout4Script_455a5:
 	ld a, [wYCoord]
 	cp $e
 	ret nz
-	ResetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	ResetEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	ld a, [wXCoord]
 	cp $18
 	jr z, .asm_455c2
 	ld a, [wXCoord]
 	cp $19
 	ret nz
-	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	SetEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 .asm_455c2
 	xor a
 	ldh [hJoyHeld], a
@@ -131,7 +153,7 @@ RocketHideout4JessieJamesMovementData_45606:
 
 RocketHideout4Script4:
 	ld de, RocketHideout4JessieJamesMovementData_45605
-	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_45617
 	ld de, RocketHideout4JessieJamesMovementData_45606
 .asm_45617
@@ -155,7 +177,7 @@ RocketHideout4Script6:
 	ld [wSprite02StateData1MovementStatus], a
 	ld a, SPRITE_FACING_LEFT
 	ld [wSprite02StateData1FacingDirection], a
-	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_4564a
 	ld a, SPRITE_FACING_DOWN
 	ld [wSprite02StateData1FacingDirection], a
@@ -165,7 +187,7 @@ RocketHideout4Script6:
 	ld [wJoyIgnore], a
 RocketHideout4Script7:
 	ld de, RocketHideout4JessieJamesMovementData_45606
-	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_4565f
 	ld de, RocketHideout4JessieJamesMovementData_45605
 .asm_4565f
@@ -191,7 +213,7 @@ RocketHideout4Script9:
 	ld [wSprite03StateData1MovementStatus], a
 	ld a, SPRITE_FACING_DOWN
 	ld [wSprite03StateData1FacingDirection], a
-	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1
+	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_45697
 	ld a, SPRITE_FACING_RIGHT
 	ld [wSprite03StateData1FacingDirection], a
@@ -270,7 +292,8 @@ RocketHideout4Script13:
 	xor a
 	ldh [hJoyHeld], a
 	ld [wJoyIgnore], a
-	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0
+	SetEvent EVENT_BEAT_MT_MOON_3_JESSIE_AND_JAMES
+	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_4_JESSIE_AND_JAMES
 	ld a, $0
 	call RocketHideout4Script_4551e
 	ret
@@ -301,16 +324,29 @@ RocketHideoutB4F_TextPointers:
 	dw RocketHideout4Text10
 	dw RocketHideout4Text11
 	dw RocketHideout4Text12
+	dw RocketHideoutUnviewableText
 
 RocketHideout4TrainerHeaders:
-	def_trainers 4
+	def_trainers 2
 RocketHideout4TrainerHeader0:
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0, 0, RocketHideout4BattleText2, RocketHideout4EndBattleText2, RocketHideout4AfterBattleText2
+RocketHideout4TrainerHeader1:
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1, 0, RocketHideout4BattleText3, RocketHideout4EndBattleText3, RocketHideout4AfterBattleText3
+RocketHideout4TrainerHeader2:
 	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_2, 1, RocketHideout4Trainer0BeforeText, RocketHideout4Trainer0EndBattleText, RocketHideout4Trainer0AfterText
 	db -1 ; end
 
 RocketHideout4Text1:
+	text_asm
+	ld hl, RocketHideout4TrainerHeader0
+	call TalkToTrainer
+	jp TextScriptEnd
+	
 RocketHideout4Text2:
-	text_end
+	text_asm
+	ld hl, RocketHideout4TrainerHeader1
+	call TalkToTrainer
+	jp TextScriptEnd
 
 RocketHideout4Text10:
 	text_far _RocketHideoutJessieJamesText1
@@ -386,7 +422,7 @@ RocketHideout4Text9:
 
 RocketHideout4Text3:
 	text_asm
-	ld hl, RocketHideout4TrainerHeader0
+	ld hl, RocketHideout4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
@@ -412,4 +448,31 @@ RocketHideout4Trainer0AfterText:
 
 RocketHideout4Text_45844:
 	text_far _RocketHideout4Text_455ec
+	text_end
+
+RocketHideout4BattleText2:
+	text_far _RocketHideout4BattleText2
+	text_end
+
+RocketHideout4EndBattleText2:
+	text_far _RocketHideout4EndBattleText2
+	text_end
+
+RocketHideout4AfterBattleText2:
+	text_far _RocketHide4AfterBattleText2
+	text_end
+	
+RocketHideout4BattleText3:
+	text_far _RocketHideout4BattleText3
+	text_end
+
+RocketHideout4EndBattleText3:
+	text_far _RocketHideout4EndBattleText3
+	text_end
+
+RocketHideout4AfterBattleText3:
+	text_far _RocketHide4AfterBattleText3
+	text_end
+
+RocketHideoutUnviewableText:
 	text_end

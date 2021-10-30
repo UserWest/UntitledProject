@@ -39,19 +39,19 @@ CoordsData_49d37:
 
 MtMoon3Script_49cd7:
 	CheckAndResetEvent EVENT_57E
-	call nz, MtMoon3Script_49cec
+	call nz, MtMoon3Script_HideJessieAndJames
 	xor a
 	ld [wJoyIgnore], a
-MtMoon3Script_49ce5:
+MtMoon3Script_ChangeScript:
 	ld [wMtMoonB2FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-MtMoon3Script_49cec:
+MtMoon3Script_HideJessieAndJames:
 	ld a, HS_MT_MOON_B2F_JESSIE
-	call MtMoon3Script_49f93
+	call MtMoon3Script_HideObject
 	ld a, HS_MT_MOON_B2F_JAMES
-	call MtMoon3Script_49f93
+	call MtMoon3Script_HideObject
 	ret
 
 MtMoonB2F_ScriptPointers:
@@ -73,17 +73,16 @@ MtMoonB2F_ScriptPointers:
 	dw MtMoon3Script15
 
 MtMoon3Script0:
-IF DEF(_DEBUG)
-	call DebugPressedOrHeldB
-	ret nz
-ENDC
 	CheckEitherEventSet EVENT_GOT_DOME_FOSSIL, EVENT_GOT_HELIX_FOSSIL
-	call z, MtMoon3Script_49d28
-	CheckEvent EVENT_BEAT_MT_MOON_3_TRAINER_0
-	call z, MtMoon3Script_49e15
+	call z, MtMoon3Script_SuperNerdFightTrigger
+	call CheckForYellowVersion
+	jr nz, .done
+	CheckEvent EVENT_BEAT_MT_MOON_3_JESSIE_AND_JAMES
+	call z, MtMoon3Script_JessieAndJamesFightTrigger
+.done
 	ret
 
-MtMoon3Script_49d28:
+MtMoon3Script_SuperNerdFightTrigger:
 	CheckEvent EVENT_BEAT_MT_MOON_EXIT_SUPER_NERD
 	jp nz, .asm_49d4b
 	ld a, [wYCoord]
@@ -114,7 +113,7 @@ MtMoon3Script3:
 	xor a
 	ld [wJoyIgnore], a
 	ld a, $0
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script4:
@@ -154,7 +153,7 @@ MtMoon3Script4:
 	ldh [hSpriteIndex], a
 	call MoveSprite
 	ld a, $5
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 CoordsData_49dc0:
@@ -203,7 +202,7 @@ MtMoon3Script5:
 	ld [wJoyIgnore], a
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld a, $b
+	ld a, $c
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	CheckEvent EVENT_GOT_HELIX_FOSSIL
@@ -218,10 +217,10 @@ MtMoon3Script5:
 	xor a
 	ld [wJoyIgnore], a
 	ld a, $0
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
-MtMoon3Script_49e15:
+MtMoon3Script_JessieAndJamesFightTrigger:
 	ld a, [wXCoord]
 	cp $3
 	ret nz
@@ -237,12 +236,12 @@ MtMoon3Script_49e15:
 	ld a, $FF ^ (A_BUTTON | B_BUTTON)
 	ld [wJoyIgnore], a
 	ld a, HS_MT_MOON_B2F_JESSIE
-	call MtMoon3Script_49f84
+	call MtMoon3Script_ShowObject
 	ld a, HS_MT_MOON_B2F_JAMES
-	call MtMoon3Script_49f84
+	call MtMoon3Script_ShowObject
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld a, $c
+	ld a, $d
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
@@ -255,7 +254,7 @@ MtMoon3Script_49e15:
 	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, $6
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MovementData_f9e65:
@@ -282,7 +281,7 @@ MtMoon3Script6:
 	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, $7
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script7:
@@ -297,14 +296,14 @@ MtMoon3Script8:
 	ld a, SPRITE_FACING_DOWN
 	ld [wSprite02StateData1FacingDirection], a
 MtMoon3Script9:
-	ld a, $6
+	ld a, $7
 	ldh [hSpriteIndex], a
 	ld de, MovementData_f9e66
 	call MoveSprite
 	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, $a
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script10:
@@ -321,7 +320,7 @@ MtMoon3Script11:
 	call Delay3
 	ld a, $FF ^ (A_BUTTON | B_BUTTON)
 	ld [wJoyIgnore], a
-	ld a, $d
+	ld a, $e
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 MtMoon3Script12:
@@ -340,7 +339,7 @@ MtMoon3Script12:
 	ld [wJoyIgnore], a
 	SetEvent EVENT_57E
 	ld a, $d
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script13:
@@ -359,7 +358,7 @@ MtMoon3Script13:
 	ld [wJoyIgnore], a
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld a, $e
+	ld a, $f
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
@@ -371,7 +370,7 @@ MtMoon3Script13:
 	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, $e
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script14:
@@ -379,14 +378,14 @@ MtMoon3Script14:
 	ld [wJoyIgnore], a
 	call GBFadeOutToBlack
 	ld a, HS_MT_MOON_B2F_JESSIE
-	call MtMoon3Script_49f93
+	call MtMoon3Script_HideObject
 	ld a, HS_MT_MOON_B2F_JAMES
-	call MtMoon3Script_49f93
+	call MtMoon3Script_HideObject
 	call UpdateSprites
 	call Delay3
 	call GBFadeInFromBlack
 	ld a, $f
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
 MtMoon3Script15:
@@ -394,20 +393,20 @@ MtMoon3Script15:
 	xor a
 	ldh [hJoyHeld], a
 	ld [wJoyIgnore], a
-	SetEvent EVENT_BEAT_MT_MOON_3_TRAINER_0
+	SetEvent EVENT_BEAT_MT_MOON_3_JESSIE_AND_JAMES
 	ResetEventReuseHL EVENT_57E
 	ld a, $0
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 	ret
 
-MtMoon3Script_49f84:
+MtMoon3Script_ShowObject:
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 	call UpdateSprites
 	call Delay3
 	ret
 
-MtMoon3Script_49f93:
+MtMoon3Script_HideObject:
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	ret
@@ -423,6 +422,7 @@ MtMoonB2F_TextPointers:
 	dw MtMoon3Text8
 	dw PickUpItemText
 	dw PickUpItemText
+	dw MtMoon3Text2
 	dw MtMoon3Text11
 	dw MtMoon3Text12
 	dw MtMoon3Text13
@@ -436,10 +436,11 @@ MtMoon3TrainerHeader1:
 	trainer EVENT_BEAT_MT_MOON_3_TRAINER_2, 4, MtMoon3BattleText4, MtMoon3EndBattleText4, MtMoon3AfterBattleText4
 MtMoon3TrainerHeader2:
 	trainer EVENT_BEAT_MT_MOON_3_TRAINER_3, 4, MtMoon3BattleText5, MtMoon3EndBattleText5, MtMoon3AfterBattleText5
+MtMoon3TrainerHeader3:
+	trainer EVENT_BEAT_MT_MOON_3_TRAINER_4, 4, MtMoon3BattleText2, MtMoon3EndBattleText2, MtMoon3AfterBattleText2
 	db -1 ; end
 
 MtMoon3Text2:
-MtMoon3Text6:
 	text_end
 
 MtMoon3Text12:
@@ -476,15 +477,15 @@ MtMoon3Text14:
 MtMoon3Text1:
 	text_asm
 	CheckEvent EVENT_BEAT_MT_MOON_EXIT_SUPER_NERD
-	jr z, .asm_4a02f
+	jr z, .beginBattle
 	; CheckEitherEventSetReuseA EVENT_GOT_DOME_FOSSIL, EVENT_GOT_HELIX_FOSSIL
 	and (1 << (EVENT_GOT_DOME_FOSSIL % 8)) | (1 << (EVENT_GOT_HELIX_FOSSIL % 8))
-	jr nz, .asm_4a057
+	jr nz, .afterFossil
 	ld hl, MtMoon3Text_4a116
 	call PrintText
-	jr .asm_4a05d
+	jr .done
 
-.asm_4a02f
+.beginBattle
 	ld hl, MtMoon3Text_4a10c
 	call PrintText
 	ld hl, wd72d
@@ -498,13 +499,13 @@ MtMoon3Text1:
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
 	ld a, $3
-	call MtMoon3Script_49ce5
-	jr .asm_4a05d
+	call MtMoon3Script_ChangeScript
+	jr .done
 
-.asm_4a057
+.afterFossil
 	ld hl, MtMoon3Text_4a11b
 	call PrintText
-.asm_4a05d
+.done
 	jp TextScriptEnd
 
 MtMoon3Text3:
@@ -517,6 +518,10 @@ MtMoon3Text4:
 	ld hl, MtMoon3TrainerHeader1
 	jr MtMoon3TalkToTrainer
 
+MtMoon3Text6:
+	text_asm
+	ld hl, MtMoon3TrainerHeader3
+	jr MtMoon3TalkToTrainer
 
 MtMoon3Text5:
 	text_asm
@@ -537,14 +542,14 @@ MtMoon3Text7:
 	jr nz, .asm_4a0ab
 	lb bc, DOME_FOSSIL, 1
 	call GiveItem
-	jp nc, MtMoon3Script_4a0fd
-	call MtMoon3Script_4a0f0
+	jp nc, MtMoon3Script_NoRoomForFossil
+	call MtMoon3Script_PlayerGotTheFossil
 	ld a, HS_MT_MOON_B2F_FOSSIL_1
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	SetEvent EVENT_GOT_DOME_FOSSIL
 	ld a, $4
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 .asm_4a0ab
 	jp TextScriptEnd
 
@@ -564,14 +569,14 @@ MtMoon3Text8:
 	jr nz, .asm_4a0e8
 	lb bc, HELIX_FOSSIL, 1
 	call GiveItem
-	jp nc, MtMoon3Script_4a0fd
-	call MtMoon3Script_4a0f0
+	jp nc, MtMoon3Script_NoRoomForFossil
+	call MtMoon3Script_PlayerGotTheFossil
 	ld a, HS_MT_MOON_B2F_FOSSIL_2
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	SetEvent EVENT_GOT_HELIX_FOSSIL
 	ld a, $4
-	call MtMoon3Script_49ce5
+	call MtMoon3Script_ChangeScript
 .asm_4a0e8
 	jp TextScriptEnd
 
@@ -579,7 +584,7 @@ MtMoon3Text_4a0eb:
 	text_far _MtMoon3Text_49f64
 	text_end
 
-MtMoon3Script_4a0f0:
+MtMoon3Script_PlayerGotTheFossil:
 	ld hl, MtMoon3Text_4a0f6
 	jp PrintText
 
@@ -589,7 +594,7 @@ MtMoon3Text_4a0f6:
 	text_waitbutton
 	text_end
 
-MtMoon3Script_4a0fd:
+MtMoon3Script_NoRoomForFossil:
 	ld hl, MtMoon3Text_4a106
 	call PrintText
 	jp TextScriptEnd
@@ -654,4 +659,16 @@ MtMoon3EndBattleText5:
 
 MtMoon3AfterBattleText5:
 	text_far _MtMoon3AfterBattleText5
+	text_end
+
+MtMoon3BattleText2:
+	text_far _MtMoon3BattleText2
+	text_end
+
+MtMoon3EndBattleText2:
+	text_far _MtMoon3EndBattleText2
+	text_end
+
+MtMoon3AfterBattleText2:
+	text_far _MtMoon3AfterBattleText2
 	text_end
