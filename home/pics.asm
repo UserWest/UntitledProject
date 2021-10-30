@@ -19,28 +19,49 @@ UncompressMonSprite::
 	ld a, [wcf91]
 	ld b, a
 	cp FOSSIL_KABUTOPS
-	ld a, BANK(FossilKabutopsPic)
-	jr z, .GotBank
-	ld a, b
-	cp TANGELA + 1
-	ld a, BANK("Pics 1")
+	jr z, .UseOtherBank
+	cp FOSSIL_AERODACTYL
+	jr z, .UseOtherBank
+	cp MON_GHOST
+	jr z, .UseOtherBank
+	cp CUBONE + 1
+	ld a, BANK("Mon Pics 1")
 	jr c, .GotBank
 	ld a, b
-	cp MOLTRES + 1
-	ld a, BANK("Pics 2")
+	cp PIDGEY + 1
+	ld a, BANK("Mon Pics 2")
 	jr c, .GotBank
 	ld a, b
-	cp BEEDRILL + 2
-	ld a, BANK("Pics 3")
+	cp KOFFING + 1
+	ld a, BANK("Mon Pics 3")
 	jr c, .GotBank
 	ld a, b
-	cp STARMIE + 1
-	ld a, BANK("Pics 4")
+	cp PIKACHU + 1
+	ld a, BANK("Mon Pics 4")
 	jr c, .GotBank
-	ld a, BANK("Pics 5")
+	ld a, b
+	cp VAPOREON + 1
+	ld a, BANK("Mon Pics 5")
+	jr c, .GotBank
+	ld a, b
+	cp HYPNO + 1
+	ld a, BANK("Mon Pics 6")
+	jr c, .GotBank
+	ld a, b
+	cp PIDGEOTTO + 1
+	ld a, BANK("Mon Pics 7")
+	jr c, .GotBank
+	ld a, b
+	cp SQUIRTLE + 1
+	ld a, BANK("Mon Pics 8")
+	jr c, .GotBank
+	ld a, BANK("Mon Pics 9")
 .GotBank
 	jp UncompressSpriteData
-
+.UseOtherBank
+	ld a, BANK("Other Pics")
+	jp UncompressSpriteData
+	
 ; de: destination location
 LoadMonFrontSprite::
 	push de
