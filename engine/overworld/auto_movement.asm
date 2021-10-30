@@ -116,12 +116,20 @@ PalletMovementScript_WalkToLab:
 	xor a
 	ld [wSpritePlayerStateData2MovementByte1], a
 	ld hl, wSimulatedJoypadStatesEnd
+	call CheckForYellowVersion
 	ld de, RLEList_PlayerWalkToLab
+	jr z, .gotPlayerMovement
+	ld de, RLEList_RedPlayerWalkToLab
+.gotPlayerMovement
 	call DecodeRLEList
 	dec a
 	ld [wSimulatedJoypadStatesIndex], a
 	ld hl, wNPCMovementDirections2
+	call CheckForYellowVersion
 	ld de, RLEList_ProfOakWalkToLab
+	jr z, .gotOakMovement
+	ld de, RLEList_RedProfOakWalkToLab
+.gotOakMovement
 	call DecodeRLEList
 	ld hl, wd72e
 	res 7, [hl]
@@ -147,6 +155,23 @@ RLEList_PlayerWalkToLab:
 	db D_DOWN, 5
 	db D_LEFT, 1
 	db D_DOWN, 7 ; differs from red
+	db -1 ; end
+
+RLEList_RedProfOakWalkToLab:
+	db NPC_MOVEMENT_DOWN, 5
+	db NPC_MOVEMENT_LEFT, 1
+	db NPC_MOVEMENT_DOWN, 5
+	db NPC_MOVEMENT_RIGHT, 3
+	db NPC_MOVEMENT_UP, 1
+	db NPC_CHANGE_FACING, 1
+	db -1 ; end
+
+RLEList_RedPlayerWalkToLab:
+	db D_UP, 2
+	db D_RIGHT, 3
+	db D_DOWN, 5
+	db D_LEFT, 1
+	db D_DOWN, 6
 	db -1 ; end
 
 PalletMovementScript_Done:
