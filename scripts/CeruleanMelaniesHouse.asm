@@ -7,6 +7,8 @@ CeruleanMelaniesHouse_TextPointers:
 	dw CeruleanHouse1Text2
 	dw CeruleanHouse1Text3
 	dw CeruleanHouse1Text4
+	dw CeruleanHouse1Text5
+	dw CeruleanHouse1Text6
 
 CeruleanHouse1Text1:
 	text_asm
@@ -103,4 +105,15 @@ CeruleanHouse1Text4:
 	text_asm
 	ld a, SANDSHREW
 	call PlayCry
+	jp TextScriptEnd
+
+CeruleanHouse1Text5:
+	text_far _CeruleanHouse1Text5
+	text_end
+
+CeruleanHouse1Text6:
+	text_asm
+	ld a, TRADE_FOR_LOLA
+	ld [wWhichTrade], a
+	predef DoInGameTradeDialogue
 	jp TextScriptEnd
