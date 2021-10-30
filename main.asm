@@ -19,7 +19,6 @@ INCLUDE "engine/link/cable_club.asm"
 INCLUDE "engine/menus/main_menu.asm"
 INCLUDE "engine/movie/oak_speech/oak_speech.asm"
 INCLUDE "engine/overworld/special_warps.asm"
-INCLUDE "engine/debug/debug_party.asm"
 INCLUDE "engine/menus/naming_screen.asm"
 INCLUDE "engine/movie/oak_speech/oak_speech2.asm"
 INCLUDE "engine/items/subtract_paid_money.asm"
@@ -47,7 +46,6 @@ INCLUDE "engine/events/poison.asm"
 INCLUDE "engine/overworld/tilesets.asm"
 INCLUDE "engine/overworld/daycare_exp.asm"
 INCLUDE "data/maps/hide_show_data.asm"
-INCLUDE "engine/overworld/wild_mons.asm"
 INCLUDE "engine/items/item_effects.asm"
 INCLUDE "engine/menus/draw_badges.asm"
 INCLUDE "engine/overworld/update_map.asm"
@@ -112,6 +110,7 @@ SECTION "bank7", ROMX
 
 INCLUDE "engine/movie/oak_speech/clear_save.asm"
 INCLUDE "engine/events/elevator.asm"
+INCLUDE "engine/overworld/wild_mons.asm"
 
 
 SECTION "Hidden Objects 1", ROMX
@@ -208,6 +207,7 @@ INCLUDE "engine/events/hidden_objects/indigo_plateau_hq.asm"
 SECTION "Battle Engine 7", ROMX
 
 INCLUDE "engine/battle/experience.asm"
+INCLUDE "data/pokemon/base_stats_rb.asm"
 
 
 SECTION "Diploma", ROMX
@@ -311,27 +311,10 @@ INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
 
 
-SECTION "BG Map Attributes (Debug)", ROMX
-
-IF DEF(_DEBUG)
-    INCLUDE "engine/gfx/bg_map_attributes.asm"
-ENDC
-
-
 SECTION "BG Map Attributes", ROMX
 
 INCLUDE "data/cgb/bg_map_attributes.asm"
-IF !DEF(_DEBUG)
-    INCLUDE "engine/gfx/bg_map_attributes.asm"
-ENDC
-
-
-SECTION "bank30", ROMX
-
-; This whole bank is garbage data.
-IF !DEF(_DEBUG)
-    INCBIN "garbage/bank30.bin"
-ENDC
+INCLUDE "engine/gfx/bg_map_attributes.asm"
 
 
 SECTION "bank3A", ROMX
@@ -355,7 +338,6 @@ INCLUDE "engine/overworld/specific_script_flags.asm"
 
 SECTION "Try Pikachu Movement", ROMX
 
-INCLUDE "engine/overworld/unused_load_missable_object_data.asm"
 INCLUDE "engine/events/try_pikachu_movement.asm"
 
 
@@ -426,4 +408,3 @@ INCLUDE "engine/pikachu/pikachu_status.asm"
 INCLUDE "engine/pikachu/pikachu_emotions.asm"
 INCLUDE "engine/pikachu/pikachu_movement.asm"
 INCLUDE "engine/pikachu/pikachu_pic_animation.asm"
-INCLUDE "engine/debug/debug_menu.asm"
