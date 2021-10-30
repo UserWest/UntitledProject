@@ -254,7 +254,7 @@ HandlePartyMenuInput::
 	jr nz, .asm_1258
 	ld a, [wCurrentMenuItem]
 	ld [wWhichPokemon], a
-	callfar IsThisPartymonStarterPikachu_Party
+	callfar IsThisPartymonStarterPikachu
 	jr nc, .asm_1258
 	call CheckPikachuFollowingPlayer
 	jr nz, .asm_128f
@@ -403,7 +403,11 @@ GetwMoves::
 GetMonHeader::
 	ldh a, [hLoadedROMBank]
 	push af
+	call CheckForYellowVersion
 	ld a, BANK(BaseStats)
+	jr z, .gotBank
+	ld a, BANK(BaseStatsRB)
+.gotBank
 	call BankswitchCommon
 	push bc
 	push de
@@ -427,7 +431,13 @@ GetMonHeader::
 	ld a, [wd11e]
 	dec a
 	ld bc, BASE_DATA_SIZE
+	push af
+	call CheckForYellowVersion
 	ld hl, BaseStats
+	jr z, .gotPointer
+	ld hl, BaseStatsRB
+.gotPointer
+	pop af
 	call AddNTimes
 	ld de, wMonHeader
 	ld bc, BASE_DATA_SIZE
