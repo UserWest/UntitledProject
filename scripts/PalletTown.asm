@@ -19,19 +19,30 @@ PalletTown_ScriptPointers:
 	dw PalletTownScript7
 	dw PalletTownScript8
 	dw PalletTownScript9
+	dw PalletTownRedScript1
+	dw PalletTownRedScript2
+	dw PalletTownRedScript3
+	dw PalletTownRedScript4
 
 PalletTownScript0:
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
 	ret nz
+	call CheckForYellowVersion
+	jr z, .yellow
+	ld a, [wYCoord]
+	cp 1 ; is player near north exit?
+	ret nz
+	jr .redStopForOak
+.yellow
 	ld a, [wYCoord]
 	cp 0 ; is player at north exit?
 	ret nz
 	ResetEvent EVENT_PLAYER_AT_RIGHT_EXIT_TO_PALLET_TOWN
 	ld a, [wXCoord]
 	cp 10
-	jr z, .asm_18e40
+	jr z, .yellowStopForOak
 	SetEventReuseHL EVENT_PLAYER_AT_RIGHT_EXIT_TO_PALLET_TOWN
-.asm_18e40
+.yellowStopForOak
 	xor a
 	ldh [hJoyHeld], a
 	ld a, $ff
@@ -49,6 +60,26 @@ PalletTownScript0:
 	ld a, 1
 	ld [wPalletTownCurScript], a
 	ret
+.redStopForOak
+	xor a
+	ldh [hJoyHeld], a
+	ld a, PLAYER_DIR_DOWN
+	ld [wPlayerMovingDirection], a
+	ld a, SFX_STOP_ALL_MUSIC
+	call PlaySound
+	ld a, BANK(Music_MeetProfOak)
+	ld c, a
+	ld a, MUSIC_MEET_PROF_OAK ; "oak appears" music
+	call PlayMusic
+	ld a, $FC
+	ld [wJoyIgnore], a
+	SetEvent EVENT_OAK_APPEARED_IN_PALLET
+
+	; trigger the next script
+	ld a, 10
+	ld [wPalletTownCurScript], a
+	ret
+
 
 PalletTownScript1:
 	ld a, $FF ^ (A_BUTTON | B_BUTTON)
@@ -68,7 +99,6 @@ PalletTownScript1:
 	ld a, HS_PALLET_TOWN_OAK
 	ld [wMissableObjectIndex], a
 	predef ShowObject
-
 	; trigger the next script
 	ld a, $2
 	ld [wSprite01StateData1MovementStatus], a
@@ -199,6 +229,93 @@ PalletTownScript7:
 	ld [wPalletTownCurScript], a
 	ret
 
+PalletTownRedScript1:
+	xor a
+	ld [wcf0d], a
+	ld a, 1
+	ldh [hSpriteIndexOrTextID], a
+	call DisplayTextID
+	ld a, $FF
+	ld [wJoyIgnore], a
+	ld a, HS_PALLET_TOWN_OAK
+	ld [wMissableObjectIndex], a
+	predef ShowObject
+
+	; trigger the next script
+	ld a, 11
+	ld [wPalletTownCurScript], a
+	ret
+
+PalletTownRedScript2:
+	ld a, 1
+	ldh [hSpriteIndex], a
+	ld a, SPRITE_FACING_UP
+	ldh [hSpriteFacingDirection], a
+	call SetSpriteFacingDirectionAndDelay
+	call Delay3
+	ld a, 1
+	ld [wYCoord], a
+	ld a, 1
+	ldh [hNPCPlayerRelativePosPerspective], a
+	ld a, 1
+	swap a
+	ldh [hNPCSpriteOffset], a
+	predef CalcPositionOfPlayerRelativeToNPC
+	ld hl, hNPCPlayerYDistance
+	dec [hl]
+	predef FindPathToPlayer ; load Oak's movement into wNPCMovementDirections2
+	ld de, wNPCMovementDirections2
+	ld a, 1 ; oak
+	ldh [hSpriteIndex], a
+	call MoveSprite
+	ld a, $FF
+	ld [wJoyIgnore], a
+
+	; trigger the next script
+	ld a, 12
+	ld [wPalletTownCurScript], a
+	ret
+
+PalletTownRedScript3:
+	ld a, [wd730]
+	bit 0, a
+	ret nz
+	xor a ; ld a, SPRITE_FACING_DOWN
+	ld [wSpritePlayerStateData1FacingDirection], a
+	ld a, 1
+	ld [wcf0d], a
+	ld a, $FC
+	ld [wJoyIgnore], a
+	ld a, 1
+	ldh [hSpriteIndexOrTextID], a
+	call DisplayTextID
+; set up movement script that causes the player to follow Oak to his lab
+	ld a, $FF
+	ld [wJoyIgnore], a
+	ld a, 1
+	ld [wSpriteIndex], a
+	xor a
+	ld [wNPCMovementScriptFunctionNum], a
+	ld a, 1
+	ld [wNPCMovementScriptPointerTableNum], a
+	ldh a, [hLoadedROMBank]
+	ld [wNPCMovementScriptBank], a
+
+	; trigger the next script
+	ld a, 13
+	ld [wPalletTownCurScript], a
+	ret
+
+PalletTownRedScript4:
+	ld a, [wNPCMovementScriptPointerTableNum]
+	and a ; is the movement script over?
+	ret nz
+
+	; trigger the next script
+	ld a, 8
+	ld [wPalletTownCurScript], a
+	ret
+
 PalletTownScript8:
 	CheckEvent EVENT_DAISY_WALKING
 	jr nz, .next
@@ -240,6 +357,9 @@ PalletTownText1:
 .next
 	dec a
 	jr nz, .asm_18fd3
+	call CheckForYellowVersion
+	ld hl, OakWalksUpRBText
+	jr nz, .done
 	ld hl, OakWalksUpText
 	jr .done
 
@@ -265,6 +385,10 @@ OakAppearsText:
 
 OakWalksUpText:
 	text_far _OakWalksUpText
+	text_end
+
+OakWalksUpRBText:
+	text_far _OakWalksUpRBText
 	text_end
 
 PalletTownText_19002:
