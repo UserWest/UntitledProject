@@ -1,3 +1,4 @@
+CeladonGymRB_Script:
 CeladonGym_Script:
 	ld hl, wCurrentMapScriptFlags
 	bit 6, [hl]
@@ -70,6 +71,7 @@ CeladonGymReceiveTM21:
 
 	jp CeladonGymResetScripts
 
+CeladonGymRB_TextPointers:
 CeladonGym_TextPointers:
 	dw ErikaText
 	dw CeladonGymTrainerText1

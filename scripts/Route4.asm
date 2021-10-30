@@ -1,3 +1,4 @@
+Route4RB_Script:
 Route4_Script:
 	call EnableAutoTextBoxDrawing
 	ld hl, Route4TrainerHeaders
@@ -12,6 +13,7 @@ Route4_ScriptPointers:
 	dw DisplayEnemyTrainerTextAndStartBattle
 	dw EndTrainerBattle
 
+Route4RB_TextPointers:
 Route4_TextPointers:
 	dw Route4Text1
 	dw Route4Text2

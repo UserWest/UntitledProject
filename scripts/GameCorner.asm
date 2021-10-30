@@ -1,3 +1,4 @@
+GameCornerRB_Script:
 GameCorner_Script:
 	call CeladonGameCornerScript_48bcf
 	call CeladonGameCornerScript_48bec
@@ -120,6 +121,7 @@ CeladonGameCornerScript2:
 	ld [wGameCornerCurScript], a
 	ret
 
+GameCornerRB_TextPointers:
 GameCorner_TextPointers:
 	dw CeladonGameCornerText1
 	dw CeladonGameCornerText2

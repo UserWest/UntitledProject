@@ -1,3 +1,4 @@
+CeruleanCaveB1FRB_Script:
 CeruleanCaveB1F_Script:
 	call EnableAutoTextBoxDrawing
 	ld hl, CeruleanCaveB1FTrainerHeaders
@@ -12,6 +13,7 @@ CeruleanCaveB1F_ScriptPointers:
 	dw DisplayEnemyTrainerTextAndStartBattle
 	dw EndTrainerBattle
 
+CeruleanCaveB1FRB_TextPointers:
 CeruleanCaveB1F_TextPointers:
 	dw MewtwoText
 	dw PickUpItemText
