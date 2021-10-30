@@ -69,18 +69,18 @@ ROMX $8
 	"Audio Engine 2"
 	"Music 2"
 ROMX $9
-	"Pics 1"
+	"Mon Pics 1"
 	"Battle Engine 3"
 ROMX $A
-	"Pics 2"
+	"Mon Pics 2"
 	"Battle Engine 4"
 ROMX $B
-	"Pics 3"
+	"Mon Pics 3"
 	"Battle Engine 5"
 ROMX $C
-	"Pics 4"
+	"Mon Pics 4"
 ROMX $D
-	"Pics 5"
+	"Mon Pics 5"
 	"Slot Machines"
 ROMX $E
 	"Battle Engine 6"
@@ -97,7 +97,7 @@ ROMX $12
 	"Maps 7"
 	"Maps 8"
 ROMX $13
-	"Pics 6"
+	"Trainer Pics"
 	"Maps 9"
 ROMX $14
 	"Maps 10"
@@ -187,7 +187,7 @@ ROMX $2f
 	org $5000
 	"BG Map Attributes"
 ROMX $30
-	"bank30"
+	"Mon Pics 6"
 ROMX $31
 	"Pikachu Cries 6"
 ROMX $32
@@ -219,7 +219,7 @@ ROMX $3C
 	"Hidden Objects Core"
 ROMX $3D
 	"Battle Engine 8"
-	"Pics 7"
+	"Other Pics"
 	"Battle Engine 9"
 ROMX $3E
 	"Surfing Minigame"
