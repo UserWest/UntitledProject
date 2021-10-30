@@ -183,9 +183,11 @@ SilphCo7Script3:
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL2
 	ld [wCurOpponent], a
+	
 	ld a, [wRivalStarter]
-	add 4
-	ld [wTrainerNo], a
+	add 10
+	ld [wTrainerNo], a	
+	
 	ld a, $4
 	call SilphCo7Text_51c10
 	ret

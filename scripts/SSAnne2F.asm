@@ -96,7 +96,18 @@ SSAnne2Script1:
 	call Delay3
 	ld a, OPP_RIVAL2
 	ld [wCurOpponent], a
-	ld a, $1
+	ld a, [wRivalStarter]
+	cp RIVAL_STARTER_JOLTEON
+	jr z, .adjustForJolteon
+	cp RIVAL_STARTER_FLAREON
+	jr z, .adjustForFlareon
+	jr .dontAdjust
+.adjustForJolteon
+	add 1
+.adjustForFlareon
+	add 1
+.dontAdjust
+	sub 2
 	ld [wTrainerNo], a
 	call SSAnne2Script_61416
 	ld a, $2

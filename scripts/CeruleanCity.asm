@@ -35,10 +35,6 @@ CeruleanCityScript4:
 	ret
 
 CeruleanCityScript0:
-IF DEF(_DEBUG)
-	call DebugPressedOrHeldB
-	ret nz
-ENDC
 	CheckEvent EVENT_BEAT_CERULEAN_ROCKET_THIEF
 	jr nz, .skipRocketThiefEncounter
 	ld hl, CeruleanCityCoords1
@@ -138,7 +134,18 @@ CeruleanCityScript1:
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
-	ld a, 3
+	ld a, [wRivalStarter]
+	cp RIVAL_STARTER_JOLTEON
+	jr z, .adjustForJolteon
+	cp RIVAL_STARTER_FLAREON
+	jr z, .adjustForFlareon
+	jr .dontAdjust
+.adjustForJolteon
+	add 1
+.adjustForFlareon
+	add 1
+.dontAdjust
+	add 6
 	ld [wTrainerNo], a
 	xor a
 	ldh [hJoyHeld], a

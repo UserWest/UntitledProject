@@ -145,8 +145,9 @@ PokemonTower2Text1:
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL2
 	ld [wCurOpponent], a
+	
 	ld a, [wRivalStarter]
-	add $1
+	add 4
 	ld [wTrainerNo], a
 
 	ld a, $1

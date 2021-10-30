@@ -24,7 +24,12 @@ Route22Script7:
 Route22Script_50ed6:
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
-	ld a, $2
+	ld a, [wRivalStarter]
+	cp RIVAL_STARTER_FLAREON
+	jr nz, .adjustForFlareon
+	add 1
+.adjustForFlareon
+	add 2
 	ld [wTrainerNo], a
 	ret
 
@@ -32,7 +37,7 @@ Route22Script_50ee1:
 	ld a, OPP_RIVAL2
 	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
-	add 7
+	add 16
 	ld [wTrainerNo], a
 	ret
 
@@ -148,6 +153,12 @@ Route22Script2:
 	cp $ff
 	jp z, Route22Script_50ece
 	ld a, [wRivalStarter]
+	cp SQUIRTLE
+	jr z, .keep_rival_starter
+	cp CHARMANDER
+	jr z, .keep_rival_starter
+	cp BULBASAUR
+	jr z, .keep_rival_starter
 	cp RIVAL_STARTER_FLAREON
 	jr nz, .keep_rival_starter
 	ld a, RIVAL_STARTER_JOLTEON
