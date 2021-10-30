@@ -13,5 +13,36 @@ RedsHouse1FMomText:
 
 RedsHouse1FTVText:
 	text_asm
+;	call IsStarterPikachuInThisBox
+	jr nc, .fail
+	ld hl, TestSuccess
+	call PrintText
+	jr .done
+.fail
+	ld hl, TestFailure
+	call PrintText
+.done
+	jp TextScriptEnd
+
+Original_RedsHouse1FTVText:
+	text_asm
+	ld a, 11
+	ld [wCurrentBoxNum], a
 	callfar Func_f1bc4
 	jp TextScriptEnd
+
+TestSuccess:
+	text_far _TestSuccess
+	text_end
+	
+TestFailure:
+	text_far _TestFailure
+	text_end
+
+_TestSuccess::
+	text "Pika in box"
+	prompt
+
+_TestFailure::
+	text "Pika not in box"
+	prompt
