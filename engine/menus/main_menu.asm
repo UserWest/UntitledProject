@@ -147,7 +147,6 @@ NotEnoughMemoryText:
 StartNewGame:
 	ld hl, wd732
 	res 1, [hl]
-StartNewGameDebug:
 	call OakSpeech
 	ld a, $8
 	ld [wPlayerMovingDirection], a

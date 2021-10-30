@@ -412,23 +412,8 @@ PalletTownText4: ; sign by lab
 	text_end
 
 PalletTownText5: ; sign by fence
-IF DEF(_DEBUG)
-	text_asm
-	ld a, 239
-	inc a
-	ld [wWhichPewterGuy], a
-	ld hl, PalletTownText_502b
-	call PrintText
-	jp TextScriptEnd
-
-PalletTownText_502b:
-	text_decimal wWhichPewterGuy, 1, 3
-	text "bit"
-	done
-ELSE
 	text_far _PalletTownText5
 	text_end
-ENDC
 
 PalletTownText6: ; sign by Red's house
 	text_far _PalletTownText6

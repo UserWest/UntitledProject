@@ -17,10 +17,6 @@ _AIBattleUseItemText::
 	text "!"
 	prompt
 
-_BoxFullDebugText::
-	text "The BOX is full!"
-	done
-
 _BoxWillBeClearedText::
 	text "The BOX will be"
 	line "cleared."

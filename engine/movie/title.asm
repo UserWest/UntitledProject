@@ -164,11 +164,7 @@ DisplayTitleScreen:
 	ldh a, [hJoyHeld]
 	cp D_UP | SELECT | B_BUTTON
 	jr z, .go_to_main_menu
-IF DEF(_DEBUG)
-	and A_BUTTON | SELECT | START
-ELSE
 	and A_BUTTON | START
-ENDC
 	jr nz, .go_to_main_menu
 	call DoTitleScreenFunction
 	jr .titleScreenLoop
@@ -194,36 +190,7 @@ ENDC
 	and D_UP | SELECT | B_BUTTON
 	cp D_UP | SELECT | B_BUTTON
 	jp z, .doClearSaveDialogue
-IF DEF(_DEBUG)
-	ld a, b
-	bit BIT_SELECT, a
-	jp z, MainMenu
-	callfar DebugMenu
-	jp hl
-ELSE
 	jp MainMenu
-ENDC
-
-.asm_42f0
-; unreferenced
-	callfar PrinterDebug
-	jp .loop
-
-.asm_42fb
-; unreferenced
-	ld a, [wTitleScreenScene + 4]
-	inc a
-	cp $2a
-	jr c, .asm_4305
-	ld a, $f
-.asm_4305
-	ld [wTitleScreenScene + 4], a
-	ld e, a
-	callfar PlayPikachuSoundClip
-	xor a
-	ld [wTitleScreenScene + 2], a
-	ld [wTitleScreenScene + 3], a
-	jp .titleScreenLoop
 
 .doTitlescreenReset
 	ld [wAudioFadeOutControl], a
