@@ -147,11 +147,15 @@ FanClubText2:
 	text_end
 
 FanClubText3:
-; pikachu
+; pikachu in blue clefairy in yellow
 	text_asm
 	ld hl, .text
 	call PrintText
+	call CheckForYellowVersion
+	ld a, PIKACHU
+	jr z, .gotCry
 	ld a, CLEFAIRY
+.gotCry
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
