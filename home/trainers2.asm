@@ -23,17 +23,22 @@ GetTrainerInformation::
 	ld a, [hli]
 	ld [de], a
 	call IsFightingJessieJames
-	jp BankswitchBack
+	call BankswitchBack
+	homejp CheckForVersionPicSwap
 .linkBattle
 	ld hl, wTrainerPicPointer
+	call CheckForYellowVersion
+	ld de, RedRBPicFront
+	jr nz, .gotRedPic
 	ld de, RedPicFront
+.gotRedPic
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-IsFightingJessieJames::
-	ld a, [wTrainerClass]
+IsFightingJessieJames:: ; JessieJamesPic was moved to another bank to fit Rival1RBPic in the
+	ld a, [wTrainerClass] ; original, this is important for intro based stuff using the rival pic
 	cp ROCKET
 	ret nz
 	ld a, [wTrainerNo]
@@ -44,7 +49,9 @@ IsFightingJessieJames::
 	jr c, .dummy
 	ld de, JessieJamesPic ; possibly meant to add another pic
 .dummy
-	ld hl, wTrainerPicPointer
+	ld a, 42 ; load a special value into wUniversalVariable so later in _LoadTrainerPic we can switch to
+	ld [wUniversalVariable], a ; the appropriate bank, variable is wiped in _ScrollTrainerPicAfterBattle
+	ld hl, wTrainerPicPointer  ; and HandleBlackOut
 	ld a, e
 	ld [hli], a
 	ld [hl], d
