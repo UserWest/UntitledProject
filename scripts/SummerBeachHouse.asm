@@ -1,7 +1,23 @@
+SummerBeachHouseRB_Script:
 SummerBeachHouse_Script:
 	call EnableAutoTextBoxDrawing
+	call LeaveHouseIfNotYellow
 	ret
 
+LeaveHouseIfNotYellow:
+	call CheckForYellowVersion
+	jr z, .done
+	ld a, [wLastMap]
+	ldh [hWarpDestinationMap], a
+	xor a
+	ld [wDestinationWarpID], a
+	ld hl, wd72d
+	set 3, [hl]
+.done
+	ret
+
+
+SummerBeachHouseRB_TextPointers:
 SummerBeachHouse_TextPointers:
 	dw SurfinDudeText
 	dw SummerBeachHousePikachuText
