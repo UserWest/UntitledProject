@@ -1,4 +1,4 @@
-roms := pokeyellow.gbc pokeyellow_debug.gbc
+roms := pokeyellow.gbc
 
 rom_obj := \
 audio.o \
