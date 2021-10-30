@@ -739,6 +739,7 @@ HandleBlackOut::
 ; Does not print the "blacked out" message.
 
 	call GBFadeOutToBlack
+	call ClearVariable ; clearing the data for the red trainer sprite check
 	ld a, $08
 	call StopMusic
 	ld hl, wd72e
@@ -1799,11 +1800,6 @@ LoadPlayerSpriteGraphicsCommon::
 ; function to load data from the map header
 LoadMapHeader::
 	farcall MarkTownVisitedAndLoadMissableObjects
-	jr asm_0dbd
-
-Func_0db5:: ; XXX
-	farcall LoadMissableObjectData
-asm_0dbd:
 	ld a, [wCurMapTileset]
 	ld [wUnusedD119], a
 	ld a, [wCurMap]
@@ -1859,7 +1855,6 @@ asm_0dbd:
 	ld [wObjectDataPointerTemp], a
 	ld a, [hli]
 	ld [wObjectDataPointerTemp + 1], a
-	push hl
 	ld a, [wObjectDataPointerTemp]
 	ld l, a
 	ld a, [wObjectDataPointerTemp + 1]
@@ -1897,13 +1892,15 @@ asm_0dbd:
 	call InitSprites
 .finishUp
 	predef LoadTilesetHeader
+	ld a, [wUniversalVariable] ; Skip spawning pikachu if we came from a version change, keeps
+	cp 69 					   ; pikachu out of the way in the event of changing versions on
+	jr z, .skip_pika_spawn	   ; an event trigger, it will spawn after taking a step anyway
 	ld a, [wd72e]
 	bit 5, a ; did a battle happen immediately before this?
 	jr nz, .skip_pika_spawn
 	callfar SchedulePikachuSpawnForAfterText
 .skip_pika_spawn
 	callfar LoadWildData
-	pop hl ; restore hl from before going to the warp/sign/sprite data (this value was saved for seemingly no purpose)
 	ld a, [wCurMapHeight] ; map height in 4x4 tile blocks
 	add a ; double it
 	ld [wCurrentMapHeight2], a ; store map height in 2x2 tile blocks
@@ -1974,7 +1971,7 @@ LoadMapData::
 	ld a, $01
 	ld [wUpdateSpritesEnabled], a
 	call EnableLCD
-	ld b, $09
+	ld b, SET_PAL_OVERWORLD
 	call RunPaletteCommand
 	call LoadPlayerSpriteGraphics
 	ld a, [wd732]
@@ -2092,6 +2089,7 @@ GetMapHeaderPointer::
 	ld e, a
 	ld d, $0
 	ld hl, MapHeaderPointers
+	homecall CheckForVersionMapDifferences
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -2162,6 +2160,48 @@ InitSprites::
 	ld de, wSprite01StateData1
 ; copy sprite stuff?
 .loadSpriteLoop
+	push bc
+	call CheckForYellowVersion
+	ld b, a
+	jr z, .skipRedOrBluecheck
+	ld a, [hl]
+	cp RED_OR_BLUE
+	jr z, .spriteBelongsInVersion
+.skipRedOrBluecheck
+	ld a, [hl]
+	cp ANY_VERSION
+	jr z, .spriteBelongsInVersion
+	cp b
+	jr z, .spriteBelongsInVersion
+
+	ld a, [wNumSprites]
+	dec a
+	ld [wNumSprites], a
+
+	ld bc, 6
+	add hl, bc
+	ld a, [hli]
+
+	bit 6, a
+	jr z, .skipTrainer
+	inc hl
+	inc hl
+	jr .skipItem
+.skipTrainer
+
+	bit 7, a
+	jr z, .skipItem
+	inc hl
+.skipItem
+
+	pop bc
+	dec b
+	jr nz, .loadSpriteLoop
+	ret
+
+.spriteBelongsInVersion
+	inc hl
+	pop bc
 	ld a, [hli]
 	ld [de], a ; x#SPRITESTATEDATA1_PICTUREID
 	inc d
@@ -2228,8 +2268,6 @@ LoadSprite::
 	ldh a, [hLoadSpriteTemp1]
 	ld [hli], a ; store movement byte 2 in byte 0 of sprite entry
 	ldh a, [hLoadSpriteTemp2]
-	ld [hl], a ; this appears pointless, since the value is overwritten immediately after
-	ldh a, [hLoadSpriteTemp2]
 	ldh [hLoadSpriteTemp1], a
 	and $3f
 	ld [hl], a ; store text ID in byte 1 of sprite entry
@@ -2292,11 +2330,7 @@ CheckForUserInterruption::
 	jr z, .input
 
 	ldh a, [hJoy5]
-IF DEF(_DEBUG)
-	and START | SELECT | A_BUTTON
-ELSE
 	and START | A_BUTTON
-ENDC
 	jr nz, .input
 
 	dec c
