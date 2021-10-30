@@ -86,7 +86,6 @@ Route1_Blocks: INCBIN "maps/Route1.blk"
 
 UndergroundPathRoute8_Blocks: INCBIN "maps/UndergroundPathRoute8.blk"
 
-OaksLab_Blocks: INCBIN "maps/OaksLab.blk"
 
 MrPsychicsHouse_Blocks:
 NameRatersHouse_Blocks:
@@ -116,9 +115,6 @@ INCLUDE "scripts/CinnabarIsland.asm"
 
 INCLUDE "scripts/Route1.asm"
 
-INCLUDE "data/maps/headers/OaksLab.asm"
-INCLUDE "scripts/OaksLab.asm"
-INCLUDE "data/maps/objects/OaksLab.asm"
 
 INCLUDE "data/maps/headers/ViridianMart.asm"
 INCLUDE "scripts/ViridianMart.asm"
@@ -362,15 +358,19 @@ INCLUDE "data/maps/headers/SafariZoneNorthRestHouse.asm"
 INCLUDE "scripts/SafariZoneNorthRestHouse.asm"
 INCLUDE "data/maps/objects/SafariZoneNorthRestHouse.asm"
 
+INCLUDE "data/maps/headers/CeruleanCave2FRB.asm"
 INCLUDE "data/maps/headers/CeruleanCave2F.asm"
 INCLUDE "scripts/CeruleanCave2F.asm"
 INCLUDE "data/maps/objects/CeruleanCave2F.asm"
 CeruleanCave2F_Blocks: INCBIN "maps/CeruleanCave2F.blk"
+CeruleanCave2FRB_Blocks: INCBIN "maps/CeruleanCave2FRB.blk"
 
+INCLUDE "data/maps/headers/CeruleanCaveB1FRB.asm"
 INCLUDE "data/maps/headers/CeruleanCaveB1F.asm"
 INCLUDE "scripts/CeruleanCaveB1F.asm"
 INCLUDE "data/maps/objects/CeruleanCaveB1F.asm"
 CeruleanCaveB1F_Blocks: INCBIN "maps/CeruleanCaveB1F.blk"
+CeruleanCaveB1FRB_Blocks: INCBIN "maps/CeruleanCaveB1FRB.blk"
 
 INCLUDE "data/maps/headers/RockTunnelB1F.asm"
 INCLUDE "scripts/RockTunnelB1F.asm"
@@ -472,15 +472,19 @@ INCLUDE "data/maps/headers/CeladonPokecenter.asm"
 INCLUDE "scripts/CeladonPokecenter.asm"
 INCLUDE "data/maps/objects/CeladonPokecenter.asm"
 
+INCLUDE "data/maps/headers/CeladonGymRB.asm"
 INCLUDE "data/maps/headers/CeladonGym.asm"
 INCLUDE "scripts/CeladonGym.asm"
 INCLUDE "data/maps/objects/CeladonGym.asm"
 CeladonGym_Blocks: INCBIN "maps/CeladonGym.blk"
+CeladonGymRB_Blocks: INCBIN "maps/CeladonGymRB.blk"
 
+INCLUDE "data/maps/headers/GameCornerRB.asm"
 INCLUDE "data/maps/headers/GameCorner.asm"
 INCLUDE "scripts/GameCorner.asm"
 INCLUDE "data/maps/objects/GameCorner.asm"
 GameCorner_Blocks: INCBIN "maps/GameCorner.blk"
+GameCornerRB_Blocks: INCBIN "maps/GameCornerRB.blk"
 
 INCLUDE "data/maps/headers/CeladonMart5F.asm"
 INCLUDE "scripts/CeladonMart5F.asm"
@@ -671,9 +675,11 @@ INCLUDE "data/maps/headers/Route3.asm"
 INCLUDE "data/maps/objects/Route3.asm"
 Route3_Blocks: INCBIN "maps/Route3.blk"
 
+INCLUDE "data/maps/headers/Route4RB.asm"
 INCLUDE "data/maps/headers/Route4.asm"
 INCLUDE "data/maps/objects/Route4.asm"
 Route4_Blocks: INCBIN "maps/Route4.blk"
+Route4RB_Blocks: INCBIN "maps/Route4RB.blk"
 
 INCLUDE "data/maps/headers/Route5.asm"
 INCLUDE "data/maps/objects/Route5.asm"
@@ -696,8 +702,11 @@ INCLUDE "data/maps/objects/Route17.asm"
 Route17_Blocks: INCBIN "maps/Route17.blk"
 
 INCLUDE "data/maps/headers/Route19.asm"
+INCLUDE "data/maps/headers/Route19RB.asm"
 INCLUDE "data/maps/objects/Route19.asm"
+INCLUDE "data/maps/objects/Route19RB.asm"
 Route19_Blocks: INCBIN "maps/Route19.blk"
+Route19RB_Blocks: INCBIN "maps/Route19_RB.blk"
 
 INCLUDE "data/maps/headers/Route21.asm"
 INCLUDE "data/maps/objects/Route21.asm"
@@ -1127,14 +1136,23 @@ INCLUDE "data/maps/headers/PewterMart.asm"
 INCLUDE "scripts/PewterMart.asm"
 INCLUDE "data/maps/objects/PewterMart.asm"
 
+INCLUDE "data/maps/headers/CeruleanCave1FRB.asm"
 INCLUDE "data/maps/headers/CeruleanCave1F.asm"
 INCLUDE "scripts/CeruleanCave1F.asm"
 INCLUDE "data/maps/objects/CeruleanCave1F.asm"
 CeruleanCave1F_Blocks: INCBIN "maps/CeruleanCave1F.blk"
+CeruleanCave1FRB_Blocks: INCBIN "maps/CeruleanCave1FRB.blk"
 
 INCLUDE "data/maps/headers/CeruleanBadgeHouse.asm"
 INCLUDE "scripts/CeruleanBadgeHouse.asm"
 INCLUDE "data/maps/objects/CeruleanBadgeHouse.asm"
+INCLUDE "data/maps/headers/OaksLab.asm"
+INCLUDE "data/maps/headers/OaksLabRB.asm"
+INCLUDE "scripts/OaksLab.asm"
+INCLUDE "scripts/OaksLabRB.asm"
+INCLUDE "data/maps/objects/OaksLab.asm"
+OaksLabRB_Blocks:
+OaksLab_Blocks: INCBIN "maps/OaksLab.blk"
 
 
 SECTION "Maps 21", ROMX
@@ -1249,8 +1267,10 @@ INCLUDE "scripts/CinnabarGym3.asm"
 INCLUDE "scripts/MtMoonPokecenter2.asm"
 
 INCLUDE "data/maps/headers/SummerBeachHouse.asm"
+INCLUDE "data/maps/headers/SummerBeachHouseRB.asm"
 INCLUDE "scripts/SummerBeachHouse.asm"
 SummerBeachHouse_Blocks: INCBIN "maps/SummerBeachHouse.blk"
+SummerBeachHouseRB_Blocks: INCBIN "maps/SummerBeachHouseRB.blk"
 INCLUDE "data/maps/objects/SummerBeachHouse.asm"
 INCLUDE "scripts/SummerBeachHouse2.asm"
 
