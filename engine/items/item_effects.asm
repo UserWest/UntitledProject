@@ -809,7 +809,7 @@ ItemUseEvoStone:
 	ld [wcf91], a
 	call Func_d85d
 	jr nc, .noEffect
-	callfar IsThisPartymonStarterPikachu
+	callfar IsThisPartymonOurStarter
 	jr nc, .notPlayerPikachu
 	ld e, $1b
 	callfar PlayPikachuSoundClip
