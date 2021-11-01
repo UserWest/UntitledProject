@@ -337,6 +337,25 @@ OaksLabScript12:
 	ld a, $1
 	ldh [hSpriteIndex], a
 	call MoveSprite
+	
+	ld a, [wRivalStarter]
+	cp CHARMANDER
+	jr nz, .notCharmander
+	ld a, RIVAL_STARTER_CHARMANDER
+	jr .done
+.notCharmander
+	cp SQUIRTLE
+	jr nz, .notSquirtle
+	ld a, RIVAL_STARTER_SQUIRTLE
+	jr .done
+.notSquirtle
+	cp BULBASAUR
+	jr nz, .mustBeEevee
+	ld a, RIVAL_STARTER_BULBASAUR
+.done
+	ld [wRivalStarter], a
+	
+.mustBeEevee	
 	ld a, 13
 	ld [wOaksLabCurScript], a
 	ret
@@ -872,8 +891,6 @@ OaksLabText3:
 	text_asm
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	jr nz, .asm_1c9d9
-	lb bc, LAPRAS, 15
-	call GivePokemon
 	ld hl, wPokedexOwned
 	ld b, wPokedexOwnedEnd - wPokedexOwned
 	call CountSetBits
@@ -924,8 +941,6 @@ OaksLabText3:
 	ld hl, OaksLabRBText_1d2fa
 .youShouldTalkToItText
 	call PrintText
-	lb bc, LAPRAS, 15
-	call GivePokemon
 	jr .asm_1ca6f
 .asm_1ca3a
 	ld hl, OaksLabDeliverParcelText
