@@ -1,94 +1,79 @@
 IsStarterPikachuInOurParty::
-	ld hl, wPartySpecies
-	ld de, wPartyMon1OTID
-	ld bc, wPartyMonOT
-	push hl
-.loop
-	pop hl
-	ld a, [hli]
-	push hl
-	inc a
-	jr z, .noPlayerPikachu
-	cp STARTER_PIKACHU + 1
-	jr nz, .curMonNotPlayerPikachu
-	ld h, d
-	ld l, e
-	ld a, [wPlayerID]
-	cp [hl]
-	jr nz, .curMonNotPlayerPikachu
-	inc hl
-	ld a, [wPlayerID+1]
-	cp [hl]
-	jr nz, .curMonNotPlayerPikachu
-	push de
-	push bc
-	ld hl, wPlayerName
-	ld d, $6 ; possible player length - 1
-.nameCompareLoop
-	dec d
-	jr z, .sameOT
-	ld a, [bc]
-	inc bc
-	cp [hl]
-	inc hl
-	jr z, .nameCompareLoop
-	pop bc
-	pop de
-.curMonNotPlayerPikachu
-	ld hl, wPartyMon2 - wPartyMon1
-	add hl, de
-	ld d, h
-	ld e, l
-	ld hl, NAME_LENGTH
-	add hl, bc
-	ld b, h
-	ld c, l
-	jr .loop
+	ld a, [wPlayerStarter]
+	cp PIKACHU
+	jr nz, .starterIsNotPikachu
+	call CheckForYellowVersion
+	jr z, IsOurStarterInOurParty
+.starterIsNotPikachu
+	and a
+	ret
 
-.sameOT
-	pop bc
-	pop de
-	ld h, d
-	ld l, e
-	ld bc, -NAME_LENGTH
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	jr z, .noPlayerPikachu ; XXX how is this determined?
-	pop hl
+IsOurStarterInOurParty::
+	ld a, -1
+	ld [wWhichPokemon], a
+.loop
+	ld a, [wWhichPokemon]
+	inc a
+	cp 6
+	jr z, .noStarter
+	ld [wWhichPokemon], a
+	call IsThisPartymonOurStarter
+	jr nc, .loop
 	scf
 	ret
 
-.noPlayerPikachu
-	pop hl
+.noStarter
 	and a
 	ret
 
 IsThisBoxmonStarterPikachu::
+	ld a, [wPlayerStarter]
+	cp PIKACHU
+	jr nz, .starterIsNotPikachu
+	call CheckForYellowVersion
+	jr z, IsThisBoxmonOurStarter
+.starterIsNotPikachu
+	and a
+	ret
+	
+IsThisBoxmonOurStarter::
 	ld hl, wBoxMon1
+	ld bc, wBoxMon1CatchRate - wBoxMon1
+	push bc
 	ld bc, wBoxMon2 - wBoxMon1
 	ld de, wBoxMonOT
-	jr asm_fce21
+	jr StarterCheck
 
 IsThisPartymonStarterPikachu::
+	ld a, [wPlayerStarter]
+	cp PIKACHU
+	jr nz, .starterIsNotPikachu
+	call CheckForYellowVersion
+	jr z, IsThisPartymonOurStarter
+.starterIsNotPikachu
+	and a
+	ret
+	
+IsThisPartymonOurStarter::
 	ld hl, wPartyMon1
+	ld bc, wPartyMon1CatchRate - wPartyMon1
+	push bc
 	ld bc, wPartyMon2 - wPartyMon1
 	ld de, wPartyMonOT
-asm_fce21:
+StarterCheck:
 	ld a, [wWhichPokemon]
 	call AddNTimes
-	ld a, [hl]
-	cp STARTER_PIKACHU
-	jr nz, .notPlayerPikachu
+	call DoesMonHaveLightBall
+	jr nz, .notPlayerStarter
 	ld bc, wPartyMon1OTID - wPartyMon1
 	add hl, bc
 	ld a, [wPlayerID]
 	cp [hl]
-	jr nz, .notPlayerPikachu
+	jr nz, .notPlayerStarter
 	inc hl
 	ld a, [wPlayerID+1]
 	cp [hl]
-	jr nz, .notPlayerPikachu
+	jr nz, .notPlayerStarter
 	ld h, d
 	ld l, e
 	ld a, [wWhichPokemon]
@@ -98,25 +83,38 @@ asm_fce21:
 	ld b, $6
 .loop
 	dec b
-	jr z, .isPlayerPikachu
+	jr z, .isPlayerStarter
 	ld a, [de]
 	inc de
 	cp [hl]
 	inc hl
 	jr z, .loop
-.notPlayerPikachu
+.notPlayerStarter
+	pop bc
 	and a
 	ret
 
-.isPlayerPikachu
+.isPlayerStarter
+	pop bc
 	scf
+	ret
+
+DoesMonHaveLightBall:
+;	pop bc
+	push hl
+	ld bc, wPartyMon1CatchRate - wPartyMon1
+	add hl, bc
+	ld a, [hl]
+	pop hl
+;	push bc
+	cp LIGHT_BALL_GSC
 	ret
 
 UpdatePikachuMoodAfterBattle::
 ; because d is always $82 at this function, it serves to
 ; ensure Pikachu's mood is at least 130 after battle
 	push de
-	call IsStarterPikachuInOurParty
+	call IsOurStarterInOurParty
 	pop de
 	ret nc
 	ld a, d
