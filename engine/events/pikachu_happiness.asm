@@ -5,14 +5,14 @@ ModifyPikachuHappiness::
 	cp PIKAHAPPY_WALKING
 	jr z, .checkanywhereinparty
 	push de
-	callfar IsThisPartymonStarterPikachu
+	callfar IsThisPartymonOurStarter
 	pop de
 	ret nc
 	jr .proceed
 
 .checkanywhereinparty
 	push de
-	callfar IsStarterPikachuInOurParty
+	callfar IsOurStarterInOurParty
 	pop de
 	ret nc
 
