@@ -24,7 +24,14 @@ MainMenu:
 	ld hl, wd72e
 	res 6, [hl]
 	call ClearScreen
-	call RunDefaultPaletteCommand
+	call CheckForYellowVersion
+	jr nz, .isYellow
+	ld b, SET_PAL_OVERWORLD
+	jr .notYellow
+.isYellow
+	ld b, SET_PAL_DEFAULT
+.notYellow
+	predef DontSkipRunPaletteCommand
 	call LoadTextBoxTilePatterns
 	call LoadFontTilePatterns
 	ld hl, wd730
@@ -155,7 +162,13 @@ StartNewGame:
 
 ; enter map after using a special warp or loading the game from the main menu
 SpecialEnterMap::
+	call CheckForYellowVersion
+	jr nz, .isYellow
+	ld b, SET_PAL_OVERWORLD
+	jr .notYellow
+.isYellow
 	ld b, SET_PAL_DEFAULT
+.notYellow
 	predef DontSkipRunPaletteCommand
 	xor a
 	ldh [hJoyPressed], a
