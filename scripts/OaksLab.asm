@@ -425,6 +425,8 @@ OaksLabScript14:
 	ld [wSprite01StateData1FacingDirection], a
 	predef HealParty
 	SetEvent EVENT_BATTLED_RIVAL_IN_OAKS_LAB
+	ld a, [wPlayerStarter]
+	ld [wStarterChoice], a ; stored so oak can reference this after the champ battle
 	ld a, 15
 	ld [wOaksLabCurScript], a
 	ret
