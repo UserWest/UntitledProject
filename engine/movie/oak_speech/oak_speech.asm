@@ -41,15 +41,24 @@ SetDefaultNames:
 	ret
 
 OakSpeech:
+	ld a, [wCurVersion] ;push wCurVersion onto the stack to avoid losing it while starting a new game
+	push af
 	call StopAllMusic ; stop music
 	ld a, BANK(Music_Routes2)
 	ld c, a
 	ld a, MUSIC_ROUTES2
 	call PlayMusic
 	call ClearScreen
+	call CheckForYellowVersion
+	jr z, .isYellow
+	ld b, SET_PAL_OVERWORLD
+	predef DontSkipRunPaletteCommand
+.isYellow
 	call LoadTextBoxTilePatterns
 	call SetDefaultNames
 	predef InitPlayerData2
+	pop af
+	ld [wCurVersion], a ;pop wCurVersion back after everything is reset
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wcf91], a
@@ -72,7 +81,13 @@ OakSpeech:
 	call PrintText
 	call GBFadeOutToWhite
 	call ClearScreen
+	call CheckForYellowVersion
+	jr z, .isYellow2
+	ld a, NIDORINO
+	jr .gotIntroMon
+.isYellow2
 	ld a, STARTER_PIKACHU
+.gotIntroMon
 	ld [wd0b5], a
 	ld [wcf91], a
 	call GetMonHeader
