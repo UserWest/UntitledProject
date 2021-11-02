@@ -836,7 +836,7 @@ wHoFTeamIndex2:: db
 wHoFTeamNo:: db
 
 NEXTU
-wStarterChoice:: db ;Contains rival starter for the first bit of oaks lab, contains players starter coice from then on
+wRivalStarterTemp:: db
 wRivalStarterBallSpriteIndex:: db
 
 NEXTU
