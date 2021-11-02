@@ -162,13 +162,9 @@ StartNewGame:
 
 ; enter map after using a special warp or loading the game from the main menu
 SpecialEnterMap::
-	call CheckForYellowVersion
-	jr nz, .isYellow
 	ld b, SET_PAL_OVERWORLD
-	jr .notYellow
-.isYellow
+	predef DontSkipRunPaletteCommand
 	ld b, SET_PAL_DEFAULT
-.notYellow
 	predef DontSkipRunPaletteCommand
 	xor a
 	ldh [hJoyPressed], a
