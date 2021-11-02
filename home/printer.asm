@@ -1,7 +1,6 @@
 
 PrinterSerial::
-	homecall PrinterSerial_
-	ret
+	homejp PrinterSerial_
 
 SerialFunction::
 	ld a, [wPrinterConnectionOpen]

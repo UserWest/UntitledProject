@@ -231,9 +231,7 @@ CalcStat::
 	ret
 
 AddEnemyMonToPlayerParty::
-	homecall_sf _AddEnemyMonToPlayerParty
-	ret
+	homejp_sf _AddEnemyMonToPlayerParty
 
 MoveMon::
-	homecall_sf _MoveMon
-	ret
+	homejp_sf _MoveMon

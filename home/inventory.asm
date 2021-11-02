@@ -22,8 +22,7 @@ AddAmountSoldToMoney::
 ; [wWhichPokemon] = index (within the inventory) of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory::
-	homecall RemoveItemFromInventory_
-	ret
+	homejp RemoveItemFromInventory_
 
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
