@@ -625,6 +625,8 @@ OaksLabRBMonChoiceMenu:
 	ld a, [wcf91]
 	ld [wd11e], a
 	call AddPartyMon
+	ld a, LIGHT_BALL_GSC
+	ld [wPartyMon1CatchRate], a
 	ld hl, wd72e
 	set 3, [hl]
 	ld a, $fc
