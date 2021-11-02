@@ -268,7 +268,7 @@ GaryText2:
 
 GaryText3:
 	text_asm
-	ld a, [wStarterChoice]
+	ld a, [wPlayerStarter]
 	ld [wd11e], a
 	call GetMonName
 	ld hl, GaryText_76120
