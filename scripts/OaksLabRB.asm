@@ -221,7 +221,7 @@ OaksLabRBScript9:
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	call Delay3
-	ld a, [wStarterChoice]
+	ld a, [wRivalStarterTemp]
 	ld [wRivalStarter], a
 	ld [wcf91], a
 	ld [wd11e], a
@@ -493,7 +493,7 @@ OaksLabRBText41:
 OaksLabCharmanderBall:
 	text_asm
 	ld a, STARTER_SQUIRTLE
-	ld [wStarterChoice], a
+	ld [wRivalStarterTemp], a
 	ld a, $3
 	ld [wRivalStarterBallSpriteIndex], a
 	ld a, STARTER_CHARMANDER
@@ -503,7 +503,7 @@ OaksLabCharmanderBall:
 OaksLabSquirtleBall:
 	text_asm
 	ld a, STARTER_BULBASAUR
-	ld [wStarterChoice], a
+	ld [wRivalStarterTemp], a
 	ld a, $4
 	ld [wRivalStarterBallSpriteIndex], a
 	ld a, STARTER_SQUIRTLE
@@ -513,7 +513,7 @@ OaksLabSquirtleBall:
 OaksLabBulbasaurBall:
 	text_asm
 	ld a, STARTER_CHARMANDER
-	ld [wStarterChoice], a
+	ld [wRivalStarterTemp], a
 	ld a, $2
 	ld [wRivalStarterBallSpriteIndex], a
 	ld a, STARTER_BULBASAUR
