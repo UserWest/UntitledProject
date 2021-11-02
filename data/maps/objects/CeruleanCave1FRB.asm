@@ -1,4 +1,4 @@
-CeruleanCave1F_Object:
+CeruleanCave1FRB_Object:
 	db $7d ; border block
 
 	def_warp_events
@@ -15,9 +15,8 @@ CeruleanCave1F_Object:
 	def_bg_events
 
 	def_object_events
-	object_event 29, 16, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 1, RARE_CANDY
-	object_event  7, 11, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 2, MAX_ELIXER
-	object_event 29,  9, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 3, MAX_REVIVE
-	object_event 18,  3, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 4, ULTRA_BALL
+	object_event  7, 13, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 1, FULL_RESTORE
+	object_event 19,  3, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 2, MAX_ELIXER
+	object_event  5,  0, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 3, NUGGET
 
 	def_warps_to CERULEAN_CAVE_1F

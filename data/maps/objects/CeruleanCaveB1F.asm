@@ -1,4 +1,3 @@
-CeruleanCaveB1FRB_Object:
 CeruleanCaveB1F_Object:
 	db $7d ; border block
 
