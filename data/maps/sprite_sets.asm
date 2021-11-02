@@ -215,3 +215,89 @@ SPRITE_SET_LENGTH EQU 9 + 2
 	db SPRITE_POKE_BALL
 	db SPRITE_FOSSIL
 	assert_table_length SPRITE_SET_LENGTH
+
+; sprite set $0b
+	table_width 1 ; Cerulean r/b
+	db SPRITE_YOUNGSTER
+	db SPRITE_ROCKET
+	db SPRITE_SUPER_NERD
+	db SPRITE_HIKER
+	db SPRITE_MONSTER
+	db SPRITE_BLUE
+	db SPRITE_GUARD
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_POKE_BALL
+	db SPRITE_UNUSED_GAMBLER_ASLEEP_2
+	assert_table_length SPRITE_SET_LENGTH
+
+; sprite set $0c
+	table_width 1 ; Vermilion r/b
+	db SPRITE_BEAUTY
+	db SPRITE_SUPER_NERD
+	db SPRITE_YOUNGSTER
+	db SPRITE_GAMBLER
+	db SPRITE_MONSTER
+	db SPRITE_GUARD
+	db SPRITE_SAILOR
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_POKE_BALL
+	db SPRITE_UNUSED_GAMBLER_ASLEEP_2
+	assert_table_length SPRITE_SET_LENGTH
+
+; sprite set $0d
+	table_width 1 ; Fuchsia r/b
+	db SPRITE_BIRD
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_FAIRY
+	db SPRITE_FISHER
+	db SPRITE_GAMBLER
+	db SPRITE_MONSTER
+	db SPRITE_SEEL
+	db SPRITE_SWIMMER
+	db SPRITE_YOUNGSTER
+	db SPRITE_POKE_BALL
+	db SPRITE_FOSSIL
+	assert_table_length SPRITE_SET_LENGTH
+
+MapSpriteSetsRB:
+	table_width 1, MapSpriteSetsRB
+	db $01 ; PALLET_TOWN
+	db $01 ; VIRIDIAN_CITY
+	db $02 ; PEWTER_CITY
+	db $0b ; CERULEAN_CITY
+	db $03 ; LAVENDER_TOWN
+	db $0c ; VERMILION_CITY
+	db $05 ; CELADON_CITY
+	db $0d ; FUCHSIA_CITY
+	db $01 ; CINNABAR_ISLAND
+	db $06 ; INDIGO_PLATEAU
+	db $07 ; SAFFRON_CITY
+	db $01 ; unused map ID
+	db $01 ; ROUTE_1
+	db $f1 ; ROUTE_2
+	db $02 ; ROUTE_3
+	db $02 ; ROUTE_4
+	db $f9 ; ROUTE_5
+	db $fa ; ROUTE_6
+	db $fb ; ROUTE_7
+	db $fc ; ROUTE_8
+	db $02 ; ROUTE_9
+	db $f2 ; ROUTE_10
+	db $f3 ; ROUTE_11
+	db $f4 ; ROUTE_12
+	db $08 ; ROUTE_13
+	db $08 ; ROUTE_14
+	db $f5 ; ROUTE_15
+	db $f6 ; ROUTE_16
+	db $09 ; ROUTE_17
+	db $f7 ; ROUTE_18
+	db $0a ; ROUTE_19
+	db $f8 ; ROUTE_20
+	db $01 ; ROUTE_21
+	db $01 ; ROUTE_22
+	db $06 ; ROUTE_23
+	db $02 ; ROUTE_24
+	db $02 ; ROUTE_25
+	assert_table_length FIRST_INDOOR_MAP

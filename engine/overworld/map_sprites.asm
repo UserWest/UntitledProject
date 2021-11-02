@@ -301,7 +301,11 @@ Func_14179:
 GetSplitMapSpriteSetID:
 	ld e, a
 	ld d, 0
+	call CheckForYellowVersion
 	ld hl, MapSpriteSets
+	jr z, .gotMapSpriteSet
+	ld hl, MapSpriteSetsRB
+.gotMapSpriteSet
 	add hl, de
 	ld a, [hl] ; a = spriteSetID
 	cp $f0 ; does the map have 2 sprite sets?
