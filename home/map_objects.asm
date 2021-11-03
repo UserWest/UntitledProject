@@ -71,59 +71,8 @@ IsItemInBag::
 	ret
 
 IsSurfingPikachuInParty::
-; set bit 6 of wd472 if true
-; also calls Func_3467, which is a bankswitch to IsStarterPikachuInOurParty
-	ld a, [wd472]
-	and $3f
-	ld [wd472], a
-	ld hl, wPartyMon1
-	ld c, PARTY_LENGTH
-	ld b, SURF
-.loop
-	ld a, [hl]
-	cp STARTER_PIKACHU
-	jr nz, .notPikachu
-	push hl
-	ld de, $8
-	add hl, de
-	ld a, [hli]
-	cp b ; does pikachu have surf as one of its moves
-	jr z, .hasSurf
-	ld a, [hli]
-	cp b
-	jr z, .hasSurf
-	ld a, [hli]
-	cp b
-	jr z, .hasSurf
-	ld a, [hli]
-	cp b
-	jr nz, .noSurf
-.hasSurf
-	ld a, [wd472]
-	set 6, a
-	ld [wd472], a
-.noSurf
-	pop hl
-.notPikachu
-	ld de, wPartyMon2 - wPartyMon1
-	add hl, de
-	dec c
-	jr nz, .loop
-	call Func_3467
-	ret
-
-Func_3467::
-	push hl
-	push bc
-	callfar IsStarterPikachuInOurParty
-	pop bc
-	pop hl
-	ret nc
-	ld a, [wd472]
-	set 7, a
-	ld [wd472], a
-	ret
-
+	homejp IsSurfingPikachuInParty_
+	
 DisplayPokedex::
 	ld [wd11e], a
 	farjp _DisplayPokedex
