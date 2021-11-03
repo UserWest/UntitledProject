@@ -30,8 +30,6 @@ ViridianCityScript2:
 	ret
 
 ViridianCityScript_1905b:
-	call CheckForYellowVersion
-	call nz, ViridianCityScript_19162.notYellow
 	CheckEvent EVENT_VIRIDIAN_GYM_OPEN
 	ret nz
 	ld a, [wObtainedBadges]
