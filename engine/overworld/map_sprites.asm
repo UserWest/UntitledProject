@@ -62,8 +62,11 @@ LoadSpriteSetFromMapHeader:
 	ld bc, (wSpriteSetID - wSpriteSet)
 	xor a
 	call FillMemory
+	call CheckForYellowVersion ; don't automatically load pika if not yellow
+	jr nz, .skipPikaLoad
 	ld a, SPRITE_PIKACHU ; load Pikachu separately
 	ld [wSpriteSet], a
+.skipPikaLoad
 	ld hl, wSprite01StateData1
 	ld a, 14
 .storeVRAMSlotsLoop
