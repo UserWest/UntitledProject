@@ -29,7 +29,7 @@ LoadMapAfterVersionChange::
 	call LoadMapHeader
 	call ClearVariable ; Resets the variable so it doesn't affect future loads
 	
-	ld hl, wFontLoaded ;the important not crashy pieces of ReloadMapSpriteTilePatterns
+	ld hl, wFontLoaded  ; the important of ReloadMapSpriteTilePatterns
 	ld a, [hl]			; it could be its own function, but nothing else will
 	push af				; likely ever call it
 	res 0, [hl]
@@ -43,6 +43,8 @@ LoadMapAfterVersionChange::
 	
 	call LoadFontTilePatterns
 	call LoadScreenRelatedData
+	call CollisionCheckAfterVersionChange
+	call LoadCurrentMapView
 	call CopyMapViewToVRAM
 	call EnableLCD
 	pop af
