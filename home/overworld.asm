@@ -1213,6 +1213,145 @@ SignLoop::
 	xor a
 	ret
 
+CollisionCheckAfterVersionChange::
+
+	lda_coord 8, 9 ; tile the player is on
+	ld c, a
+	call IsTilePassable
+	jr nc, .done
+	
+	lda_coord 8, 7 ; tile north of the player
+	ld c, a
+	call IsTilePassable
+	jr c, .checkEast
+	jp MovePlayerNorth
+	
+.checkEast
+	lda_coord 10, 9 ; tile east of the player
+	ld c, a
+	call IsTilePassable
+	jr c, .checkSouth
+	jp MovePlayerEast
+	
+.checkSouth
+	lda_coord 8, 11 ; tile south of the player
+	ld c, a
+	call IsTilePassable
+	jr c, .checkWest
+	jp MovePlayerSouth
+	
+.checkWest
+	lda_coord 6, 9 ; tile west of the player
+	ld c, a
+	call IsTilePassable
+	jr c, .checkNorthByTwo
+	jp MovePlayerWest
+	
+.checkNorthByTwo
+	lda_coord 8, 5 ; 2 tiles north of the player
+	ld c, a
+	call IsTilePassable		; It shouldn't be possible for the player to get more stuck than this
+	jr c, .done 		 	; this check is in case I'm wrong though, a player can at least load up
+	call MovePlayerNorth	; the previous version and escape that way
+	jp MovePlayerNorth	
+	
+.done
+	ret
+	
+MovePlayerNorth:
+	ld a, [wYCoord] ;players current y coord
+	dec a	;reduced by one
+	ld [wYCoord], a	;reinserted
+
+	ld a, [wYBlockCoord]	;players current position in block
+	cp 1	; if its 1
+	jr z, .sameBlock ; we dont change blocks
+	inc a	;otherwise make a 1 instead of zero
+	ld [wYBlockCoord], a	; reinserted into block position
+	ld de, wCurrentTileBlockMapViewPointer	; which block is the player currently on
+	ld a, [wCurMapWidth]	; load the current map width
+
+	ld b, a	; put it in b
+	ld a, [de]	;put block is the player currently on in a
+	sub b ; move player up by 1 row of blocks
+	ld [de], a ;reinserted into block is the player currently on
+	
+	jr .done
+.sameBlock ; jump here if current position in block is 1
+	dec a ; make it zero instead
+	ld [wYBlockCoord], a ; reinserted into block position
+.done	
+	ret
+
+MovePlayerEast:
+	ld a, [wXCoord]
+	inc a
+	ld [wXCoord], a
+
+	ld a, [wXBlockCoord]
+	jr z, .sameBlock
+	dec a
+	ld [wXBlockCoord], a
+	ld de, wCurrentTileBlockMapViewPointer
+
+	ld a, [de]
+	inc a
+	ld [de], a
+	
+	jr .done
+.sameBlock
+	inc a
+	ld [wXBlockCoord], a
+.done	
+	ret
+
+MovePlayerSouth:
+	ld a, [wYCoord]
+	inc a
+	ld [wYCoord], a
+
+	ld a, [wYBlockCoord]
+	jr z, .sameBlock
+	dec a
+	ld [wYBlockCoord], a
+	ld de, wCurrentTileBlockMapViewPointer
+	ld a, [wCurMapWidth]
+
+	ld b, a
+	ld a, [de]
+	add b
+	ld [de], a
+	
+	jr .done
+.sameBlock
+	inc a
+	ld [wYBlockCoord], a
+.done	
+	ret
+
+MovePlayerWest:
+	ld a, [wXCoord]
+	dec a
+	ld [wXCoord], a
+
+	ld a, [wXBlockCoord]
+	cp 1
+	jr z, .sameBlock
+	inc a
+	ld [wXBlockCoord], a
+	ld de, wCurrentTileBlockMapViewPointer
+
+	ld a, [de]
+	dec a
+	ld [de], a
+	
+	jr .done
+.sameBlock
+	dec a
+	ld [wXBlockCoord], a
+.done	
+	ret
+
 ; function to check if the player will jump down a ledge and check if the tile ahead is passable (when not surfing)
 ; sets the carry flag if there is a collision, and unsets it if there isn't a collision
 CollisionCheckOnLand::
@@ -1227,7 +1366,6 @@ CollisionCheckOnLand::
 	ld d, a
 	ld a, [wSpritePlayerStateData1CollisionData]
 	and d ; check if a sprite is in the direction the player is trying to go
-	nop ; ??? why is this in the code
 	jr nz, .collision
 	xor a
 	ldh [hSpriteIndexOrTextID], a
@@ -1276,8 +1414,7 @@ CheckTilePassable::
 	predef GetTileAndCoordsInFrontOfPlayer ; get tile in front of player
 	ld a, [wTileInFrontOfPlayer] ; tile in front of player
 	ld c, a
-	call IsTilePassable
-	ret
+	jp IsTilePassable
 
 ; check if the player is going to jump down a small ledge
 ; and check for collisions that only occur between certain pairs of tiles
@@ -1699,8 +1836,7 @@ CollisionCheckOnWater::
 	ld a, [wCurMapTileset] ; tileset
 	cp SHIP_PORT ; Vermilion Dock tileset
 	jr nz, .noCollision ; keep surfing if it's not the boarding platform tile
-	jr .stopSurfing ; if it is the boarding platform tile, stop surfing
-.stopSurfing ; based game freak
+.stopSurfing
 	ld a, $3
 	ld [wPikachuSpawnState], a
 	ld hl, wPikachuOverworldStateFlags
@@ -1709,9 +1845,7 @@ CollisionCheckOnWater::
 	ld [wWalkBikeSurfState], a
 	call LoadPlayerSpriteGraphics
 	call PlayDefaultMusic
-	jr .noCollision
-
-.noCollision ; ...and they do the same mistake twice
+.noCollision
 	and a
 .done
 	ret
