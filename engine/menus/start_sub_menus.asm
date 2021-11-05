@@ -687,7 +687,7 @@ StartMenu_Option::
 .versionChanged	
 	ld b, SET_PAL_DEFAULT
 	predef DontSkipRunPaletteCommand
-	call LoadMapAfterVersionChange
+	call DoVersionChange
 	call UpdateSprites
 	jp RedisplayStartMenu
 	
