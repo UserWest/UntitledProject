@@ -1213,209 +1213,6 @@ SignLoop::
 	xor a
 	ret
 
-CollisionCheckAfterVersionChange::
-	lb bc, 60, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .checkNorth
-	lda_coord 8, 9 ; tile the player is on
-	ld c, a
-	call IsTilePassable
-	jr nc, .done
-
-.checkNorth	
-	lb bc, 44, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .checkEast
-	lda_coord 8, 7 ; tile north of the player
-	ld c, a
-	call IsTilePassable
-	jr c, .checkEast
-	jp MovePlayerNorth
-	
-.checkEast
-	lb bc, 60, 80 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .checkSouth
-	lda_coord 10, 9 ; tile east of the player
-	ld c, a
-	call IsTilePassable
-	jr c, .checkSouth
-	jp MovePlayerEast
-	
-.checkSouth
-	lb bc, 76, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .checkWest
-	lda_coord 8, 11 ; tile south of the player
-	ld c, a
-	call IsTilePassable
-	jr c, .checkWest
-	jp MovePlayerSouth
-	
-.checkWest
-	lb bc, 60, 48 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .checkNorthByTwo
-	lda_coord 6, 9 ; tile west of the player
-	ld c, a
-	call IsTilePassable
-	jr c, .checkNorthByTwo
-	jp MovePlayerWest
-	
-.checkNorthByTwo
-	lb bc, 28, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
-	call CheckForSprite
-	jr c, .done
-	lda_coord 8, 5 ; 2 tiles north of the player
-	ld c, a
-	call IsTilePassable		; It shouldn't be possible for the player to get more stuck than this
-	jr c, .done 		 	; this check is in case I'm wrong though, a player can at least load up
-	call MovePlayerNorth	; the previous version and escape that way
-	jp MovePlayerNorth	
-	
-.done
-	ret
-
-CheckForSprite: ;copy/pasted from IsSpriteInFrontOfPlayer.doneCheckingDirection
-
-;	callfar IsStarterPikachuInOurParty_ExcludeVersionCheck
-	ld hl, wSprite01StateData1
-	ld d, $f
-.spriteLoop
-	push hl
-	ld a, [hli] ; image (0 if no sprite)
-	and a
-	jr z, .nextSprite
-	inc l
-	ld a, [hli] ; sprite visibility
-	inc a
-;	jr z, .nextSprite ;this check is always 0 when switching versions
-	inc l
-	ld a, [hli] ; Y location
-	cp b
-	jr nz, .nextSprite
-	inc l
-	ld a, [hl] ; X location
-	cp c
-	jr z, .foundSprite
-	jr .nextSprite
-.nextSprite
-	pop hl
-	ld a, l
-	add $10
-	ld l, a
-	dec d
-	jr nz, .spriteLoop
-	xor a
-	ret
-
-.foundSprite
-	pop hl
-	scf
-	ret
-	
-MovePlayerNorth:
-	ld a, [wYCoord] ;players current y coord
-	dec a	;reduced by one
-	ld [wYCoord], a	;reinserted
-
-	ld a, [wYBlockCoord]	;players current position in block
-	and a	; if its 0
-	jr nz, .sameBlock ; we change blocks
-	inc a	;otherwise make a 1 instead of zero
-	ld [wYBlockCoord], a	; reinserted into block position
-	ld hl, wCurrentTileBlockMapViewPointer	; which block is the player currently on
-	ld a, [wCurMapWidth]	; load the current map width
-
-	add MAP_BORDER * 2	; account for the border on either side
-	ld b, a	; put it in b
-	ld a, [hl]	;put block is the player currently on in a
-	sub b ; move player up by 1 row of blocks
-	ld [hli], a ;reinserted into block is the player currently on/ move to top bits of wCurrentTileBlockMapViewPointer
-	jr nc, .done ; Was carry flag set?
-	dec [hl]	; if so decrease top bits of wCurrentTileBlockMapViewPointer
-	
-	jr .done
-.sameBlock ; jump here if current position in block is 1
-	dec a ; make it zero instead
-	ld [wYBlockCoord], a ; reinserted into block position
-.done	
-	ret
-
-MovePlayerEast:
-	ld a, [wXCoord]
-	inc a
-	ld [wXCoord], a
-
-	ld a, [wXBlockCoord]
-	and a
-	jr z, .sameBlock
-	dec a
-	ld [wXBlockCoord], a
-	ld hl, wCurrentTileBlockMapViewPointer
-
-	ld a, [hl]
-	inc a
-	ld [hl], a
-	
-	jr .done
-.sameBlock
-	inc a
-	ld [wXBlockCoord], a
-.done	
-	ret
-
-MovePlayerSouth:
-	ld a, [wYCoord]
-	inc a
-	ld [wYCoord], a
-
-	ld a, [wYBlockCoord]
-	and a
-	jr z, .sameBlock
-	dec a
-	ld [wYBlockCoord], a
-	ld hl, wCurrentTileBlockMapViewPointer
-	ld a, [wCurMapWidth]
-
-	add MAP_BORDER * 2
-	ld b, a
-	ld a, [hl]
-	add b
-	ld [hli], a
-	jr nc, .done
-	inc [hl]
-	
-	jr .done
-.sameBlock
-	inc a
-	ld [wYBlockCoord], a
-.done	
-	ret
-
-MovePlayerWest:
-	ld a, [wXCoord]
-	dec a
-	ld [wXCoord], a
-
-	ld a, [wXBlockCoord]
-	and a
-	jr nz, .sameBlock
-	inc a
-	ld [wXBlockCoord], a
-	ld hl, wCurrentTileBlockMapViewPointer
-
-	ld a, [hl]
-	dec a
-	ld [hl], a
-	
-	jr .done
-.sameBlock
-	dec a
-	ld [wXBlockCoord], a
-.done	
-	ret
-
 ; function to check if the player will jump down a ledge and check if the tile ahead is passable (when not surfing)
 ; sets the carry flag if there is a collision, and unsets it if there isn't a collision
 CollisionCheckOnLand::
@@ -2090,9 +1887,9 @@ LoadMapHeader::
 	call InitSprites
 .finishUp
 	predef LoadTilesetHeader
-	ld a, [wUniversalVariable] ; Skip spawning pikachu if we came from a version change, keeps
-	cp 69 					   ; pikachu out of the way in the event of changing versions on
-	jr z, .skip_pika_spawn	   ; an event trigger, it will spawn after taking a step anyway
+	ld a, [wUniversalVariable]    ; Skip spawning pikachu if we came from a version change, keeps
+	cp VERSION_CHANGE_IN_PROGRESS ; pikachu out of the way in the event of changing versions on
+	jr z, .skip_pika_spawn	      ; an event trigger, it will spawn after taking a step anyway
 	ld a, [wd72e]
 	bit 5, a ; did a battle happen immediately before this?
 	jr nz, .skip_pika_spawn
@@ -2436,8 +2233,8 @@ ZeroSpriteStateData::
 ; sprite 15 is used for Pikachu
 	ld hl, wSprite01StateData1
 	ld de, wSprite01StateData2
-	ld a, [wUniversalVariable] ; did we get here by way of LoadMapAfterVersionChange
-	cp 69					   ; if so, we need to clear out the pikachu sprite
+	ld a, [wUniversalVariable]	  ; did we get here by way of DoVersionChange
+	cp VERSION_CHANGE_IN_PROGRESS ; if so, we need to clear out the pikachu sprite
 	jr z, .zeroPika
 	xor a
 	ld b, 14 * $10

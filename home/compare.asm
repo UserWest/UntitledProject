@@ -9,25 +9,3 @@ StringCmp::
 	dec c
 	jr nz, StringCmp
 	ret
-
-CheckForYellowVersion::
-	ld a, [wCurVersion]
-	cp YELLOW_VERSION
-	ret
-
-ClearVariable::
-	push af
-	xor a
-	ld [wUniversalVariable], a
-	pop af
-	ret
-
-;CheckForRedVersion::
-;	ld a, [wCurVersion]
-;	cp RED_VERSION
-;	ret
-
-;CheckForBlueVersion::
-;	ld a, [wCurVersion]
-;	cp BLUE_VERSION
-;	ret
