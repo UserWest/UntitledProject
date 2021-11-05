@@ -43,8 +43,8 @@ DoVersionChange:: ; this really needs to be broken down into just the relevant c
 	ld [hl], a
 											; first time is to check collisions and move the
 	call UpdateSprites			 			; player if needed.  We load all the data for
-	call LoadScreenRelatedData	 			; CollisionCheckAfterVersionChange to check against
-	call CollisionCheckAfterVersionChange	; and then we do it again
+	call LoadScreenRelatedData	 			; VersionChangeCheckCollision to check against
+	call VersionChangeCheckCollision		; and then we do it again
 	
 	call ResetMapVariables 		 ; round 2 is for showing the map, if we don't do this
 	call LoadTextBoxTilePatterns ; twice sprites will maintain their poximity to the
@@ -60,14 +60,13 @@ DoVersionChange:: ; this really needs to be broken down into just the relevant c
 	call BankswitchCommon
 	ret
 
-
-CollisionCheckAfterVersionChange::
+VersionChangeCheckCollision::
 	lb bc, 60, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
 	call CheckForSprite
 	jr c, .checkNorth
 	lda_coord 8, 9 ; tile the player is on
 	ld c, a
-	call IsTilePassable
+	call IsTileWalkableOrSurfable
 	jr nc, .done
 
 .checkNorth	
@@ -76,7 +75,7 @@ CollisionCheckAfterVersionChange::
 	jr c, .checkEast
 	lda_coord 8, 7 ; tile north of the player
 	ld c, a
-	call IsTilePassable
+	call IsTileWalkableOrSurfable
 	jr c, .checkEast
 	jp MovePlayerNorth
 	
@@ -86,7 +85,7 @@ CollisionCheckAfterVersionChange::
 	jr c, .checkSouth
 	lda_coord 10, 9 ; tile east of the player
 	ld c, a
-	call IsTilePassable
+	call IsTileWalkableOrSurfable
 	jr c, .checkSouth
 	jp MovePlayerEast
 	
@@ -96,7 +95,7 @@ CollisionCheckAfterVersionChange::
 	jr c, .checkWest
 	lda_coord 8, 11 ; tile south of the player
 	ld c, a
-	call IsTilePassable
+	call IsTileWalkableOrSurfable
 	jr c, .checkWest
 	jp MovePlayerSouth
 	
@@ -106,7 +105,7 @@ CollisionCheckAfterVersionChange::
 	jr c, .checkNorthByTwo
 	lda_coord 6, 9 ; tile west of the player
 	ld c, a
-	call IsTilePassable
+	call IsTileWalkableOrSurfable
 	jr c, .checkNorthByTwo
 	jp MovePlayerWest
 	
@@ -116,12 +115,27 @@ CollisionCheckAfterVersionChange::
 	jr c, .done
 	lda_coord 8, 5 ; 2 tiles north of the player
 	ld c, a
-	call IsTilePassable		; It shouldn't be possible for the player to get more stuck than this
-	jr c, .done 		 	; this check is in case I'm wrong though, a player can at least load up
-	call MovePlayerNorth	; the previous version and escape that way
+	call IsTileWalkableOrSurfable; It shouldn't be possible for the player to get more stuck than this
+	jr c, .done 		 	     ; this check is in case I'm wrong though, a player can at least load up
+	call MovePlayerNorth	     ; the previous version and escape that way
 	jp MovePlayerNorth	
 	
 .done
+	ret
+
+IsTileWalkableOrSurfable:
+	push af
+	ld a, [wWalkBikeSurfState]
+	cp $02 ; surfing
+	jr z, .surfTiles
+	pop af
+	jp IsTilePassable
+	
+.surfTiles
+	pop af
+	ld [wTileInFrontOfPlayer], a ;IsNextTileShoreOrWater checks this
+	farcall IsNextTileShoreOrWater          ; As compared to IsTilePassable the carry flag is
+	ccf		                                ; set backwards, just need to swap those around
 	ret
 
 CheckForSprite: ;copy/pasted from IsSpriteInFrontOfPlayer.doneCheckingDirection
@@ -159,7 +173,7 @@ CheckForSprite: ;copy/pasted from IsSpriteInFrontOfPlayer.doneCheckingDirection
 	pop hl
 	scf
 	ret
-	
+
 MovePlayerNorth:
 	ld a, [wYCoord] ;players current y coord
 	dec a	;reduced by one
