@@ -162,8 +162,8 @@ _LoadTrainerPic:
 	ld a, BANK(RedPicFront)
 	jr .loadSprite
 .notLinkBattle	
-	ld a, [wUniversalVariable] ; this contains 42 if CheckForVersionPicSwap got a positive match
-	cp 42
+	ld a, [wUniversalVariable]
+	cp USE_RED_OR_BLUE_GRAPHICS
 	ld a, BANK("Other Pics") ; this is where all the red trainer pics are (not counting Red's)
 	jr z, .loadSprite
 	ld a, BANK("Trainer Pics") ; this is where all the yellow trainer pics are (not counting Red's)
@@ -318,7 +318,7 @@ CheckForVersionPicSwap::
 .brock
 	ld de, BrockRBPic
 .wrapUp
-	ld a, 42 ; load a special value into wUniversalVariable so later in _LoadTrainerPic we can switch to
+	ld a, USE_RED_OR_BLUE_GRAPHICS ; load a special value into wUniversalVariable so later in _LoadTrainerPic we can switch to
 	ld [wUniversalVariable], a ; the appropriate bank, variable is wiped in _ScrollTrainerPicAfterBattle
 .alreadyInCorrectBank
 	ld hl, wTrainerPicPointer  ; and HandleBlackOut

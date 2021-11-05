@@ -37,8 +37,8 @@ LoadTilesetHeader:
 	cp b
 	jr z, .done
 .notDungeonTileset
-	ld a, [wUniversalVariable] ; contains 69 if we came from LoadMapAfterVersionChange
-	cp 69
+	ld a, [wUniversalVariable] ; if we came from DoVersionChange skip placing player at entrance
+	cp VERSION_CHANGE_IN_PROGRESS
 	jr z, .done
 	ld a, [wDestinationWarpID]
 	cp $ff

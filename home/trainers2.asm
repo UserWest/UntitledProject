@@ -49,9 +49,9 @@ IsFightingJessieJames:: ; JessieJamesPic was moved to another bank to fit Rival1
 	jr c, .dummy
 	ld de, JessieJamesPic ; possibly meant to add another pic
 .dummy
-	ld a, 42 ; load a special value into wUniversalVariable so later in _LoadTrainerPic we can switch to
-	ld [wUniversalVariable], a ; the appropriate bank, variable is wiped in _ScrollTrainerPicAfterBattle
-	ld hl, wTrainerPicPointer  ; and HandleBlackOut
+	ld a, USE_RED_OR_BLUE_GRAPHICS	; Set up for a check later in _LoadTrainerPic we can switch to the
+	ld [wUniversalVariable], a		; appropriate bank, variable is wiped in _ScrollTrainerPicAfterBattle
+	ld hl, wTrainerPicPointer  		; and HandleBlackOut
 	ld a, e
 	ld [hli], a
 	ld [hl], d
