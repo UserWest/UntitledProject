@@ -265,8 +265,7 @@ INCLUDE "engine/events/hidden_objects/pokecenter_pc.asm"
 
 SECTION "Version Graphics", ROMX
 
-INCLUDE "gfx/version.asm"
-
+;currently empty, this space may come in handy though
 
 SECTION "bank1C", ROMX
 
