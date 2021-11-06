@@ -505,6 +505,11 @@ MapHeaderPointersRB::
 	dw SummerBeachHouseRB_h
 	assert_table_length NUM_MAPS
 	
+ChangingMapHeaderPointers:
+	table_width 2, ChangingMapHeaderPointers
+	dw SaffronCity_h
+	assert_table_length 1
+	
 CheckForChangingMap::
 	ld a, [wCurMap]
 	cp CERULEAN_CAVE_1F
@@ -513,7 +518,14 @@ CheckForChangingMap::
 	jr z, .foundCeruleanCave
 	cp CERULEAN_CAVE_B1F
 	jr z, .foundCeruleanCave
+	cp SAFFRON_CITY
+	jr z, .foundSaffron
+	ret
+.foundMap
+	ld hl, ChangingMapHeaderPointers
 	ret
 .foundCeruleanCave
-	call ClearVariable ; wipes wUniversalVariable to allow player to spawn at last warp
-	ret
+	jp ClearVariable ; wipes wUniversalVariable to allow player to spawn at last warp
+.foundSaffron
+	ld de, 00
+	jr .foundMap
