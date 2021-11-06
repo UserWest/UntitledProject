@@ -31,7 +31,7 @@ SaffronCityCitizens:
 	db HS_SAFFRON_CITY_D
 	db $FF
 
-SaffronCityRockets:
+MissableObjects_f25ce:
 	db HS_SAFFRON_CITY_1
 	db HS_SAFFRON_CITY_2
 	db HS_SAFFRON_CITY_3
