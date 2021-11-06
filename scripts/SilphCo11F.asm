@@ -170,7 +170,7 @@ SilphCo11Script3:
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	call GBFadeOutToBlack
-	farcall PerformSaffronCityHideShow
+	farcall Func_f25a0
 	call UpdateSprites
 	call Delay3
 	call GBFadeInFromBlack
