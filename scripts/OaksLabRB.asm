@@ -275,6 +275,11 @@ OaksLabRBScript12: ; Text Mismatch, OaksLabScript12
 	call MoveSprite
 
 	ld a, [wRivalStarter]
+	cp RIVAL_STARTER_JOLTEON
+	jr nz, .notEevee
+	ld a, RIVAL_STARTER_JOLTEON
+	jr .done
+.notEevee
 	cp CHARMANDER
 	jr nz, .notCharmander
 	ld a, RIVAL_STARTER_CHARMANDER
