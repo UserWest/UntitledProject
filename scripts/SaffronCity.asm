@@ -1,5 +1,45 @@
 SaffronCity_Script:
-	jp EnableAutoTextBoxDrawing
+	call EnableAutoTextBoxDrawing
+	ld hl, SaffronCity_ScriptPointers
+	ld a, [wCurMapScript]
+	jp CallFunctionInTable
+	
+SaffronCity_ScriptPointers:
+	dw SaffronCityScript0
+	dw SaffronCityScript1
+
+SaffronCityScript1:
+	ret
+
+SaffronCityScript0:
+	SetEvent EVENT_RESCUED_MR_FUJI
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	jr nz, .done
+	CheckEvent EVENT_RESCUED_MR_FUJI
+	jr nz, .hideOrMoveSilphGuard
+.done
+	ld a, 1
+	ld [wCurMapScript], a
+	ret
+
+.hideOrMoveSilphGuard
+	call CheckForYellowVersion
+	jr z, .hideSilphGuard
+	
+	ld de, wSprite14StateData2MapX ; Data for silph rocket guard x coord
+	ld a, 23 ; new x coord
+	ld [de], a
+	
+	ld a, HS_SAFFRON_CITY_SILPH_GUARD ;Show the guard in r/b
+	ld [wMissableObjectIndex], a
+	predef ShowObject
+	jr .done
+	
+.hideSilphGuard
+	ld a, HS_SAFFRON_CITY_SILPH_GUARD ;Hide the guard in yellow
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	jr .done
 
 SaffronCity_TextPointers:
 	dw SaffronCityText1
@@ -82,9 +122,25 @@ SaffronCityText13:
 	text_end
 
 SaffronCityText14:
+	text_asm
+	CheckEvent EVENT_RESCUED_MR_FUJI
+	jr nz, .savedFuji
+	ld hl, SilphGuardBeforeSavingFuji
+	jr .printText
+.savedFuji
+	ld hl, SilphGuardAfterSavingFuji
+.printText
+	call PrintText
+	jp TextScriptEnd
+
+SilphGuardBeforeSavingFuji:
 	text_far _SaffronCityText14
 	text_end
 
+SilphGuardAfterSavingFuji:
+	text_far _SaffronCityText15
+	text_end
+	
 SaffronCityText15:
 	text_far _SaffronCityText15
 	text_end
