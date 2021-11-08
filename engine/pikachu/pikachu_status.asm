@@ -3,7 +3,7 @@ IsStarterPikachuInOurParty::
 	cp PIKACHU
 	jr nz, .starterIsNotPikachu
 	call CheckForYellowVersion
-	jr z, IsOurStarterInOurParty
+	jp z, IsOurStarterInOurParty
 .starterIsNotPikachu
 	and a
 	ret
@@ -19,6 +19,14 @@ IsOurStarterInOurParty::
 	ld [wWhichPokemon], a
 	call IsThisPartymonOurStarter
 	jr nc, .loop
+	
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMon1HP
+	ld bc, wPartyMon2 - wPartyMon1
+	call AddNTimes
+	ld a, [hli]
+	or [hl]
+	jr z, .noStarter
 	scf
 	ret
 
