@@ -51,8 +51,12 @@ DoVersionChange:: ; this really needs to be broken down into just the relevant c
 	call LoadMapHeader			 ; player and then snap into position when the menu is
 	call ClearVariable			 ; closed and frankly I don't like the way that looks,
 	call InitMapSprites			 ; so we just do this stuff twice
-	call LoadFontTilePatterns
 	
+	ld hl, wCurrentMapScriptFlags ; This part will set the card key doors to reload
+	set 5, [hl]
+	set 6, [hl]
+	
+	call LoadFontTilePatterns
 	call LoadCurrentMapView
 	call CopyMapViewToVRAM
 	call EnableLCD
