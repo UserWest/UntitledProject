@@ -1795,7 +1795,7 @@ LoadPlayerSpriteGraphicsCommon::
 ; function to load data from the map header
 LoadMapHeader::
 	xor a
-	ld [wCurMapScript], a ; added so that a map can run a script once upon loading
+	ld [wSaffronCityCurScript], a ; added so that a saffron can run a script once upon loading
 	farcall MarkTownVisitedAndLoadMissableObjects
 	ld a, [wCurMapTileset]
 	ld [wUnusedD119], a

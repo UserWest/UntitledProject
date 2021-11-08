@@ -1,7 +1,7 @@
 SaffronCity_Script:
 	call EnableAutoTextBoxDrawing
 	ld hl, SaffronCity_ScriptPointers
-	ld a, [wCurMapScript]
+	ld a, [wSaffronCityCurScript]
 	jp CallFunctionInTable
 	
 SaffronCity_ScriptPointers:
@@ -19,7 +19,7 @@ SaffronCityScript0:
 	jr nz, .hideOrMoveSilphGuard
 .done
 	ld a, 1
-	ld [wCurMapScript], a
+	ld [wSaffronCityCurScript], a
 	ret
 
 .hideOrMoveSilphGuard
