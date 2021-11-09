@@ -428,9 +428,9 @@ GetMonHeader::
 	ld hl, BaseStatsRB
 .gotPointer
 	pop af
-	call AddNTimes
-	ld de, wMonHeader
-	ld bc, BASE_DATA_SIZE
+	call AddNTimes			; We can replace the need for an extra table and a fuckton of data
+	ld de, wMonHeader		; by checking for the mons that are different in red and blue here
+	ld bc, BASE_DATA_SIZE	; but first we need a new way to load their front pics
 	call CopyData
 	jr .done
 .specialID
@@ -449,8 +449,8 @@ GetMonHeader::
 	pop de
 	pop bc
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 ; copy party pokemon's name to wcd6d
 GetPartyMonName2::
