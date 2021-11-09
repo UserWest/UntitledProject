@@ -25,7 +25,7 @@ MainMenu:
 	res 6, [hl]
 	call ClearScreen
 	call CheckForYellowVersion
-	jr nz, .isYellow
+	jr z, .isYellow
 	ld b, SET_PAL_OVERWORLD
 	jr .notYellow
 .isYellow
@@ -162,10 +162,11 @@ StartNewGame:
 
 ; enter map after using a special warp or loading the game from the main menu
 SpecialEnterMap::
+	call CheckForYellowVersion
+	jr z, .isYellow
 	ld b, SET_PAL_OVERWORLD
 	predef DontSkipRunPaletteCommand
-	ld b, SET_PAL_DEFAULT
-	predef DontSkipRunPaletteCommand
+.isYellow
 	xor a
 	ldh [hJoyPressed], a
 	ldh [hJoyHeld], a
