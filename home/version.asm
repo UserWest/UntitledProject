@@ -64,6 +64,8 @@ DoVersionChange:: ; this really needs to be broken down into just the relevant c
 	jp BankswitchCommon
 
 VersionChangeCheckCollision::
+	jp CheckSpecialCases
+.checkStartPos
 	lb bc, 60, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile
 	call CheckForSprite
 	jr c, .checkNorth
@@ -217,9 +219,7 @@ MovePlayerEast:
 	ld [wXBlockCoord], a
 	ld hl, wCurrentTileBlockMapViewPointer
 
-	ld a, [hl]
-	inc a
-	ld [hl], a
+	inc [hl]
 	
 	jr .done
 .sameBlock
@@ -268,9 +268,7 @@ MovePlayerWest:
 	ld [wXBlockCoord], a
 	ld hl, wCurrentTileBlockMapViewPointer
 
-	ld a, [hl]
-	dec a
-	ld [hl], a
+	dec [hl]
 	
 	jr .done
 .sameBlock
@@ -278,3 +276,34 @@ MovePlayerWest:
 	ld [wXBlockCoord], a
 .done	
 	ret
+
+CheckSpecialCases:
+	ld a, [wCurMap]
+	cp ROUTE_19
+	jr z, .route19
+	cp SAFFRON_CITY
+	jr z, .saffron
+.done
+	jp VersionChangeCheckCollision.checkStartPos
+.found
+	jp VersionChangeCheckCollision.done
+	
+.route19
+	call CheckForYellowVersion
+	jr nz, .done
+	ld a, [wXCoord]
+	cp 5
+	jr nz, .done
+	ld a, [wYCoord]
+	cp 9
+	jr nz, .done
+	call MovePlayerSouth
+	jr .found
+.saffron
+	ld a, [wXCoord]
+	cp 18
+	jr nz, .done
+	ld a, [wYCoord]
+	cp 22
+	jr nz, .done
+	jr .found
