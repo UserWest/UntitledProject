@@ -15,3 +15,16 @@ SubtractAmountPaidFromMoney_::
 	call DisplayTextBoxID ; redraw money text box
 	and a
 	ret
+
+; adds the amount the player sold to their money
+AddAmountSoldToMoney_::
+	ld de, wPlayerMoney + 2
+	ld hl, hMoney + 2 ; total price of items
+	ld c, 3 ; length of money in bytes
+	predef AddBCDPredef ; add total price to money
+	ld a, MONEY_BOX
+	ld [wTextBoxID], a
+	call DisplayTextBoxID ; redraw money text box
+	ld a, SFX_PURCHASE
+	call PlaySoundWaitForCurrent
+	jp WaitForSoundToFinish

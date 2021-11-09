@@ -5,16 +5,7 @@ SubtractAmountPaidFromMoney::
 
 ; adds the amount the player sold to their money
 AddAmountSoldToMoney::
-	ld de, wPlayerMoney + 2
-	ld hl, hMoney + 2 ; total price of items
-	ld c, 3 ; length of money in bytes
-	predef AddBCDPredef ; add total price to money
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; redraw money text box
-	ld a, SFX_PURCHASE
-	call PlaySoundWaitForCurrent
-	jp WaitForSoundToFinish
+	farjp AddAmountSoldToMoney_
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
