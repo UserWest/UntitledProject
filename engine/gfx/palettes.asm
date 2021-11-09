@@ -1,9 +1,6 @@
 _RunPaletteCommand:
-	ld a, [wCurVersion]
-	cp RED_VERSION
-	ret z
-	cp BLUE_VERSION
-	ret z
+	call CheckForYellowVersion
+	ret nz
 DontSkipRunPaletteCommand:
 	call GetPredefRegisters
 	ld a, b
