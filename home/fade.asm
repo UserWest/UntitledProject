@@ -18,8 +18,7 @@ LoadGBPal::
 	ldh [rOBP1], a
 	call UpdateGBCPal_BGP
 	call UpdateGBCPal_OBP0
-	call UpdateGBCPal_OBP1
-	ret
+	jp UpdateGBCPal_OBP1
 
 GBFadeInFromBlack::
 	ld hl, FadePal1

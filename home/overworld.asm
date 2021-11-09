@@ -353,8 +353,7 @@ DoBikeSpeedup::
 	and D_UP | D_LEFT | D_RIGHT
 	ret nz
 .goFaster
-	call AdvancePlayerSprite
-	ret
+	jp AdvancePlayerSprite
 
 ; check if the player has stepped onto a warp after having not collided
 CheckWarpsNoCollision::
@@ -789,8 +788,7 @@ Func_07c4::
 	ld hl, wd732
 	bit 4, [hl]
 	ret z
-	call PlayDefaultMusic
-	ret
+	jp PlayDefaultMusic
 
 LoadPlayerSpriteGraphics::
 ; Load sprite graphics based on whether the player is standing, biking, or surfing.
@@ -1433,8 +1431,7 @@ LoadCurrentMapView::
 	dec b
 	jr nz, .rowLoop2
 	pop af
-	call BankswitchCommon ; restore previous ROM bank
-	ret
+	jp BankswitchCommon ; restore previous ROM bank
 
 AdvancePlayerSprite::
 	ld a, [wUpdateSpritesEnabled]
@@ -1589,8 +1586,7 @@ JoypadOverworld::
 	call RunMapScript
 	call Joypad
 	call ForceBikeDown
-	call AreInputsSimulated
-	ret
+	jp AreInputsSimulated
 
 ForceBikeDown::
 	ld a, [wFlags_D733]
@@ -1987,8 +1983,7 @@ LoadMapData::
 LoadScreenRelatedData::
 	call LoadTileBlockMap
 	call LoadTilesetTilePatternData
-	call LoadCurrentMapView
-	ret
+	jp LoadCurrentMapView
 
 ReloadMapAfterSurfingMinigame::
 	ldh a, [hLoadedROMBank]

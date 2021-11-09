@@ -28,8 +28,7 @@ GBPalNormal::
 	ldh [rOBP0], a
 	call UpdateGBCPal_BGP
 	call UpdateGBCPal_OBP0
-	call UpdateGBCPal_OBP1
-	ret
+	jp UpdateGBCPal_OBP1
 
 GBPalWhiteOut::
 ; White out all palettes.
@@ -39,8 +38,7 @@ GBPalWhiteOut::
 	ldh [rOBP1], a
 	call UpdateGBCPal_BGP
 	call UpdateGBCPal_OBP0
-	call UpdateGBCPal_OBP1
-	ret
+	jp UpdateGBCPal_OBP1
 
 RunDefaultPaletteCommand::
 	ld b, SET_PAL_DEFAULT

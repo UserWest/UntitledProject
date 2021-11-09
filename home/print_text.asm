@@ -26,9 +26,7 @@ PrintLetterDelay::
 	ldh a, [hJoyHeld]
 .checkAButton
 	bit 0, a ; is the A button pressed?
-	jr z, .checkBButton
-	jr .endWait
-.checkBButton
+	jr nz, .endWait
 	bit 1, a ; is the B button pressed?
 	jr z, .buttonsNotPressed
 .endWait
