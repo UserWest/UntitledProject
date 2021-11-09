@@ -26,8 +26,8 @@ ENDR
 	or b
 	jr nz, .loop
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 LoadNextSoundClipSample::
 	ld a, d

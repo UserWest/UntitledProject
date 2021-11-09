@@ -11,8 +11,8 @@ UncompressSpriteData::
 	call _UncompressSpriteData
 	call PrepareRTCDataAndDisableSRAM
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 ; initializes necessary data to load a sprite and runs UncompressSpriteDataLoop
 _UncompressSpriteData::

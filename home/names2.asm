@@ -93,5 +93,5 @@ GetName::
 	pop bc
 	pop hl
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+

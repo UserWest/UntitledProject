@@ -61,8 +61,7 @@ DoVersionChange:: ; this really needs to be broken down into just the relevant c
 	call CopyMapViewToVRAM
 	call EnableLCD
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
 
 VersionChangeCheckCollision::
 	lb bc, 60, 64 ; y/x coords to be checked, in pixels, 16 pixels = 1 tile

@@ -35,8 +35,8 @@ RunNPCMovementScript::
 	ld a, [wNPCMovementScriptFunctionNum]
 	call CallFunctionInTable
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 .NPCMovementScriptPointerTables
 	dw PalletMovementScriptPointerTable

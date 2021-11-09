@@ -5,11 +5,11 @@ BankswitchHome::
 	ldh a, [hLoadedROMBank]
 	ld [wBankswitchHomeSavedROMBank], a
 	ld a, [wBankswitchHomeTemp]
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 BankswitchBack::
 ; returns from BankswitchHome
 	ld a, [wBankswitchHomeSavedROMBank]
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+

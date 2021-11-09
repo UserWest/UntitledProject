@@ -10,8 +10,8 @@ ReloadMapData::
 	call LoadTilesetTilePatternData
 	call EnableLCD
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 ; reloads tileset tile patterns
 ReloadTilesetTilePatterns::
@@ -23,8 +23,8 @@ ReloadTilesetTilePatterns::
 	call LoadTilesetTilePatternData
 	call EnableLCD
 	pop af
-	call BankswitchCommon
-	ret
+	jp BankswitchCommon
+
 
 ; shows the town map and lets the player choose a destination to fly to
 ChooseFlyDestination::
