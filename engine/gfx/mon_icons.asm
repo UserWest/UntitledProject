@@ -273,6 +273,20 @@ GetPartyMonSpriteID:
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
+	push af
+	call CheckForYellowVersion ; the following code will tell the game that
+	jr z, .isYellow            ; pikachu and raichu are clefairy for the
+	pop af                     ; pruposes of menu icons in r/b 
+	cp 25 ; Pikachu
+	jr z, .loadClefairy
+	cp 26 ; Raichu
+	jr nz, .isRedOrBlue
+.loadClefairy
+	ld a, 40 ; Clefairy
+	jr .isRedOrBlue
+.isYellow
+	pop af
+.isRedOrBlue
 	ld c, a
 	dec a
 	srl a
