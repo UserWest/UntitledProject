@@ -277,12 +277,12 @@ GetPartyMonSpriteID:
 	call CheckForYellowVersion ; the following code will tell the game that
 	jr z, .isYellow            ; pikachu and raichu are clefairy for the
 	pop af                     ; pruposes of menu icons in r/b 
-	cp 25 ; Pikachu
+	cp DEX_PIKACHU
 	jr z, .loadClefairy
-	cp 26 ; Raichu
+	cp DEX_RAICHU
 	jr nz, .isRedOrBlue
 .loadClefairy
-	ld a, 40 ; Clefairy
+	ld a, DEX_CLEFAIRY
 	jr .isRedOrBlue
 .isYellow
 	pop af
