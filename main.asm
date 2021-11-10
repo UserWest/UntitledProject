@@ -76,7 +76,7 @@ INCLUDE "engine/menus/party_menu.asm"
 INCLUDE "gfx/player.asm"
 INCLUDE "engine/menus/start_sub_menus.asm"
 INCLUDE "engine/items/tms.asm"
-
+INCLUDE "engine/version.asm"
 
 SECTION "Battle Engine 1", ROMX
 
@@ -111,7 +111,7 @@ SECTION "bank7", ROMX
 INCLUDE "engine/movie/oak_speech/clear_save.asm"
 INCLUDE "engine/events/elevator.asm"
 INCLUDE "engine/overworld/wild_mons.asm"
-
+INCLUDE "gfx/trade.asm"
 
 SECTION "Hidden Objects 1", ROMX
 
@@ -165,8 +165,6 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/cries.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
-INCLUDE "gfx/trade.asm"
-INCLUDE "engine/pokemon/evos_moves.asm"
 
 
 SECTION "Battle Core", ROMX
@@ -207,7 +205,7 @@ INCLUDE "engine/events/hidden_objects/indigo_plateau_hq.asm"
 SECTION "Battle Engine 7", ROMX
 
 INCLUDE "engine/battle/experience.asm"
-INCLUDE "data/pokemon/base_stats_rb.asm"
+INCLUDE "engine/pokemon/evos_moves.asm"
 
 
 SECTION "Diploma", ROMX
