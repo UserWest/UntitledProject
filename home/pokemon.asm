@@ -393,11 +393,7 @@ GetwMoves::
 GetMonHeader::
 	ldh a, [hLoadedROMBank]
 	push af
-	call CheckForYellowVersion
 	ld a, BANK(BaseStats)
-	jr z, .gotBank
-	ld a, BANK(BaseStatsRB)
-.gotBank
 	call BankswitchCommon
 	push bc
 	push de
@@ -419,15 +415,20 @@ GetMonHeader::
 	jr z, .specialID
 	predef IndexToPokedex   ; convert pokemon ID in [wd11e] to pokedex number
 	ld a, [wd11e]
-	dec a
-	ld bc, BASE_DATA_SIZE
 	push af
 	call CheckForYellowVersion
-	ld hl, BaseStats
-	jr z, .gotPointer
-	ld hl, BaseStatsRB
-.gotPointer
+	jr z, .isYellow
 	pop af
+	call CheckForMonWithVersionDifferences
+	jr c, .foundDifference
+	jr .notYellow
+.isYellow
+	pop af
+.notYellow
+	dec a
+	ld bc, BASE_DATA_SIZE
+	ld hl, BaseStats
+.foundDifference
 	call AddNTimes			; We can replace the need for an extra table and a fuckton of data
 	ld de, wMonHeader		; by checking for the mons that are different in red and blue here
 	ld bc, BASE_DATA_SIZE	; but first we need a new way to load their front pics
@@ -470,3 +471,52 @@ GetPartyMonName::
 	pop bc
 	pop hl
 	ret
+
+CheckForMonWithVersionDifferences:
+	ld d, 0
+	ld b, a
+	ld hl, MonWithVersionDifferences
+.loop
+	ld a, [hli]
+	cp -1 ; are we done?
+	jr z, .done
+	cp b
+	jr z, .found
+	inc d
+	jr .loop
+.done
+	ld a, b
+	ret
+.found
+	ld a, d
+	ld bc, BASE_DATA_SIZE
+	ld hl, BaseStatsRB
+	scf
+	ret
+	
+MonWithVersionDifferences:	
+	db DEX_CHARIZARD
+	db DEX_BUTTERFREE
+	db DEX_VENONAT
+	db DEX_VENOMOTH
+	db DEX_DIGLETT
+	db DEX_DUGTRIO
+	db DEX_PRIMEAPE
+	db DEX_KADABRA
+	db DEX_ALAKAZAM
+	db DEX_CUBONE
+	db DEX_MAROWAK
+	db DEX_CHANSEY
+	db DEX_TANGELA
+	db DEX_GYARADOS
+	db DEX_EEVEE
+	db DEX_VAPOREON
+	db DEX_JOLTEON
+	db DEX_FLAREON
+	db DEX_KABUTOPS
+	db DEX_DRAGONAIR
+	db DEX_DRAGONITE
+	db DEX_MEWTWO
+	db DEX_MEW
+	db -1
+	
