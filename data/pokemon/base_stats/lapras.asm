@@ -8,7 +8,7 @@
 	db 219 ; base exp
 
 	INCBIN "gfx/pokemon/front/lapras.pic", 0, 1 ; sprite dimensions
-	dw LaprasPicFront, LaprasPicBack
+	dw LaprasPicFront, LaprasBluePicFront, LaprasPicBack
 
 	db WATER_GUN, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate

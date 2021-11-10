@@ -8,7 +8,7 @@
 	db 214 ; base exp
 
 	INCBIN "gfx/pokemon/front/gyarados.pic", 0, 1 ; sprite dimensions
-	dw GyaradosPicFront, GyaradosPicBack
+	dw GyaradosPicFront, GyaradosBluePicFront, GyaradosPicBack
 
 	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate

@@ -8,7 +8,7 @@
 	db 198 ; base exp
 
 	INCBIN "gfx/pokemon/front/flareon.pic", 0, 1 ; sprite dimensions
-	dw FlareonPicFront, FlareonPicBack
+	dw FlareonPicFront, FlareonBluePicFront, FlareonPicBack
 
 	db TACKLE, TAIL_WHIP, QUICK_ATTACK, EMBER ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

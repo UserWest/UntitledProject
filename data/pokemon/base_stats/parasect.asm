@@ -8,7 +8,7 @@
 	db 128 ; base exp
 
 	INCBIN "gfx/pokemon/front/parasect.pic", 0, 1 ; sprite dimensions
-	dw ParasectPicFront, ParasectPicBack
+	dw ParasectPicFront, ParasectBluePicFront, ParasectPicBack
 
 	db SCRATCH, STUN_SPORE, LEECH_LIFE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

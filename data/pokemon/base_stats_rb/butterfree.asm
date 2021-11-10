@@ -8,7 +8,7 @@
 	db 160 ; base exp
 
 	INCBIN "gfx/pokemon/front/butterfree.pic", 0, 1 ; sprite dimensions
-	dw ButterfreeBluePicFront, ButterfreePicBack
+	dw ButterfreePicFront, ButterfreeBluePicFront, ButterfreePicBack
 
 	db CONFUSION, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

@@ -8,7 +8,7 @@
 	db 136 ; base exp
 
 	INCBIN "gfx/pokemon/front/mr.mime.pic", 0, 1 ; sprite dimensions
-	dw MrMimePicFront, MrMimePicBack
+	dw MrMimePicFront, MrMimeBluePicFront, MrMimePicBack
 
 	db CONFUSION, BARRIER, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

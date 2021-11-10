@@ -8,7 +8,7 @@
 	db 197 ; base exp
 
 	INCBIN "gfx/pokemon/front/jolteon.pic", 0, 1 ; sprite dimensions
-	dw JolteonBluePicFront, JolteonPicBack
+	dw JolteonPicFront, JolteonBluePicFront, JolteonPicBack
 
 	db TACKLE, SAND_ATTACK, QUICK_ATTACK, THUNDERSHOCK ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

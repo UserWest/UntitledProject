@@ -8,7 +8,7 @@
 	db 138 ; base exp
 
 	INCBIN "gfx/pokemon/front/venomoth.pic", 0, 1 ; sprite dimensions
-	dw VenomothPicFront, VenomothPicBack
+	dw VenomothPicFront, VenomothBluePicFront, VenomothPicBack
 
 	db TACKLE, DISABLE, SUPERSONIC, CONFUSION ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate

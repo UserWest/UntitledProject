@@ -8,7 +8,7 @@
 	db 208 ; base exp
 
 	INCBIN "gfx/pokemon/front/venusaur.pic", 0, 1 ; sprite dimensions
-	dw VenusaurPicFront, VenusaurPicBack
+	dw VenusaurPicFront, VenusaurBluePicFront, VenusaurPicBack
 
 	db TACKLE, GROWL, LEECH_SEED, VINE_WHIP ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate

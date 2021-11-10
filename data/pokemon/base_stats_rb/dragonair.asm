@@ -8,7 +8,7 @@
 	db 144 ; base exp
 
 	INCBIN "gfx/pokemon/front/dragonair.pic", 0, 1 ; sprite dimensions
-	dw DragonairBluePicFront, DragonairPicBack
+	dw DragonairPicFront, DragonairBluePicFront, DragonairPicBack
 
 	db WRAP, LEER, THUNDER_WAVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate

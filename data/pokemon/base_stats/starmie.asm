@@ -8,7 +8,7 @@
 	db 207 ; base exp
 
 	INCBIN "gfx/pokemon/front/starmie.pic", 0, 1 ; sprite dimensions
-	dw StarmiePicFront, StarmiePicBack
+	dw StarmiePicFront, StarmieBluePicFront, StarmiePicBack
 
 	db TACKLE, WATER_GUN, HARDEN, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
