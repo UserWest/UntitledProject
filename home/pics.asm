@@ -65,7 +65,11 @@ UncompressMonSprite::
 ; de: destination location
 LoadMonFrontSprite::
 	push de
+	call CheckForYellowVersion
 	ld hl, wMonHFrontSprite - wMonHeader
+	jr z, .useYellow
+	ld hl, wMonHBlueFrontSprite - wMonHeader
+.useYellow
 	call UncompressMonSprite
 	ld hl, wMonHSpriteDim
 	ld a, [hli]
