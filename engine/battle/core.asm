@@ -2040,6 +2040,8 @@ DrawEnemyHUDAndHPBar:
 	ld hl, wEnemyHPBarColor
 
 GetBattleHealthBarColor:
+	call CheckForYellowVersion
+	ret nz
 	ld b, [hl]
 	call GetHealthBarColor
 	ld a, [hl]
