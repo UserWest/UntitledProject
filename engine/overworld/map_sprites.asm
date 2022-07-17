@@ -338,13 +338,22 @@ GetSplitMapSpriteSetID:
 	jr c, .loadSpriteSetID
 ; if in the East side or South side
 	inc hl
-.loadSpriteSetID		; Vermilion and fuchsia have different
+.loadSpriteSetID		; Vermilion Cerulean and fuchsia have different
 	ld a, [hl]			; sprite sets in r/b, we run a check
-	cp $04				; for them here
+	cp $02				; for them here
+	jr z, .cerulean
+	cp $04
 	jr z, .vermilion
 	cp $0A
 	jr z, .fuchsia
 	ret
+
+.cerulean
+	call CheckForYellowVersion
+	ld a, $02
+	jr z, .done
+	ld a, $0B
+	jr .done
 	
 .vermilion
 	call CheckForYellowVersion
