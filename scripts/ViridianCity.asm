@@ -101,7 +101,13 @@ ViridianCityScript_190db:
 	ld [wBattleType], a
 	ld a, 5
 	ld [wCurEnemyLVL], a
+	call CheckForYellowVersion
+	jr z, .loadRattata
+	ld a, WEEDLE
+	jr .loadWeedle
+.loadRattata
 	ld a, RATTATA
+.loadWeedle
 	ld [wCurOpponent], a
 	ret
 
