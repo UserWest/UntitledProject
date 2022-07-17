@@ -157,7 +157,7 @@ RocketHideout4Script4:
 	jr z, .asm_45617
 	ld de, RocketHideout4JessieJamesMovementData_45606
 .asm_45617
-	ld a, $2
+	ld a, $3
 	ldh [hSpriteIndexOrTextID], a
 	call MoveSprite
 	ld a, $ff
@@ -174,13 +174,13 @@ RocketHideout4Script5:
 	ret nz
 RocketHideout4Script6:
 	ld a, $2
-	ld [wSprite02StateData1MovementStatus], a
+	ld [wSprite03StateData1MovementStatus], a
 	ld a, SPRITE_FACING_LEFT
-	ld [wSprite02StateData1FacingDirection], a
+	ld [wSprite03StateData1FacingDirection], a
 	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_4564a
 	ld a, SPRITE_FACING_DOWN
-	ld [wSprite02StateData1FacingDirection], a
+	ld [wSprite03StateData1FacingDirection], a
 .asm_4564a
 	call Delay3
 	ld a, $fc
@@ -191,7 +191,7 @@ RocketHideout4Script7:
 	jr z, .asm_4565f
 	ld de, RocketHideout4JessieJamesMovementData_45605
 .asm_4565f
-	ld a, $3
+	ld a, $4
 	ldh [hSpriteIndexOrTextID], a
 	call MoveSprite
 	ld a, $ff
@@ -210,13 +210,13 @@ RocketHideout4Script8:
 	ld [wJoyIgnore], a
 RocketHideout4Script9:
 	ld a, $2
-	ld [wSprite03StateData1MovementStatus], a
+	ld [wSprite04StateData1MovementStatus], a
 	ld a, SPRITE_FACING_DOWN
-	ld [wSprite03StateData1FacingDirection], a
+	ld [wSprite04StateData1FacingDirection], a
 	CheckEvent EVENT_ROCKET_HIDEOUT_4_PLAYER_LOCATION
 	jr z, .asm_45697
 	ld a, SPRITE_FACING_RIGHT
-	ld [wSprite03StateData1FacingDirection], a
+	ld [wSprite04StateData1FacingDirection], a
 .asm_45697
 	call Delay3
 	ld a, $c
@@ -248,11 +248,11 @@ RocketHideout4Script11:
 	cp $ff
 	jp z, RocketHideout4Script_45510
 	ld a, $2
-	ld [wSprite02StateData1MovementStatus], a
 	ld [wSprite03StateData1MovementStatus], a
+	ld [wSprite04StateData1MovementStatus], a
 	xor a
-	ld [wSprite02StateData1FacingDirection], a
 	ld [wSprite03StateData1FacingDirection], a
+	ld [wSprite04StateData1FacingDirection], a
 	ld a, $fc
 	ld [wJoyIgnore], a
 	ld a, $1

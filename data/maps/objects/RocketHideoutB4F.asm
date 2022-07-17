@@ -10,11 +10,11 @@ RocketHideoutB4F_Object:
 
 	def_object_events
 	object_event 25,  3, SPRITE_GIOVANNI, ANY_VERSION, STAY, DOWN, 1, OPP_GIOVANNI, 1
-	object_event 25, 10, SPRITE_JAMES, YELLOW_VERSION, STAY, DOWN, 13
-	object_event 44, 26, SPRITE_POKE_BALL, RED_OR_BLUE, STAY, NONE, 1 ; Filler object
-	object_event 24, 10, SPRITE_JESSIE, YELLOW_VERSION, STAY, DOWN, 13
-	object_event 44, 26, SPRITE_POKE_BALL, RED_OR_BLUE, STAY, NONE, 1 ; Filler object
 	object_event 11,  2, SPRITE_ROCKET, ANY_VERSION, STAY, DOWN, 4, OPP_ROCKET, 18
+	object_event 25, 10, SPRITE_JAMES, YELLOW_VERSION, STAY, DOWN, 13
+	object_event  0,  0, SPRITE_NONE, RED_OR_BLUE, STAY, NONE, 0 ; Filler object
+	object_event 24, 10, SPRITE_JESSIE, YELLOW_VERSION, STAY, DOWN, 13
+	object_event  0,  0, SPRITE_NONE, RED_OR_BLUE, STAY, NONE, 0 ; Filler object
 	object_event 10, 12, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 5, HP_UP
 	object_event  9,  4, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 6, TM_RAZOR_WIND
 	object_event 12, 20, SPRITE_POKE_BALL, ANY_VERSION, STAY, NONE, 7, IRON
