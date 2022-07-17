@@ -3,11 +3,11 @@ DrawStartMenu::
 	CheckEvent EVENT_GOT_POKEDEX
 ; menu with pokedex
 	hlcoord 10, 0
-	lb bc, 14, 8
+	lb bc, 16, 8
 	jr nz, .drawTextBoxBorder
 ; shorter menu if the player doesn't have the pokedex
 	hlcoord 10, 0
-	lb bc, 12, 8
+	lb bc, 14, 8
 .drawTextBoxBorder
 	call TextBoxBorder
 	ld a, D_DOWN | D_UP | START | B_BUTTON | A_BUTTON
@@ -26,12 +26,12 @@ DrawStartMenu::
 	hlcoord 12, 2
 	CheckEvent EVENT_GOT_POKEDEX
 ; case for not having pokedex
-	ld a, $06
+	ld a, $07
 	jr z, .storeMenuItemCount
 ; case for having pokedex
 	ld de, StartMenuPokedexText
 	call PrintStartMenuItem
-	ld a, $07
+	ld a, $08
 .storeMenuItemCount
 	ld [wMaxMenuItem], a ; number of menu items
 	ld de, StartMenuPokemonText
@@ -39,6 +39,8 @@ DrawStartMenu::
 	ld de, StartMenuItemText
 	call PrintStartMenuItem
 	ld de, wPlayerName ; player's name
+	call PrintStartMenuItem
+	ld de, StartMenuVersionText
 	call PrintStartMenuItem
 	ld a, [wd72e]
 	bit 6, a ; is the player using the link feature?
@@ -65,6 +67,9 @@ StartMenuPokemonText:
 
 StartMenuItemText:
 	db "ITEM@"
+
+StartMenuVersionText:
+	db "VERSION@"
 
 StartMenuSaveText:
 	db "SAVE@"

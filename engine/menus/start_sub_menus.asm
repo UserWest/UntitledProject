@@ -668,29 +668,29 @@ StartMenu_SaveReset::
 	call LoadScreenTilesFromBuffer2 ; restore saved screen
 	jp HoldTextDisplayOpen
 
+StartMenu_Version::
+	xor a
+	ldh [hAutoBGTransferEnabled], a
+	call ClearScreen
+	call UpdateSprites
+	callfar DisplayVersionMenu
+	call LoadScreenTilesFromBuffer2 ; restore saved screen
+	call LoadTextBoxTilePatterns
+	call UpdateSprites
+	jp RedisplayStartMenu
+
 StartMenu_Option::
 	xor a
 	ldh [hAutoBGTransferEnabled], a
 	call ClearScreen
 	call UpdateSprites
 	callfar DisplayOptionMenu
-	ld a, [wUniversalVariable] ; contains the version from before we opened the menu
-	ld b, a
-	ld a, [wCurVersion]
-	cp b
-	jr nz, .versionChanged
 	call LoadScreenTilesFromBuffer2 ; restore saved screen
 	call LoadTextBoxTilePatterns
 	call UpdateSprites
 	jp RedisplayStartMenu
 
-.versionChanged	
-	ld b, SET_PAL_DEFAULT
-	predef DontSkipRunPaletteCommand
-	call DoVersionChange
-	call UpdateSprites
-	jp RedisplayStartMenu
-	
+
 SwitchPartyMon::
 	call SwitchPartyMon_InitVarOrSwapData ; swap data
 	ld a, [wSwappedMenuItem]

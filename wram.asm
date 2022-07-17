@@ -2003,7 +2003,9 @@ wSpriteSetID:: db
 
 wObjectDataPointerTemp:: dw
 
-	ds 2
+	ds 1
+	
+wVersionCursorLocation:: db
 
 ; the tile shown outside the boundaries of the map
 wMapBackgroundTile:: db

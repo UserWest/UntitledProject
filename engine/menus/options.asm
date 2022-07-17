@@ -1,6 +1,4 @@
 DisplayOptionMenu_:
-	ld a, [wCurVersion]
-	ld [wUniversalVariable], a ; stores the value of the version we are changing from
 	call InitOptionsMenu
 .optionMenuLoop
 	call JoypadLowSensitivity
@@ -36,9 +34,9 @@ OptionMenuJumpTable:
 	dw OptionsMenu_TextSpeed
 	dw OptionsMenu_BattleAnimations
 	dw OptionsMenu_BattleStyle
-	dw OptionsMenu_Version
 	dw OptionsMenu_SpeakerSettings
 	dw OptionsMenu_GBPrinterBrightness
+	dw OptionsMenu_Dummy
 	dw OptionsMenu_Dummy
 	dw OptionsMenu_Cancel
 
@@ -189,88 +187,6 @@ BattleStyleShiftText:
 BattleStyleSetText:
 	db "SET  @"
 
-OptionsMenu_Version:
-	call GetCurrentVersion
-	ldh a, [hJoy5]
-	bit 4, a ; right
-	jr nz, .pressedRight
-	bit 5, a
-	jr nz, .pressedLeft
-	jr .asm_41ce0
-.pressedRight
-	ld a, c
-	cp $2
-	jr c, .asm_41cca
-	ld c, $ff
-.asm_41cca
-	inc c
-	ld a, e
-	jr .asm_41cd6
-.pressedLeft
-	ld a, c
-	and a
-	jr nz, .asm_41cd4
-	ld c, $3
-.asm_41cd4
-	dec c
-	ld a, d
-.asm_41cd6
-	ld b, a
-	ld a, [wCurVersion]
-	and $f0
-	or b
-	ld [wCurVersion], a
-.asm_41ce0
-	ld b, $0
-	ld hl, VersionStringsPointerTable
-	add hl, bc
-	add hl, bc
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	hlcoord 10, 8
-	call PlaceString
-	and a
-	ret
-
-VersionStringsPointerTable:
-	dw RedVersionText
-	dw YellowVersionText
-	dw BlueVersionText
-
-YellowVersionText:
-	db "YELLOW@"
-RedVersionText:
-	db "RED   @"
-BlueVersionText:
-	db "BLUE  @"
-
-GetCurrentVersion:
-	ld a, [wCurVersion]
-	cp RED_VERSION
-	jr z, .red
-	cp BLUE_VERSION
-	jr z, .blue
-; yellow
-	ld c, $1
-	lb de, RED_VERSION, BLUE_VERSION
-	ld a, YELLOW_VERSION
-	ld [wCurVersion], a
-	ret
-.blue
-	ld c, $2
-	lb de, YELLOW_VERSION, RED_VERSION
-	ld a, BLUE_VERSION
-	ld [wCurVersion], a
-	ret
-.red
-	ld c, $0
-	lb de, BLUE_VERSION, YELLOW_VERSION
-	ld a, RED_VERSION
-	ld [wCurVersion], a
-	ret
-
-
 OptionsMenu_SpeakerSettings:
 	ld a, [wOptions]
 	and $30
@@ -309,7 +225,7 @@ OptionsMenu_SpeakerSettings:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	hlcoord 8, 10
+	hlcoord 8, 8
 	call PlaceString
 	and a
 	ret
@@ -365,7 +281,7 @@ OptionsMenu_GBPrinterBrightness:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	hlcoord 8, 12
+	hlcoord 8, 10
 	call PlaceString
 	and a
 	ret
@@ -449,7 +365,7 @@ OptionsControl:
 	scf
 	ret
 .doNotWrapAround
-	cp $5
+	cp $4
 	jr c, .regularIncrement
 	ld [hl], $6
 .regularIncrement
@@ -460,7 +376,7 @@ OptionsControl:
 	ld a, [hl]
 	cp $7
 	jr nz, .doNotMoveCursorToPrintOption
-	ld [hl], $5
+	ld [hl], $4
 	scf
 	ret
 .doNotMoveCursorToPrintOption
@@ -500,7 +416,7 @@ InitOptionsMenu:
 	call PlaceString
 	xor a
 	ld [wOptionsCursorLocation], a
-	ld c, 6 ; the number of options to loop through
+	ld c, 5 ; the number of options to loop through
 .loop
 	push bc
 	call GetOptionPointer ; updates the next option
@@ -520,9 +436,151 @@ AllOptionsText:
 	db "TEXT SPEED :"
 	next "ANIMATION  :"
 	next "BATTLESTYLE:"
-	next "VERSION:"
 	next "SOUND:"
 	next "PRINT:@"
 
 OptionMenuCancelText:
 	db "CANCEL@"
+
+DisplayVersionMenu:
+;draw menu
+	hlcoord 0, 0
+	lb bc, SCREEN_HEIGHT - 2, SCREEN_WIDTH - 2
+	call TextBoxBorder
+	hlcoord 2, 2
+	ld de, VersionMenuText
+	call PlaceString
+	hlcoord 2, 16
+	ld de, OptionMenuCancelText
+	call PlaceString
+	ld a, [wCurVersion]
+	ld [wUniversalVariable], a
+	cp YELLOW_VERSION
+	jr z, .isYellow
+	cp BLUE_VERSION
+	jr z, .isBlue
+	ld a, 0 ;red
+	jr .gotCurrentVersion
+.isBlue
+	ld a, 1
+	jr .gotCurrentVersion
+.isYellow
+	ld a, 2
+.gotCurrentVersion
+	ld [wVersionCursorLocation], a
+	inc a
+	ldh [hAutoBGTransferEnabled], a
+	call Delay3
+.optionMenuLoop
+	call JoypadLowSensitivity
+	ldh a, [hJoy5]
+	and START | B_BUTTON
+	jr nz, .exitOptionMenu
+	ldh a, [hJoy5]
+	and A_BUTTON
+	jr nz, .selectVersion
+	call VersionControl
+	jr c, .dpadDelay
+.dpadDelay
+	call VersionMenu_UpdateCursorPosition
+	call DelayFrame
+	call DelayFrame
+	call DelayFrame
+	jr .optionMenuLoop
+.selectVersion
+	ld a, [wVersionCursorLocation]
+	cp 0
+	jr z, .choseRedVersion
+	cp 1
+	jr z, .choseBlueVersion
+	cp 2
+	jr z, .choseYellowVersion
+	jr .exitOptionMenu
+	
+.choseRedVersion	
+	ld a, RED_VERSION
+	jr .loadNewVersion
+.choseBlueVersion
+	ld a, BLUE_VERSION
+	jr .loadNewVersion
+.choseYellowVersion
+	ld a, YELLOW_VERSION
+.loadNewVersion	
+	ld [wCurVersion], a
+	ld a, [wUniversalVariable] ; contains the version from before we opened the menu
+	ld b, a
+	ld a, [wCurVersion]
+	cp b
+	jr z, .skipVersionChange
+	ld b, SET_PAL_DEFAULT
+	predef DontSkipRunPaletteCommand
+	call DoVersionChange
+	
+.skipVersionChange	
+	ld a, SFX_PRESS_AB
+	call PlaySound
+.exitOptionMenu
+	ret
+
+VersionMenuText:
+	db "SELECT A VERSION:"
+	next " "
+	next "RED VERSION"
+	next "BLUE VERSION"
+	next "YELLOW VERSION@"
+
+VersionControl:
+	ld hl, wVersionCursorLocation
+	ldh a, [hJoy5]
+	cp D_DOWN
+	jr z, .pressedDown
+	cp D_UP
+	jr z, .pressedUp
+	and a
+	ret
+.pressedDown
+	ld a, [hl]
+	cp $5
+	jr nz, .doNotWrapAround
+	ld [hl], $0
+	scf
+	ret
+.doNotWrapAround
+	cp $2
+	jr c, .regularIncrement
+	ld [hl], $4
+.regularIncrement
+	inc [hl]
+	scf
+	ret
+.pressedUp
+	ld a, [hl]
+	cp $5
+	jr nz, .doNotMoveCursorToYellow
+	ld [hl], $2
+	scf
+	ret
+.doNotMoveCursorToYellow
+	and a
+	jr nz, .regularDecrement
+	ld [hl], $6
+.regularDecrement
+	dec [hl]
+	scf
+	ret
+	
+VersionMenu_UpdateCursorPosition:
+	hlcoord 1, 1
+	ld de, SCREEN_WIDTH
+	ld c, 16
+.loop
+	ld [hl], " "
+	add hl, de
+	dec c
+	jr nz, .loop
+	hlcoord 1, 6
+	ld bc, SCREEN_WIDTH * 2
+	ld a, [wVersionCursorLocation]
+	call AddNTimes
+	ld [hl], "▶"
+	ret
