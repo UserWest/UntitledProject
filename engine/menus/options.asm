@@ -36,7 +36,7 @@ OptionMenuJumpTable:
 	dw OptionsMenu_BattleStyle
 	dw OptionsMenu_SpeakerSettings
 	dw OptionsMenu_GBPrinterBrightness
-	dw OptionsMenu_Dummy
+	dw OptionsMenu_Debug
 	dw OptionsMenu_Dummy
 	dw OptionsMenu_Cancel
 
@@ -252,28 +252,28 @@ OptionsMenu_GBPrinterBrightness:
 	jr nz, .pressedRight
 	bit 5, a
 	jr nz, .pressedLeft
-	jr .asm_41e32
+	jr .nonePressed
 .pressedRight
 	ld a, c
 	cp $4
-	jr c, .asm_41e22
+	jr c, .increase
 	ld c, $ff
-.asm_41e22
+.increase
 	inc c
 	ld a, e
-	jr .asm_41e2e
+	jr .save
 .pressedLeft
 	ld a, c
 	and a
-	jr nz, .asm_41e2c
+	jr nz, .decrease
 	ld c, $5
-.asm_41e2c
+.decrease
 	dec c
 	ld a, d
-.asm_41e2e
+.save
 	ld b, a
 	ld [wPrinterSettings], a
-.asm_41e32
+.nonePressed
 	ld b, $0
 	ld hl, GBPrinterOptionStringsPointerTable
 	add hl, bc
@@ -365,7 +365,7 @@ OptionsControl:
 	scf
 	ret
 .doNotWrapAround
-	cp $4
+	cp $5
 	jr c, .regularIncrement
 	ld [hl], $6
 .regularIncrement
@@ -376,7 +376,7 @@ OptionsControl:
 	ld a, [hl]
 	cp $7
 	jr nz, .doNotMoveCursorToPrintOption
-	ld [hl], $4
+	ld [hl], $5
 	scf
 	ret
 .doNotMoveCursorToPrintOption
@@ -416,7 +416,7 @@ InitOptionsMenu:
 	call PlaceString
 	xor a
 	ld [wOptionsCursorLocation], a
-	ld c, 5 ; the number of options to loop through
+	ld c, 6 ; the number of options to loop through
 .loop
 	push bc
 	call GetOptionPointer ; updates the next option
@@ -437,7 +437,8 @@ AllOptionsText:
 	next "ANIMATION  :"
 	next "BATTLESTYLE:"
 	next "SOUND:"
-	next "PRINT:@"
+	next "PRINT:"
+	next "DEBUG:@"
 
 OptionMenuCancelText:
 	db "CANCEL@"
@@ -583,4 +584,162 @@ VersionMenu_UpdateCursorPosition:
 	ld a, [wVersionCursorLocation]
 	call AddNTimes
 	ld [hl], "▶"
+	ret
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OptionsMenu_Debug:
+	call GetCurrentDebugValue
+	ldh a, [hJoy5]
+	bit 4, a ; right
+	jr nz, .pressedRight
+	bit 5, a
+	jr nz, .pressedLeft
+	jr .nonePressed
+.pressedRight
+	ld a, c
+	cp $5 ; total number of options-1
+	jr c, .increase
+	ld c, $ff
+.increase
+	inc c
+	ld a, e
+	jr .save
+.pressedLeft
+	ld a, c
+	and a
+	jr nz, .decrease
+	ld c, $6 ; total number of options
+.decrease
+	dec c
+	ld a, d
+.save
+	ld b, a
+	ld a, [wRivalStarter] ; Value being debugged
+	and $f0
+	or b
+	ld [wRivalStarter], a ; Value being debugged
+.nonePressed
+	ld b, $0
+	ld hl, DebugStringsPointerTable
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	hlcoord 8, 12
+	call PlaceString
+	and a
+	ret
+
+DebugStringsPointerTable:
+	dw DebugText1
+	dw DebugText2
+	dw DebugText3
+	dw DebugText4
+	dw DebugText5
+	dw DebugText6
+
+DebugText1:
+	db "JOLTEON   @"
+DebugText2:
+	db "FLAREON   @"
+DebugText3:
+	db "VAPOREON  @"
+DebugText4:
+	db "SQUIRTLE  @"
+DebugText5:
+	db "BULBASAUR @"
+DebugText6:
+	db "CHARMANDER@"
+
+GetCurrentDebugValue:
+	ld a, [wRivalStarter] ; Value being debugged
+	
+	
+	cp RIVAL_STARTER_JOLTEON
+	jr z, .debug1
+	cp RIVAL_STARTER_FLAREON
+	jr z, .debug2
+	cp RIVAL_STARTER_VAPOREON
+	jr z, .debug3
+	cp RIVAL_STARTER_SQUIRTLE
+	jr z, .debug4
+	cp RIVAL_STARTER_BULBASAUR
+	jr z, .debug5
+	
+; Following are in reverse order
+; fallthrough for final option
+	ld c, $5
+	lb de, RIVAL_STARTER_BULBASAUR, RIVAL_STARTER_FLAREON
+	ld a, RIVAL_STARTER_CHARMANDER
+	ld [wRivalStarter], a ; Value being debugged
+	ret
+.debug5
+	ld c, $4
+	lb de, RIVAL_STARTER_SQUIRTLE, RIVAL_STARTER_CHARMANDER
+	ld a, RIVAL_STARTER_BULBASAUR
+	ld [wRivalStarter], a ; Value being debugged
+	ret
+.debug4
+	ld c, $3
+	lb de, RIVAL_STARTER_VAPOREON, RIVAL_STARTER_BULBASAUR
+	ld a, RIVAL_STARTER_SQUIRTLE
+	ld [wRivalStarter], a ; Value being debugged
+	ret
+.debug3
+	ld c, $2
+	lb de, RIVAL_STARTER_FLAREON, RIVAL_STARTER_SQUIRTLE
+	ld a, RIVAL_STARTER_VAPOREON
+	ld [wRivalStarter], a ; Value being debugged
+	ret
+.debug2
+	ld c, $1
+	lb de, RIVAL_STARTER_JOLTEON, RIVAL_STARTER_VAPOREON
+	ld a, RIVAL_STARTER_FLAREON
+	ld [wRivalStarter], a ; Value being debugged
+	ret
+.debug1
+	ld c, $0
+	lb de, RIVAL_STARTER_CHARMANDER, RIVAL_STARTER_FLAREON
+	ld a, RIVAL_STARTER_JOLTEON
+	ld [wRivalStarter], a ; Value being debugged
 	ret
