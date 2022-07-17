@@ -25,10 +25,10 @@ Route22Script_50ed6:
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
-	cp RIVAL_STARTER_FLAREON
-	jr nz, .adjustForFlareon
-	add 1
-.adjustForFlareon
+	cp RIVAL_STARTER_FLAREON ;jolteon is not yet possible
+	jr nz, .skipAdjustForFlareon
+	ld a, RIVAL_STARTER_VAPOREON
+.skipAdjustForFlareon
 	add 2
 	ld [wTrainerNo], a
 	ret

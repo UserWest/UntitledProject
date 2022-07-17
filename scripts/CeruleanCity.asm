@@ -136,14 +136,12 @@ CeruleanCityScript1:
 	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
 	cp RIVAL_STARTER_JOLTEON
-	jr z, .adjustForJolteon
+	jr z, .adjustForJolteonOrFlareon
 	cp RIVAL_STARTER_FLAREON
-	jr z, .adjustForFlareon
+	jr z, .adjustForJolteonOrFlareon
 	jr .dontAdjust
-.adjustForJolteon
-	add 1
-.adjustForFlareon
-	add 1
+.adjustForJolteonOrFlareon
+	ld a, RIVAL_STARTER_VAPOREON
 .dontAdjust
 	add 6
 	ld [wTrainerNo], a
