@@ -340,6 +340,8 @@ NextTextCommand::
 	push hl
 	cp TX_FAR
 	jp z, TextCommand_FAR
+	cp TX_VER
+	jp z, TextCommand_VERSION
 	cp TX_SOUND_POKEDEX_RATING
 	jp nc, TextCommand_SOUND
 	ld hl, TextCommandJumpTable
@@ -606,6 +608,50 @@ TextCommand_FAR::
 	ld d, a
 	ld a, [hli]
 
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+
+	push hl
+	ld l, e
+	ld h, d
+	call TextCommandProcessor
+	pop hl
+
+	pop af
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+	jp NextTextCommand
+
+TextCommand_VERSION::
+; write text from a different bank (little endian)
+	pop hl
+	ldh a, [hLoadedROMBank]
+	push af
+	
+	call CheckForYellowVersion
+	jr z, .yellow
+	inc hl
+	inc hl
+	inc hl
+	
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	jr .notYellow
+	
+.yellow
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	
+	inc hl
+	inc hl
+	inc hl
+.notYellow
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
