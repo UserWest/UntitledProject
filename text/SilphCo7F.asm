@@ -83,6 +83,11 @@ _SilphCo7BattleText1::
 	line "little rat!"
 	done
 
+_SilphCo7BattleTextRed1::
+	text "Oh ho! I smell a"
+	line "little rat!"
+	done
+
 _SilphCo7EndBattleText1::
 	text "Lights"
 	line "out!"
@@ -168,6 +173,12 @@ _SilphCo7Text_51ec3::
 
 _SilphCo7Text_51ec8::
 	text "Oh-oh!"
+	line "So, you are ready"
+	cont "for BOSS ROCKET!"
+	prompt
+
+_SilphCo7TextRed_51ec8::
+	text "Oh ho!"
 	line "So, you are ready"
 	cont "for BOSS ROCKET!"
 	prompt

@@ -26,8 +26,18 @@ _ViridianMartText2::
 	cont "HEALs."
 	done
 
+_ViridianMartTextRed2::
+	text "This shop sells"
+	line "many ANTIDOTEs."
+	done
+	
 _ViridianMartText3::
 	text "The shop finally"
 	line "has some POTIONs"
 	cont "in stock."
+	done
+	
+_ViridianMartTextRed3::
+	text "No! POTIONs are"
+	line "all sold out."
 	done

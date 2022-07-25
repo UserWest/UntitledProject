@@ -61,6 +61,15 @@ _FuchsiaCityText18::
 	line "Ninja Master!"
 	done
 
+_FuchsiaCityTextRed18::
+	text "FUCHSIA CITY"
+	line "#MON GYM"
+	cont "LEADER: KOGA"
+
+	para "The Poisonous"
+	line "Ninja Master"
+	done
+
 _FuchsiaCityChanseyText::
 	text "Name: CHANSEY"
 

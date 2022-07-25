@@ -23,6 +23,18 @@ _ViridianCityText_1920a::
 	cont "as my apology."
 	done
 
+_ViridianCityTextRed_1920a::
+	text "Ahh, I've had my"
+	line "coffee now and I"
+	cont "feel great!"
+
+	para "Sure you can go"
+	line "through!"
+
+	para "Are you in a"
+	line "hurry?"
+	done
+
 _OldManTextAfterBattle::
 	text "That didn't work!"
 	line "I must be losing"
@@ -43,6 +55,17 @@ _ViridianCityText1::
 	para "It's great that"
 	line "you can carry and"
 	cont "use #MON any-"
+	cont "time, anywhere!"
+	done
+
+_ViridianCityTextRed1::
+	text "Those # BALLs"
+	line "at your waist!"
+	cont "You have #MON!"
+
+	para "It's great that"
+	line "you can carry and"
+	cont "use #MON any"
 	cont "time, anywhere!"
 	done
 
@@ -192,4 +215,26 @@ _ViridianCityText13::
 _ViridianCityText14::
 	text "The GYM's doors"
 	line "are locked..."
+	done
+
+_ViridianCityTextRed_1920f::
+	text "I see you're using"
+	line "a #DEX."
+
+	para "When you catch a"
+	line "#MON, #DEX"
+	cont "is automatically"
+	cont "updated."
+
+	para "What? Don't you"
+	line "know how to catch"
+	cont "#MON?"
+
+	para "I'll show you"
+	line "how to then."
+	done
+
+_ViridianCityTextRed_19214::
+	text "Time is money..."
+	line "Go along then."
 	done

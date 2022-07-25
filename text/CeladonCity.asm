@@ -7,6 +7,15 @@ _CeladonCityText1::
 	cont "very nice to it!"
 	done
 
+_CeladonCityTextRed1::
+	text "I got my KOFFING"
+	line "in CINNABAR!"
+
+	para "It's nice, but it"
+	line "breathes poison"
+	cont "when it's angry!"
+	done
+
 _CeladonCityText2::
 	text "Heheh! This GYM"
 	line "is great! It's"
@@ -100,6 +109,15 @@ _CeladonCityText13::
 	para "The Nature-Loving"
 	line "Princess!"
 	done
+	
+_CeladonCityTextRed13::
+	text "CELADON CITY"
+	line "#MON GYM"
+	cont "LEADER: ERIKA"
+
+	para "The Nature Loving"
+	line "Princess!"
+	done
 
 _CeladonCityText14::
 	text "CELADON MANSION"
@@ -135,6 +153,12 @@ _CeladonCityText18::
 	text "ROCKET GAME CORNER"
 	line "The playground"
 	cont "for grownups!"
+	done
+
+_CeladonCityTextRed18::
+	text "ROCKET GAME CORNER"
+	line "The playground"
+	cont "for grown-ups!"
 	done
 
 _CeladonCityText10::

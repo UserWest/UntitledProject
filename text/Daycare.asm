@@ -70,6 +70,10 @@ _DayCareComeAgainText::
 	text "Come again."
 	done
 
+_DayCareComeAgainTextRed::
+	text "come again."
+	done
+
 _DayCareNoRoomForMonText::
 	text "You have no room"
 	line "for this #MON!"

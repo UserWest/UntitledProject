@@ -49,6 +49,12 @@ _SilphCo5BattleText4::
 	line "shouldn't be any"
 	cont "children here!"
 	done
+	
+_SilphCo5BattleTextRed4::
+	text "Whaaat? There"
+	line "shouldn't be any"
+	cont "children here?"
+	done
 
 _SilphCo5EndBattleText4::
 	text "Oh"

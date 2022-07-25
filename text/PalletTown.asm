@@ -11,7 +11,7 @@ _OakWalksUpText::
 	line "in tall grass!"
 	done
 
-_OakWalksUpRBText::
+_OakWalksUpTextRed::
 	text "OAK: It's unsafe!"
 	line "Wild #MON live"
 	cont "in tall grass!"

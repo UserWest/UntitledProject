@@ -14,3 +14,10 @@ _ViridianForestEntranceText2::
 	line "types outside of"
 	cont "VIRIDIAN FOREST."
 	done
+
+_ViridianForestEntranceTextRed2::
+	text "RATTATA may be"
+	line "small, but its"
+	cont "bite is wicked!"
+	cont "Did you get one?"
+	done

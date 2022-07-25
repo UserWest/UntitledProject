@@ -75,6 +75,23 @@ _SilphCo11Text3::
 	line "world of pain!"
 	done
 
+_SilphCo11TextRed3::
+	text "Ah, <PLAYER>!"
+	line "So we meet again!"
+
+	para "The PRESIDENT and"
+	line "I are discussing"
+	cont "a vital business"
+	cont "proposition."
+
+	para "Keep your nose"
+	line "out of grown-up"
+	cont "matters..."
+
+	para "Or, experience a"
+	line "world of pain!"
+	done
+
 _SilphCo10Text_62330::
 	text "Arrgh!!"
 	line "I lost again!?"
@@ -127,4 +144,9 @@ _SilphCo11EndBattleText1::
 _SilphCo11AfterBattleText1::
 	text "So, you want to"
 	line "see my BOSS?"
+	done
+
+_SilphCo10Text_6237b::
+	text "The monitor has"
+	line "#MON on it!"
 	done

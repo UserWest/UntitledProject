@@ -197,7 +197,7 @@ _OaksLabBePatientText::
 	cont "you one later."
 	done
 
-_OaksLabRBBePatientText::
+_OaksLabBePatientTextRed::
 	text "OAK: Be patient!"
 	line "<RIVAL>, you can"
 	cont "have one too!"
@@ -406,13 +406,13 @@ _OaksLabText_1d405::
 	line "PROF.OAK's AIDE."
 	done
 
-_OaksLabRBGaryText1::
+_OaksLabGaryTextRed1::
 	text "<RIVAL>: Yo"
 	line "<PLAYER>! Gramps"
 	cont "isn't around!"
 	done
 
-_OaksLabRBText40::
+_OaksLabTextRed40::
 	text "<RIVAL>: Heh, I"
 	line "don't need to be"
 	cont "greedy like you!"
@@ -421,67 +421,67 @@ _OaksLabRBText40::
 	line "choose, <PLAYER>!"
 	done
 
-_OaksLabRBText41::
+_OaksLabTextRed41::
 	text "<RIVAL>: My"
 	line "#MON looks a"
 	cont "lot stronger."
 	done
 
-_OaksLabRBText39::
+_OaksLabTextRed39::
 	text "Those are #"
 	line "BALLs. They"
 	cont "contain #MON!"
 	done
 
-_OaksLabRBCharmanderText::
+_OaksLabCharmanderTextRed::
 	text "So! You want the"
 	line "fire #MON,"
 	cont "CHARMANDER?"
 	done
 
-_OaksLabRBSquirtleText::
+_OaksLabSquirtleTextRed::
 	text "So! You want the"
 	line "water #MON,"
 	cont "SQUIRTLE?"
 	done
 
-_OaksLabRBBulbasaurText::
+_OaksLabBulbasaurTextRed::
 	text "So! You want the"
 	line "plant #MON,"
 	cont "BULBASAUR?"
 	done
 
-_OaksLabRBMonEnergeticText::
+_OaksLabMonEnergeticTextRed::
 	text "This #MON is"
 	line "really energetic!"
 	prompt
 
-_OaksLabRBLastMonText::
+_OaksLabLastMonTextRed::
 	text "That's PROF.OAK's"
 	line "last #MON!"
 	done
 
-_OaksLabRBText_1d2f0::
+_OaksLabTextRed_1d2f0::
 	text "OAK: Now, <PLAYER>,"
 	line "which #MON do"
 	cont "you want?"
 	done
 
-_OaksLabRBText_1d2f5::
+_OaksLabTextRed_1d2f5::
 	text "OAK: If a wild"
 	line "#MON appears,"
 	cont "your #MON can"
 	cont "fight against it!"
 	done
 
-_OaksLabRBText_1d2fa::
+_OaksLabTextRed_1d2fa::
 	text "OAK: <PLAYER>,"
 	line "raise your young"
 	cont "#MON by making"
 	cont "it fight!"
 	done
 
-_OaksLabRBDeliverParcelText2::
+_OaksLabDeliverParcelTextRed2::
 	text_start
 	para "Ah! This is the"
 	line "custom # BALL"
@@ -489,13 +489,13 @@ _OaksLabRBDeliverParcelText2::
 	cont "Thank you!"
 	done
 
-_OaksLabRBAroundWorldText::
+_OaksLabAroundWorldTextRed::
 	text "#MON around the"
 	line "world wait for"
 	cont "you, <PLAYER>!"
 	done
 
-_OaksLabRBGivePokeballsText2::
+_OaksLabGivePokeballsTextRed2::
 	text_start
 	para "When a wild"
 	line "#MON appears,"
@@ -513,7 +513,7 @@ _OaksLabRBGivePokeballsText2::
 	cont "have to be lucky!"
 	done
 
-_OaksLabRBChooseMonText::
+_OaksLabChooseMonTextRed::
 	text "OAK: <RIVAL>?"
 	line "Let me think..."
 
@@ -541,34 +541,34 @@ _OaksLabRBChooseMonText::
 	cont "one! Choose!"
 	done
 
-_OaksLabRBRivalPickingMonText::
+_OaksLabRivalPickingMonTextRed::
 	text "<RIVAL>: I'll take"
 	line "this one, then!"
 	done
 
-_OaksLabRBRivalReceivedMonText::
+_OaksLabRivalReceivedMonTextRed::
 	text "<RIVAL> received"
 	line "a @"
 	text_ram wcd6d
 	text "!@"
 	text_end
 
-_OaksLabRBText21::
+_OaksLabTextRed21::
 	text "<RIVAL>: Gramps!"
 	done
 
-_OaksLabRBText22::
+_OaksLabTextRed22::
 	text "<RIVAL>: What did"
 	line "you call me for?"
 	done
 
-_OaksLabRBText23::
+_OaksLabTextRed23::
 	text "OAK: Oh right! I"
 	line "have a request"
 	cont "of you two."
 	done
 
-_OaksLabRBText_441cc::
+_OaksLabTextRed_441cc::
 	text "#DEX comp-"
 	line "letion is:"
 
@@ -583,41 +583,41 @@ _OaksLabRBText_441cc::
 	line "Rating:"
 	prompt
 
-_OaksLabRBText_44201::
+_OaksLabTextRed_44201::
 	text "You still have"
 	line "lots to do."
 	cont "Look for #MON"
 	cont "in grassy areas!"
 	done
 
-_OaksLabRBText_44206::
+_OaksLabTextRed_44206::
 	text "You're on the"
 	line "right track! "
 	cont "Get a FLASH HM"
 	cont "from my AIDE!"
 	done
 
-_OaksLabRBText_4420b::
+_OaksLabTextRed_4420b::
 	text "You still need"
 	line "more #MON!"
 	cont "Try to catch"
 	cont "other species!"
 	done
 
-_OaksLabRBText_44210::
+_OaksLabTextRed_44210::
 	text "Good, you're"
 	line "trying hard!"
 	cont "Get an ITEMFINDER"
 	cont "from my AIDE!"
 	done
 
-_OaksLabRBText_44215::
+_OaksLabTextRed_44215::
 	text "Looking good!"
 	line "Go find my AIDE"
 	cont "when you get 50!"
 	done
 
-_OaksLabRBText_4421a::
+_OaksLabTextRed_4421a::
 	text "You finally got at"
 	line "least 50 species!"
 	cont "Be sure to get"
@@ -625,62 +625,62 @@ _OaksLabRBText_4421a::
 	cont "AIDE!"
 	done
 
-_OaksLabRBText_4421f::
+_OaksLabTextRed_4421f::
 	text "Ho! This is geting"
 	line "even better!"
 	done
 
-_OaksLabRBText_44224::
+_OaksLabTextRed_44224::
 	text "Very good!"
 	line "Go fish for some"
 	cont "marine #MON!"
 	done
 
-_OaksLabRBText_44229::
+_OaksLabTextRed_44229::
 	text "Wonderful!"
 	line "Do you like to"
 	cont "collect things?"
 	done
 
-_OaksLabRBText_4422e::
+_OaksLabTextRed_4422e::
 	text "I'm impressed!"
 	line "It must have been"
 	cont "difficult to do!"
 	done
 
-_OaksLabRBText_44233::
+_OaksLabTextRed_44233::
 	text "You finally got at"
 	line "least 100 species!"
 	cont "I can't believe"
 	cont "how good you are!"
 	done
 
-_OaksLabRBText_44238::
+_OaksLabTextRed_44238::
 	text "You even have the"
 	line "evolved forms of"
 	cont "#MON! Super!"
 	done
 
-_OaksLabRBText_4423d::
+_OaksLabTextRed_4423d::
 	text "Excellent! Trade"
 	line "with friends to"
 	cont "get some more!"
 	done
 
-_OaksLabRBText_44242::
+_OaksLabTextRed_44242::
 	text "Outstanding!"
 	line "You've become a"
 	cont "real pro at this!"
 	done
 
-_OaksLabRBText_44247::
+_OaksLabTextRed_44247::
 	text "I have nothing"
 	line "left to say!"
 	cont "You're the"
 	cont "authority now!"
 	done
 
-_OaksLabRBText_4424c::
+_OaksLabTextRed_4424c::
 	text "Your #DEX is"
 	line "entirely complete!"
 	cont "Congratulations!"

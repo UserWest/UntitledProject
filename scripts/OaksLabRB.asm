@@ -484,15 +484,15 @@ OaksLabRBRivalText:
 	jp TextScriptEnd
 
 OaksLabRBGaryText1:
-	text_far _OaksLabRBGaryText1
+	text_far _OaksLabGaryTextRed1
 	text_end
 
 OaksLabRBText40:
-	text_far _OaksLabRBText40
+	text_far _OaksLabTextRed40
 	text_end
 
 OaksLabRBText41:
-	text_far _OaksLabRBText41
+	text_far _OaksLabTextRed41
 	text_end
 
 OaksLabCharmanderBall:
@@ -538,7 +538,7 @@ OaksLabRBScript_1d133:
 	jp TextScriptEnd
 
 OaksLabRBText39:
-	text_far _OaksLabRBText39
+	text_far _OaksLabTextRed39
 	text_end
 
 OaksLabRBScript_1d157:
@@ -573,21 +573,21 @@ OaksLabRBLookAtCharmander:
 	ld hl, OaksLabRBCharmanderText
 	jr OaksLabRBMonChoiceMenu
 OaksLabRBCharmanderText:
-	text_far _OaksLabRBCharmanderText
+	text_far _OaksLabCharmanderTextRed
 	text_end
 
 OaksLabRBLookAtSquirtle:
 	ld hl, OaksLabRBSquirtleText
 	jr OaksLabRBMonChoiceMenu
 OaksLabRBSquirtleText:
-	text_far _OaksLabRBSquirtleText
+	text_far _OaksLabSquirtleTextRed
 	text_end
 
 OaksLabRBLookAtBulbasaur:
 	ld hl, OaksLabRBBulbasaurText
 	jr OaksLabRBMonChoiceMenu
 OaksLabRBBulbasaurText:
-	text_far _OaksLabRBBulbasaurText
+	text_far _OaksLabBulbasaurTextRed
 	text_end
 
 OaksLabRBMonChoiceMenu:
@@ -642,7 +642,7 @@ OaksLabRBMonChoiceEnd:
 	jp TextScriptEnd
 
 OaksLabRBMonEnergeticText:
-	text_far _OaksLabRBMonEnergeticText
+	text_far _OaksLabMonEnergeticTextRed
 	text_end
 
 OaksLabRBScript_1d22d:
@@ -657,7 +657,7 @@ OaksLabRBScript_1d22d:
 	jp TextScriptEnd
 
 OaksLabRBLastMonText:
-	text_far _OaksLabRBLastMonText
+	text_far _OaksLabLastMonTextRed
 	text_end
 
 OaksLabRBProfOakText:
@@ -732,31 +732,31 @@ OaksLabRBProfOakText:
 	jp TextScriptEnd
 
 OaksLabRBText_1d2f0:
-	text_far _OaksLabRBText_1d2f0
+	text_far _OaksLabTextRed_1d2f0
 	text_end
 
 OaksLabRBText_1d2f5:
-	text_far _OaksLabRBText_1d2f5
+	text_far _OaksLabTextRed_1d2f5
 	text_end
 
 OaksLabRBText_1d2fa:
-	text_far _OaksLabRBText_1d2fa
+	text_far _OaksLabTextRed_1d2fa
 	text_end
 
 OaksLabRBDeliverParcelText:
 	text_far _OaksLabDeliverParcelText1
 	sound_get_key_item
-	text_far _OaksLabRBDeliverParcelText2
+	text_far _OaksLabDeliverParcelTextRed2
 	text_end
 
 OaksLabRBAroundWorldText:
-	text_far _OaksLabRBAroundWorldText
+	text_far _OaksLabAroundWorldTextRed
 	text_end
 
 OaksLabRBGivePokeballsText:
 	text_far _OaksLabGivePokeballsText1
 	sound_get_key_item
-	text_far _OaksLabRBGivePokeballsText2
+	text_far _OaksLabGivePokeballsTextRed2
 	text_end
 
 OaksLabRBChooseMonText:
@@ -766,7 +766,7 @@ OaksLabRBChooseMonText:
 	jp TextScriptEnd
 
 OaksLabRBChooseMonText_:
-	text_far _OaksLabRBChooseMonText
+	text_far _OaksLabChooseMonTextRed
 	text_end
 
 OaksLabRBBePatientText:
@@ -776,7 +776,7 @@ OaksLabRBBePatientText:
 	jp TextScriptEnd
 
 OaksLabRBBePatientText_:
-	text_far _OaksLabRBBePatientText
+	text_far _OaksLabBePatientTextRed
 	text_end
 
 OaksLabRivalPickingMonText:
@@ -786,7 +786,7 @@ OaksLabRivalPickingMonText:
 	jp TextScriptEnd
 
 OaksLabRBRivalPickingMonText_:
-	text_far _OaksLabRBRivalPickingMonText
+	text_far _OaksLabRivalPickingMonTextRed
 	text_end
 
 OaksLabRBRivalReceivedMonText:
@@ -796,7 +796,7 @@ OaksLabRBRivalReceivedMonText:
 	jp TextScriptEnd
 
 OaksLabRBRivalReceivedMonText_:
-	text_far _OaksLabRBRivalReceivedMonText
+	text_far _OaksLabRivalReceivedMonTextRed
 	sound_get_key_item
 	text_end
 
@@ -807,14 +807,14 @@ OaksLabRBRivalChallengeText:
 	jp TextScriptEnd
 
 OaksLabRBText21:
-	text_far _OaksLabRBText21
+	text_far _OaksLabTextRed21
 	text_end
 
 OaksLabRBText22:
-	text_far _OaksLabRBText22
+	text_far _OaksLabTextRed22
 	text_end
 
 OaksLabRBText23:
-	text_far _OaksLabRBText23
+	text_far _OaksLabTextRed23
 	text_end
 	

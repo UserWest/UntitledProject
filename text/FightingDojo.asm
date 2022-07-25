@@ -117,10 +117,23 @@ _WantHitmonleeText::
 	line "hard-kicking"
 	cont "HITMONLEE?"
 	done
+	
+_WantHitmonleeTextRed::
+	text "You want the"
+	line "hard kicking"
+	cont "HITMONLEE?"
+	done
 
 _WantHitmonchanText::
 	text "You want the"
 	line "piston-punching"
+	cont "HITMONCHAN?"
+	done
+
+
+_WantHitmonchanTextRed::
+	text "You want the"
+	line "piston punching"
 	cont "HITMONCHAN?"
 	done
 

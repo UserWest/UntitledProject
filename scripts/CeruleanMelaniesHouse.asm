@@ -108,7 +108,7 @@ CeruleanHouse1Text4:
 	jp TextScriptEnd
 
 CeruleanHouse1Text5:
-	text_far _CeruleanHouse1Text5
+	text_far _CeruleanHouse1TextRed1
 	text_end
 
 CeruleanHouse1Text6:

@@ -3,6 +3,11 @@ _SilphCo10Text_5a1d3::
 	line "I'm scared!"
 	done
 
+_SilphCo10TextRed_5a1d3::
+	text "Waaaaa!"
+	cont "I'm scared!"
+	done
+
 _SilphCo10Text_5a1d8::
 	text "Please keep quiet"
 	line "about my crying!"

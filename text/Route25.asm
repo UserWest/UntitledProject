@@ -59,6 +59,11 @@ _Route25EndBattleText4::
 	text "I'm in"
 	line "a slump!"
 	prompt
+	
+_Route25EndBattleTextRed4::
+	text "I was in"
+	line "bad condition!"
+	prompt
 
 _Route25AfterBattleText4::
 	text "I wish my guy was"

@@ -7,6 +7,16 @@ _TM39PreReceiveText::
 	line "TM. I don't need"
 	cont "it anymore..."
 	prompt
+	
+_TM39PreReceiveTextRed::
+	text "My #MON's"
+	line "ashes are stored"
+	cont "in #MON TOWER."
+
+	para "You can have this"
+	line "TM. I don't need"
+	cont "it any more..."
+	prompt
 
 _ReceivedTM39Text::
 	text "<PLAYER> received"

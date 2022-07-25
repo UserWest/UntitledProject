@@ -117,3 +117,8 @@ _MtMoon1Text14::
 	text "Beware! ZUBAT is"
 	line "a bloodsucker!"
 	done
+
+_MtMoon1TextRed14::
+	text "Beware! ZUBAT is"
+	line "a blood sucker!"
+	done

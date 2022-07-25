@@ -12,6 +12,12 @@ _ViridianForestBattleText1::
 	cont "Let's battle 'em!"
 	done
 
+_ViridianForestBattleTextRed1::
+	text "Hey! You have"
+	line "#MON! Come on!"
+	cont "Let's battle'em!"
+	done
+
 _ViridianForestEndBattleText1::
 	text "No!"
 	line "CATERPIE can't"

@@ -15,6 +15,13 @@ _Route14AfterBattleText1::
 	cont "can't ever forget"
 	cont "those moves."
 	done
+	
+_Route14AfterBattleTextRed1::
+	text "You have some HMs"
+	line "right? #MON"
+	cont "can't ever forget"
+	cont "those moves."
+	done
 
 _Route14BattleText2::
 	text "My bird #MON"

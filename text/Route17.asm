@@ -137,6 +137,11 @@ _Route17BattleText10::
 	line "I'm bushed!"
 	done
 
+_Route17BattleTextRed10::
+	text "Get lost kid!"
+	line "I'm bushed!"
+	done
+
 _Route17EndBattleText10::
 	text "Are you"
 	line "satisfied?"

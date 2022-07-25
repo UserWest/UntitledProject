@@ -135,6 +135,20 @@ _CeruleanCityText6::
 	line "FORCE has trouble"
 	cont "with the ROCKETs!"
 	done
+	
+_CeruleanCityTextRed6::
+	text "The people here"
+	line "were robbed."
+
+	para "It's obvious that"
+	line "TEAM ROCKET is"
+	cont "behind this most"
+	cont "heinous crime!"
+
+	para "Even our POLICE"
+	line "force has trouble"
+	cont "with the ROCKETs!"
+	done
 
 _CeruleanCityText_19730::
 	text "OK! ELECTRODE!"
@@ -143,8 +157,21 @@ _CeruleanCityText_19730::
 	cont "pay attention!"
 	done
 
+_CeruleanCityTextRed_19730::
+	text "OK! SLOWBRO!"
+	line "Use SONICBOOM!"
+	cont "Come on, SLOWBRO"
+	cont "pay attention!"
+	done
+
 _CeruleanCityText_19735::
 	text "ELECTRODE, TACKLE!"
+	line "No! You blew it"
+	cont "again!"
+	done
+	
+_CeruleanCityTextRed_19735::
+	text "SLOWBRO punch!"
 	line "No! You blew it"
 	cont "again!"
 	done
@@ -161,9 +188,27 @@ _CeruleanCityText_1973a::
 	cont "on your abilities"
 	cont "as a trainer!"
 	done
+	
+_CeruleanCityTextRed_1973a::
+	text "SLOWBRO, WITHDRAW!"
+	line "No! That's wrong!"
+
+	para "It's so hard to"
+	line "control #MON!"
+
+	para "Your #MON's"
+	line "obedience depends"
+	cont "on your abilities"
+	cont "as a trainer!"
+	done
 
 _CeruleanCityText_1976f::
 	text "ELECTRODE took a"
+	line "snooze..."
+	done
+	
+_CeruleanCityTextRed_1976f::
+	text "SLOWBRO took a"
 	line "snooze..."
 	done
 
@@ -171,14 +216,29 @@ _CeruleanCityText_19774::
 	text "ELECTRODE is"
 	line "loafing around..."
 	done
+	
+_CeruleanCityTextRed_19774::
+	text "SLOWBRO is"
+	line "loafing around..."
+	done
 
 _CeruleanCityText_19779::
 	text "ELECTRODE turned"
 	line "away..."
 	done
+	
+_CeruleanCityTextRed_19779::
+	text "SLOWBRO turned"
+	line "away..."
+	done
 
 _CeruleanCityText_1977e::
 	text "ELECTRODE"
+	line "ignored orders..."
+	done
+	
+_CeruleanCityTextRed_1977e::
+	text "SLOWBRO"
 	line "ignored orders..."
 	done
 

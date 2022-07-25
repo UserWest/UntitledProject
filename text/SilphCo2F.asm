@@ -81,6 +81,15 @@ _SilphCo2AfterBattleText3::
 	line "transporters!"
 	done
 
+_SilphCo2AfterBattleTextRed3::
+	text "Diamond shaped"
+	line "tiles are"
+	cont "teleport blocks!"
+
+	para "They're hi-tech"
+	line "transporters!"
+	done
+
 _SilphCo2BattleText4::
 	text "Hey kid! What are"
 	line "you doing here?"

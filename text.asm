@@ -232,7 +232,8 @@ INCLUDE "text/SaffronMart.asm"
 INCLUDE "text/SilphCo1F.asm"
 INCLUDE "text/SaffronPokecenter.asm"
 INCLUDE "text/MrPsychicsHouse.asm"
-
+INCLUDE "text/CeruleanBadgeHouse.asm"
+INCLUDE "text/PalletTown.asm"
 INCLUDE "data/text/text_7.asm"
 
 
@@ -240,7 +241,7 @@ SECTION "Text 8", ROMX
 
 INCLUDE "data/text/text_8.asm"
 
-INCLUDE "text/PalletTown.asm"
+
 INCLUDE "text/ViridianCity.asm"
 INCLUDE "text/PewterCity.asm"
 INCLUDE "text/CeruleanCity.asm"
@@ -251,7 +252,7 @@ INCLUDE "text/FuchsiaCity.asm"
 INCLUDE "text/CinnabarIsland.asm"
 INCLUDE "text/SaffronCity.asm"
 
-INCLUDE "text/CeruleanBadgeHouse.asm"
+
 INCLUDE "text/CeruleanGym.asm"
 INCLUDE "text/BikeShop.asm"
 INCLUDE "text/CeruleanMart.asm"

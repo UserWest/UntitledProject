@@ -7,6 +7,16 @@ _SSAnne9Text_61bf2::
 	para "It was something"
 	line "like this!"
 	prompt
+	
+_SSAnne9TextRed_61bf2::
+	text "In all my travels"
+	line "I've never seen"
+	cont "any #MON sleep"
+	cont "like this one!"
+
+	para "It was something"
+	line "like this!"
+	prompt
 
 _SSAnne9Text_61c01::
 	text "Ah yes, I have"

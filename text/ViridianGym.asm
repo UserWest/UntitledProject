@@ -43,6 +43,22 @@ _GiovanniPostBattleAdviceText::
 	cont "Farewell!@"
 	text_end
 
+_GiovanniPostBattleAdviceTextRed::
+	text "Having lost, I"
+	line "cannot face my"
+	cont "underlings!"
+	cont "TEAM ROCKET is"
+	cont "finished forever!"
+
+	para "I will dedicate my"
+	line "life to the study"
+	cont "of #MON!"
+
+	para "Let us meet again"
+	line "some day!"
+	cont "Farewell!@"
+	text_end
+
 _GiovanniEarthBadgeInfoText::
 	text "The EARTHBADGE"
 	line "makes #MON of"
@@ -210,6 +226,13 @@ _ViridianGymEndBattleText8::
 
 _ViridianGymAfterBattleText8::
 	text "You can go on to"
+	line "#MON LEAGUE"
+	cont "only by defeating"
+	cont "our GYM LEADER!"
+	done
+
+_ViridianGymAfterBattleTextRed8::
+	text "You can go onto"
 	line "#MON LEAGUE"
 	cont "only by defeating"
 	cont "our GYM LEADER!"

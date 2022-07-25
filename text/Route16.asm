@@ -22,6 +22,11 @@ _Route16EndBattleText2::
 	text "Knock-"
 	line "out!"
 	prompt
+	
+_Route16EndBattleTextRed2::
+	text "Knock"
+	line "out!"
+	prompt
 
 _Route16AfterBattleText2::
 	text "Forget it, who"

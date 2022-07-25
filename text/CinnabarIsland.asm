@@ -16,6 +16,13 @@ _CinnabarIslandText2::
 	cont "the burned-out"
 	cont "building."
 	done
+	
+_CinnabarIslandTextRed2::
+	text "Scientists conduct"
+	line "experiments in"
+	cont "the burned out"
+	cont "building."
+	done
 
 _CinnabarIslandText3::
 	text "CINNABAR ISLAND"

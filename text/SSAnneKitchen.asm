@@ -53,6 +53,14 @@ _SSAnne6Text_6180c::
 	line "gripe it's fish"
 	cont "again, however!"
 	done
+	
+_SSAnne6TextRed_6180c::
+	text "Salmon du Salad!"
+
+	para "Les guests may"
+	line "gripe it's fish"
+	cont "again, however!"
+	done
 
 _SSAnne6Text_61811::
 	text "Eels au Barbecue!"

@@ -3,15 +3,31 @@ _Route6BattleText1::
 	line "out of love."
 	cont "Leave me alone!"
 	done
+	
+_Route6BattleTextRed1::
+	text "Who's there?"
+	line "Quit listening in"
+	cont "on us!"
+	done
 
 _Route6EndBattleText1::
 	text "No,"
 	line "this can't be..."
 	prompt
+	
+_Route6EndBattleTextRed1::
+	text "I"
+	line "just can't win!"
+	prompt
 
 _Route6AfterBattleText1::
 	text "My love will leave"
 	line "me in disgust."
+	done
+
+_Route6AfterBattleTextRed1::
+	text "Whisper..."
+	line "whisper..."
 	done
 
 _Route6BattleText2::
@@ -20,9 +36,20 @@ _Route6BattleText2::
 	cont "bother me!"
 	done
 
+_Route6BattleTextRed2::
+	text "Excuse me! This"
+	line "is a private"
+	cont "conversation!"
+	done
+
 _Route6EndBattleText2::
 	text "My"
 	line "textbook never..."
+	prompt
+
+_Route6EndBattleTextRed2::
+	text "Ugh!"
+	line "I hate losing!"
 	prompt
 
 _Route6AfterBattleText2::

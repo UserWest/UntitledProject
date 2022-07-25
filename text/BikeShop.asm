@@ -34,6 +34,11 @@ _BikeShopComeAgainText::
 	text "Come back again"
 	line "sometime!"
 	done
+	
+_BikeShopComeAgainTextRed::
+	text "Come back again"
+	line "some time!"
+	done
 
 _BikeShopText_1d82f::
 	text "How do you like"

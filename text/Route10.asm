@@ -37,6 +37,11 @@ _Route10BattleText3::
 	line "see my #MON?"
 	done
 
+_Route10BattleTextRed3::
+	text "Hi kid, want to"
+	line "see my #MON?"
+	done
+
 _Route10EndBattleText3::
 	text "Oh no!"
 	line "My #MON!"

@@ -109,6 +109,13 @@ _Route8AfterBattleText7::
 	cont "us through."
 	cont "He's so mean!"
 	done
+	
+_Route8AfterBattleTextRed7::
+	text "SAFFRON's gate"
+	line "keeper won't let"
+	cont "us through."
+	cont "He's so mean!"
+	done
 
 _Route8BattleText8::
 	text "I'm a rambling,"

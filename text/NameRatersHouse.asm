@@ -46,6 +46,11 @@ _NameRaterText_1dacc::
 	text "Fine! Come any-"
 	line "time you like!"
 	done
+	
+_NameRaterTextRed_1dacc::
+	text "Fine! Come any"
+	line "time you like!"
+	done
 
 _NameRaterText_1dad1::
 	text_ram wcd6d

@@ -45,7 +45,7 @@ MelanieSandshrewText::
 	text "SANDSHREW: Pikii!@"
 	text_end
 
-_CeruleanHouse1Text5::
+_CeruleanHouse1TextRed1::
 	text "My husband likes"
 	line "trading #MON."
 

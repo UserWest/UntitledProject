@@ -31,6 +31,26 @@ _ReceivingHM01Text::
 	cont "anytime!"
 	prompt
 
+_ReceivingHM01TextRed::
+	text "CAPTAIN: Whew!"
+	line "Thank you! I"
+	cont "feel much better!"
+
+	para "You want to see"
+	line "my CUT technique?"
+
+	para "I could show you"
+	line "if I wasn't ill..."
+
+	para "I know! You can"
+	line "have this!"
+
+	para "Teach it to your"
+	line "#MON and you"
+	cont "can see it CUT"
+	cont "any time!"
+	prompt
+
 _ReceivedHM01Text::
 	text "<PLAYER> got"
 	line "@"
@@ -43,6 +63,14 @@ _SSAnne7Text_61932::
 
 	para "Now that I'm not"
 	line "sick anymore, I"
+	cont "guess it's time."
+	done
+	
+_SSAnne7TextRed_61932::
+	text "CAPTAIN: Whew!"
+
+	para "Now that I'm not"
+	line "sick any more, I"
 	cont "guess it's time."
 	done
 

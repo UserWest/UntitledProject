@@ -19,3 +19,8 @@ _CopycatsHouse1FText3::
 	text "CHANSEY: Chaaan"
 	line "sey!@"
 	text_end
+
+_CopycatsHouse1FTextRed3::
+	text "CHANSEY: Chaan!"
+	line "Sii!@"
+	text_end

@@ -20,15 +20,30 @@ _Route9BattleTextAJ::
 	line "ultimate trainer!"
 	done
 
+_Route9BattleTextRed2::
+	text "Who's that walking"
+	line "with those good"
+	cont "looking #MON?"
+	done
+
 _Route9EndBattleTextAJ::
 	text "My"
 	line "SANDSHREW lost?"
 	prompt
 
+_Route9EndBattleTextRed2::
+	text "Out"
+	line "like a light!"
+	done
+
 _Route9AfterBattleTextAJ::
 	text "I'll restart my"
 	line "100-win streak"
 	cont "with SANDSHREW."
+	done
+
+_Route9AfterBattleTextRed2::
+	text "Keep walking!"
 	done
 
 _Route9BattleText3::

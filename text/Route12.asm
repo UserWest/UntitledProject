@@ -112,6 +112,12 @@ _Route12AfterBattleText6::
 	cont "bug me anymore."
 	done
 
+_Route12AfterBattleText6Red::
+	text "It's all right."
+	line "Losing doesn't"
+	cont "bug me any more."
+	done
+
 _Route12BattleText7::
 	text "You never know"
 	line "what you could"

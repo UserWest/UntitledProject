@@ -22,6 +22,11 @@ _CeruleanHouse2Text_74e81::
 	text "Come visit me any-"
 	line "time you wish."
 	done
+	
+_CeruleanHouse2TextRed_74e81::
+	text "Come visit me any"
+	line "time you wish."
+	done
 
 _CeruleanHouse2Text_74e96::
 	text "The ATTACK of all"
@@ -30,6 +35,16 @@ _CeruleanHouse2Text_74e96::
 
 	para "It also lets you"
 	line "use FLASH any-"
+	cont "time you desire."
+	prompt
+	
+_CeruleanHouse2TextRed_74e96::
+	text "The ATTACK of all"
+	line "#MON increases"
+	cont "a little bit."
+
+	para "It also lets you"
+	line "use FLASH any"
 	cont "time you desire."
 	prompt
 

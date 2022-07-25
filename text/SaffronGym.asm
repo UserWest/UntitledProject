@@ -137,6 +137,12 @@ _SaffronGymAfterBattleText2::
 	line "fear only bugs!"
 	done
 
+_SaffronGymAfterBattleTextRed2::
+	text "Psychic #MON"
+	line "fear only ghosts"
+	cont "and bugs!"
+	done
+
 _SaffronGymBattleText3::
 	text "#MON take on"
 	line "the appearance of"

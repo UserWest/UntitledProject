@@ -59,6 +59,18 @@ _CeladonMartRoofText_4850f::
 	text " contains"
 	line "ROCK SLIDE!@"
 	text_end
+	
+_CeladonMartRoofTextRed_4850f::
+	text_start
+
+	para "@"
+	text_ram wStringBuffer
+	text " contains"
+	line "ROCK SLIDE!@"
+	
+	para "It can spook the"
+	line "target sometimes!@"
+	text_end
 
 _CeladonMartRoofText_48515::
 	text "Yay!"

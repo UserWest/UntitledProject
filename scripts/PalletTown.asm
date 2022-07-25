@@ -388,7 +388,7 @@ OakWalksUpText:
 	text_end
 
 OakWalksUpRBText:
-	text_far _OakWalksUpRBText
+	text_far _OakWalksUpTextRed
 	text_end
 
 PalletTownText_19002:

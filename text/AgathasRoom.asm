@@ -27,6 +27,12 @@ _AgathaEndBattleText::
 	line "You're something"
 	cont "special, child!"
 	prompt
+	
+_AgathaEndBattleTextRed::
+	text "Oh ho!"
+	line "You're something"
+	cont "special, child!"
+	prompt
 
 _AgathaAfterBattleText::
 	text "You win! I see"

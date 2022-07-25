@@ -37,6 +37,20 @@ _BrockPostBattleAdviceText::
 	cont "CERULEAN and test"
 	cont "your abilities!"
 	done
+	
+_BrockPostBattleAdviceTextRed::
+	text "There are all"
+	line "kinds of trainers"
+	cont "in the world!"
+
+	para "You appear to be"
+	line "very gifted as a"
+	cont "#MON trainer!"
+
+	para "Go to the GYM in"
+	line "CERULEAN and test"
+	cont "your abilities!"
+	done
 
 _BeforeReceivedTM34Text::
 	text "Wait! Take this"

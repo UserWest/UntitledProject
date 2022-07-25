@@ -79,6 +79,28 @@ _Museum1FText_5c28e::
 	line "#MON LAB and"
 	cont "get it examined!"
 	prompt
+	
+_Museum1FTextRed_5c28e::
+	text "Ssh! I think that"
+	line "this chunk of"
+	cont "AMBER contains"
+	cont "#MON DNA!"
+
+	para "It would be great"
+	line "if #MON could"
+	cont "be resurrected"
+	cont "from it!"
+
+	para "But, my colleagues"
+	line "just ignore me!"
+
+	para "So I have a favor"
+	line "to ask!"
+
+	para "Take this to a"
+	line "#MON LAB and"
+	cont "get it examined!"
+	prompt
 
 _ReceivedOldAmberText::
 	text "<PLAYER> received"

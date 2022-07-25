@@ -35,6 +35,13 @@ _BluesHouseDaisyWalkingText::
 	cont "makes them more"
 	cont "friendly to you."
 	done
+	
+_BluesHouseDaisyWalkingTextRed::
+	text "#MON are living"
+	line "things! If they"
+	cont "get tired, give"
+	cont "them a rest!"
+	done
 
 _BluesHouseTownMapText::
 	text "It's a big map!"
