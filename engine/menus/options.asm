@@ -476,7 +476,7 @@ DisplayVersionMenu:
 	call JoypadLowSensitivity
 	ldh a, [hJoy5]
 	and START | B_BUTTON
-	jr nz, .exitOptionMenu
+	jr nz, .exitVersionMenu
 	ldh a, [hJoy5]
 	and A_BUTTON
 	jr nz, .selectVersion
@@ -496,7 +496,7 @@ DisplayVersionMenu:
 	jr z, .choseBlueVersion
 	cp 2
 	jr z, .choseYellowVersion
-	jr .exitOptionMenu
+	jr .exitVersionMenu
 	
 .choseRedVersion	
 	ld a, RED_VERSION
@@ -512,15 +512,18 @@ DisplayVersionMenu:
 	ld b, a
 	ld a, [wCurVersion]
 	cp b
-	jr z, .skipVersionChange
+	jr z, .exitVersionMenu
 	ld b, SET_PAL_DEFAULT
 	predef DontSkipRunPaletteCommand
 	call DoVersionChange
-	
-.skipVersionChange	
 	ld a, SFX_PRESS_AB
 	call PlaySound
-.exitOptionMenu
+	ret
+	
+.exitVersionMenu
+	call LoadScreenTilesFromBuffer2
+	call LoadTextBoxTilePatterns
+	call UpdateSprites
 	ret
 
 VersionMenuText:
