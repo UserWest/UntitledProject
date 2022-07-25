@@ -674,8 +674,6 @@ StartMenu_Version::
 	call ClearScreen
 	call UpdateSprites
 	callfar DisplayVersionMenu
-	call LoadScreenTilesFromBuffer2 ; restore saved screen
-	call LoadTextBoxTilePatterns
 	call UpdateSprites
 	jp RedisplayStartMenu
 
