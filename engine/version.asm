@@ -213,36 +213,49 @@ MovePlayerWest:
 
 CheckSpecialCases:
 	ld a, [wCurMap]
+	cp OAKS_LAB
+	jr z, .oaksLab
 	cp ROUTE_19
 	jr z, .route19
 	cp SAFFRON_CITY
 	jr z, .saffron
-.done
+
+.continueCollisionCheck
 	jp _VersionChangeCheckCollision.checkStartPos
-.found
+.endCollisionCheck
 	jp _VersionChangeCheckCollision.done
-	
+
+.oaksLab
+	call CheckForYellowVersion
+	jr nz, .continueCollisionCheck
+			ld a, [wYCoord]
+			cp 2
+			jr nz, .continueCollisionCheck
+				ld a, [wXCoord]
+				cp 5
+				jr c, .continueCollisionCheck
+					call MovePlayerSouth
+					call MovePlayerSouth
+					jr .endCollisionCheck
 .route19
 	call CheckForYellowVersion
-	jr nz, .done
-	ld a, [wXCoord]
-	cp 5
-	jr nz, .done
-	ld a, [wYCoord]
-	cp 9
-	jr nz, .done
-	jp MovePlayerSouth
-	jr .found
+	jr nz, .continueCollisionCheck
+		ld a, [wXCoord]
+		cp 5
+		jr z, .continueRoute19
+		cp 4
+		jr nz, .continueCollisionCheck
+		.continueRoute19
+			ld a, [wYCoord]
+			cp 9
+			jr nz, .continueCollisionCheck
+				jp MovePlayerSouth
+				jr .endCollisionCheck
 .saffron
 	ld a, [wXCoord]
 	cp 18
-	jr nz, .done
-	ld a, [wYCoord]
-	cp 22
-	jr nz, .done
-	jr .found
-
-
-_CheckForMonWithVersionDifferences::
-	ret
-	
+	jr nz, .continueCollisionCheck
+		ld a, [wYCoord]
+		cp 22
+		jr nz, .continueCollisionCheck
+		jr .endCollisionCheck

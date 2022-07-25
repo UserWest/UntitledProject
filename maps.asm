@@ -1154,7 +1154,7 @@ INCLUDE "data/maps/headers/OaksLabRB.asm"
 INCLUDE "scripts/OaksLab.asm"
 INCLUDE "scripts/OaksLabRB.asm"
 INCLUDE "data/maps/objects/OaksLab.asm"
-OaksLabRB_Blocks:
+OaksLabRB_Blocks: INCBIN "maps/OaksLabRB.blk"
 OaksLab_Blocks: INCBIN "maps/OaksLab.blk"
 
 
