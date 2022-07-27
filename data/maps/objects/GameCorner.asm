@@ -25,5 +25,4 @@ GameCorner_Object:
 	object_event 17, 13, SPRITE_FISHING_GURU, YELLOW_VERSION, STAY, RIGHT, 10 ; person
 	object_event 17, 13, SPRITE_GENTLEMAN, RED_OR_BLUE, STAY, RIGHT, 10 ; person
 
-
 	def_warps_to GAME_CORNER

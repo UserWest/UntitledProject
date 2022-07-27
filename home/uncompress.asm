@@ -13,7 +13,6 @@ UncompressSpriteData::
 	pop af
 	jp BankswitchCommon
 
-
 ; initializes necessary data to load a sprite and runs UncompressSpriteDataLoop
 _UncompressSpriteData::
 	ld hl, sSpriteBuffer1

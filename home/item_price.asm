@@ -38,4 +38,3 @@ GetItemPrice::
 	ld de, hItemPrice
 	pop af
 	jp BankswitchCommon
-

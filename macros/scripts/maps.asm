@@ -15,6 +15,7 @@ ENDM
 ;\8 trainers only: trainer class/pokemon id
 ;\9 trainers only: trainer number/pokemon level
 MACRO object_event
+	db \4
 	db \3
 	db \2 + 4
 	db \1 + 4

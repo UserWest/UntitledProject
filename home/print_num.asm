@@ -8,7 +8,6 @@ FarPrintText::
 	pop af
 	jp BankswitchCommon
 
-
 PrintNumber::
 ; Print the c-digit, b-byte value at de.
 ; Allows 2 to 7 digits. For 1-digit numbers, add

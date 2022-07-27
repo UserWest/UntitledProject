@@ -12,7 +12,6 @@ ReloadMapData::
 	pop af
 	jp BankswitchCommon
 
-
 ; reloads tileset tile patterns
 ReloadTilesetTilePatterns::
 	ldh a, [hLoadedROMBank]
@@ -24,7 +23,6 @@ ReloadTilesetTilePatterns::
 	call EnableLCD
 	pop af
 	jp BankswitchCommon
-
 
 ; shows the town map and lets the player choose a destination to fly to
 ChooseFlyDestination::

@@ -25,9 +25,9 @@ PrintLetterDelay::
 	call Joypad
 	ldh a, [hJoyHeld]
 .checkAButton
-	bit BIT_A_BUTTON, a ; is the A button pressed?
+	bit BIT_A_BUTTON, a
 	jr nz, .endWait
-	bit BIT_B_BUTTON, a ; is the B button pressed?
+	bit BIT_B_BUTTON, a
 	jr z, .buttonsNotPressed
 .endWait
 	call DelayFrame

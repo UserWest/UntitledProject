@@ -112,4 +112,3 @@ ApplyPikachuMovementData::
 	call ApplyPikachuMovementData_
 	pop af
 	jp BankswitchCommon
-

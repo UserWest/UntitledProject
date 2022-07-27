@@ -34,4 +34,3 @@ CheckForHiddenObjectOrBookshelfOrCardKeyDoor::
 	ldh [hItemAlreadyFound], a
 	pop af
 	jp BankswitchCommon
-

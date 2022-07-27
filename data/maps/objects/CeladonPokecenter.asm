@@ -15,6 +15,5 @@ CeladonPokecenter_Object:
 	object_event 10,  5, SPRITE_BEAUTY, ANY_VERSION, WALK, ANY_DIR, 3 ; person
 	object_event 11,  2, SPRITE_LINK_RECEPTIONIST, ANY_VERSION, STAY, DOWN, 4 ; person
 	object_event  4,  1, SPRITE_CHANSEY, YELLOW_VERSION, STAY, DOWN, 5 ; person
-	
 
 	def_warps_to CELADON_POKECENTER

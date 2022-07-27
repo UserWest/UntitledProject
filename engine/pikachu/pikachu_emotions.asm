@@ -163,7 +163,7 @@ StarterPikachuEmotionCommand_subcmd:
 	dw PikachuFanClubCheck
 	dw PikachuBillsHouseCheck
 
-StarterPikachuEmotionCommand_nop2:
+StarterPikachuEmotionCommand_nop2: ; does this need to exist? formerly debug
 	ret
 
 StarterPikachuEmotionCommand_9:
@@ -179,7 +179,7 @@ StarterPikachuEmotionCommand_turnawayfromplayer:
 	ld [wSpritePikachuStateData1FacingDirection], a
 	ret
 
-DeletedFunction_fcffb:
+DeletedFunction_fcffb: ; does this need to exist? formerly debug
 ; Inexplicably empty.
 REPT 5
 	nop

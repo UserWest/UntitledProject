@@ -200,7 +200,7 @@ PlaySound::
 	ret
 
 FadeOutAudio::
-	homejp FadeOutAudio_
+	homejp _FadeOutAudio
 
 GetNextMusicByte::
 	ldh a, [hLoadedROMBank]
@@ -297,4 +297,3 @@ DetermineAudioFunction::
 .done
 	pop af
 	jp BankswitchCommon
-

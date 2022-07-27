@@ -14,5 +14,5 @@ CeruleanMelaniesHouse_Object:
 	object_event  5,  3, SPRITE_SANDSHREW, YELLOW_VERSION, STAY, LEFT, 4 ; person
 	object_event  5,  4, SPRITE_GRANNY, RED_OR_BLUE,  STAY, LEFT, 5 ; person
 	object_event  1,  2, SPRITE_GAMBLER, RED_OR_BLUE,  STAY, NONE, 6 ; person
-	
+
 	def_warps_to CERULEAN_MELANIES_HOUSE

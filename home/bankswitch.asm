@@ -7,9 +7,7 @@ BankswitchHome::
 	ld a, [wBankswitchHomeTemp]
 	jp BankswitchCommon
 
-
 BankswitchBack::
 ; returns from BankswitchHome
 	ld a, [wBankswitchHomeSavedROMBank]
 	jp BankswitchCommon
-

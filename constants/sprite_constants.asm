@@ -73,7 +73,6 @@
 	const SPRITE_JESSIE                  ; $45
 	const SPRITE_JAMES                   ; $46
 	const SPRITE_NURSE_RED
-	
 DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_POKE_BALL               ; $47
 	const SPRITE_FOSSIL                  ; $48

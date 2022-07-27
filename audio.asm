@@ -538,4 +538,6 @@ SECTION "Music 4", ROMX
 INCLUDE "audio/music/surfingpikachu.asm"
 INCLUDE "audio/music/yellowunusedsong.asm"
 INCLUDE "audio/music/meetjessiejames.asm"
+
+; Pikachu cries are in different banks
 INCLUDE "audio/pikachu_cries.asm"

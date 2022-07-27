@@ -13,4 +13,3 @@ UpdateSprites::
 	ld [wUpdateSpritesEnabled], a
 	pop af
 	jp BankswitchCommon
-

@@ -308,7 +308,7 @@ GetSplitMapSpriteSetID:
 	add hl, de
 	ld a, [hl] ; a = spriteSetID
 	cp $f0 ; does the map have 2 sprite sets?
-	jr c, .loadSpriteSetID ; check for vermilion or fuchsia sprites
+	jr c, .loadSpriteSetID ; check for maps that use different sprite sets across versions
 ; Chooses the correct sprite set ID depending on the player's position within
 ; the map for maps with two sprite sets.
 	cp $f8

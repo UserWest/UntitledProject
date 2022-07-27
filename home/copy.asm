@@ -9,7 +9,6 @@ FarCopyData::
 	pop af
 	jp BankswitchCommon
 
-
 CopyData::
 ; Copy bc bytes from hl to de.
 	ld a, b

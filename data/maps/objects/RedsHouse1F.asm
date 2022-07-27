@@ -11,4 +11,5 @@ RedsHouse1F_Object:
 
 	def_object_events
 	object_event  5,  4, SPRITE_MOM, ANY_VERSION, STAY, LEFT, 1
+
 	def_warps_to REDS_HOUSE_1F

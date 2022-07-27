@@ -1,4 +1,4 @@
-FadeOutAudio_::
+_FadeOutAudio::
 	ld a, [wAudioFadeOutControl]
 	and a ; currently fading out audio?
 	jr nz, .fadingOut

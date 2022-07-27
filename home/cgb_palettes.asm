@@ -82,4 +82,3 @@ Func_3082::
 	call Audio1_UpdateMusic
 	pop af
 	jp BankswitchCommon
-

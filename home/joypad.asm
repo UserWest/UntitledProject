@@ -1,3 +1,9 @@
+Joypad::
+	homejp _Joypad
+
+ReadJoypad::
+	homejp ReadJoypad_
+
 ; this function is used when lower button sensitivity is wanted (e.g. menus)
 ; OUTPUT: [hJoy5] = pressed buttons in usual format
 ; there are two flags that control its functionality, [hJoy6] and [hJoy7]
@@ -98,9 +104,3 @@ ManualTextScroll::
 .inLinkBattle
 	ld c, 65
 	jp DelayFrames
-
-Joypad::
-	homejp _Joypad
-
-ReadJoypad::
-	homejp ReadJoypad_

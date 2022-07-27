@@ -213,7 +213,7 @@ SetPal_Overworld:
 .blueOverworld
 	ld a, PAL_BLUE_VERSION - 1
 	jr .town
-	
+
 ; used when a Pokemon is the only thing on the screen
 ; such as evolution, trading and the Hall of Fame
 SetPal_PokemonWholeScreen:
@@ -796,9 +796,7 @@ InitGBCPalettes:
 		ld a, index + 4
 		call TransferCurOBPData
 	ENDR
-	
 	call ColorOverworldSprites
-	
 	ret
 
 GetGBCBasePalAddress::
@@ -1035,9 +1033,7 @@ _UpdateGBCPal_OBP::
 
 		call TransferCurOBPData
 	ENDR
-	
 	call ColorOverworldSprites
-	
 	ret
 
 TranslatePalPacketToBGMapAttributes::

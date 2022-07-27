@@ -94,4 +94,3 @@ GetName::
 	pop hl
 	pop af
 	jp BankswitchCommon
-

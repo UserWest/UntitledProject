@@ -29,7 +29,6 @@ Predef::
 	pop af
 	jp BankswitchCommon
 
-
 GetPredefRegisters::
 ; Restore the contents of register pairs
 ; when GetPredefPointer was called.

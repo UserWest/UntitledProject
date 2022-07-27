@@ -17,9 +17,9 @@ ViridianCity_Object:
 	bg_event 27,  7, 14 ; ViridianCityText13
 
 	def_object_events
-	object_event 13, 20, SPRITE_YOUNGSTER, ANY_VERSION, WALK, ANY_DIR, 1 ; person above lake
-	object_event 30,  8, SPRITE_GAMBLER, ANY_VERSION, STAY, NONE, 2 ; person next to gym
-	object_event 30, 25, SPRITE_YOUNGSTER, ANY_VERSION, WALK, ANY_DIR, 3 ; person 2 catepillars
+	object_event 13, 20, SPRITE_YOUNGSTER, ANY_VERSION, WALK, ANY_DIR, 1 ; person
+	object_event 30,  8, SPRITE_GAMBLER, ANY_VERSION, STAY, NONE, 2 ; person
+	object_event 30, 25, SPRITE_YOUNGSTER, ANY_VERSION, WALK, ANY_DIR, 3 ; person
 	object_event 17,  9, SPRITE_GIRL, ANY_VERSION, STAY, RIGHT, 4 ; person
 	object_event 18,  9, SPRITE_GAMBLER_ASLEEP, ANY_VERSION, STAY, NONE, 5 ; person
 	object_event  6, 23, SPRITE_FISHER, ANY_VERSION, STAY, DOWN, 6 ; person

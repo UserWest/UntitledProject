@@ -29,7 +29,6 @@ ENDR
 	pop af
 	jp BankswitchCommon
 
-
 LoadNextSoundClipSample::
 	ld a, d
 	and $80

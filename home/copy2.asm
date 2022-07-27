@@ -36,7 +36,6 @@ FarCopyDataDouble::
 	pop af
 	jp BankswitchCommon
 
-
 CopyVideoData::
 ; Wait for the next VBlank, then copy c 2bpp
 ; tiles from b:de to hl, 8 tiles at a time.

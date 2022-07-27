@@ -37,7 +37,6 @@ RunNPCMovementScript::
 	pop af
 	jp BankswitchCommon
 
-
 .NPCMovementScriptPointerTables
 	dw PalletMovementScriptPointerTable
 	dw PewterMuseumGuyMovementScriptPointerTable

@@ -48,7 +48,7 @@ CalcStats::
 	ret
 
 CalcStat::
-	homejp CalcStat_
+	homejp _CalcStat
 
 AddEnemyMonToPlayerParty::
 	homejp_sf _AddEnemyMonToPlayerParty

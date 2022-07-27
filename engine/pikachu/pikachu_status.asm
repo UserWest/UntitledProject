@@ -262,7 +262,7 @@ IsSurfingPikachuInThePlayersParty::
 	and a
 	ret
 
-IsSurfingPikachuInParty_::
+_IsSurfingPikachuInParty::
 ; set bit 6 of wd472 if true
 ; also calls Func_3467, which is a bankswitch to IsStarterPikachuInOurParty
 	ld a, [wd472]

@@ -71,7 +71,7 @@ IsItemInBag::
 	ret
 
 IsSurfingPikachuInParty::
-	homejp IsSurfingPikachuInParty_
+	homejp _IsSurfingPikachuInParty
 	
 DisplayPokedex::
 	ld [wd11e], a

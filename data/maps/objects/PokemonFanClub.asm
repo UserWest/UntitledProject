@@ -7,7 +7,6 @@ PokemonFanClub_Object:
 
 	def_bg_events
 
-	
 	def_object_events
 	object_event  6,  3, SPRITE_FISHER, ANY_VERSION, STAY, LEFT, 1 ; person
 	object_event  1,  3, SPRITE_GIRL, ANY_VERSION, STAY, RIGHT, 2 ; person

@@ -24,5 +24,3 @@ RocketHideoutB4F_Object:
 	object_event 26, 12, SPRITE_ROCKET, RED_OR_BLUE, STAY, DOWN, 3, OPP_ROCKET, 17
 
 	def_warps_to ROCKET_HIDEOUT_B4F
-;show/hide data is attached to jessie and james in such a way that fillers that go unseen are
-;required to keep things working in red and blue

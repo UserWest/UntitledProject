@@ -30,5 +30,4 @@ OaksLab_Object:
 	object_event  2, 10, SPRITE_SCIENTIST, ANY_VERSION, STAY, NONE, 8 ; person
 	object_event  8, 10, SPRITE_SCIENTIST, ANY_VERSION, STAY, NONE, 9 ; person
 
-
 	def_warps_to OAKS_LAB
